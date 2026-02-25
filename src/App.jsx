@@ -15,6 +15,8 @@ import TrainingMonitor from "./components/TrainingMonitor";
 import Certifications from "./components/Certifications";
 import GitHubHeatmap from "./components/GitHubHeatmap";
 import TerminalCLI from "./components/Terminal";
+import ModelRegistry from "./components/ModelRegistry";
+import SystemMetrics from "./components/SystemMetrics";
 import { Terminal, Cpu, Shield, Wifi, Clock } from "lucide-react";
 
 export default function App() {
@@ -134,7 +136,9 @@ export default function App() {
 
             <aside className="space-y-12">
               <TrainingMonitor />
+              <SystemMetrics />
               <GitHubHeatmap />
+              <ModelRegistry />
               <Certifications />
               <TerminalCLI />
               <Skills />
