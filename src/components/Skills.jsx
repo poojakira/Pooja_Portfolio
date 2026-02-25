@@ -100,52 +100,48 @@ export default function Skills() {
                                         &gt; {cat.details}
                                     </p>
                                 </motion.div>
-                            )}
-                        </AnimatePresence>
+                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                            <span className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">{cat.icon}</span>
+                            {cat.name}
+                        </div>
+                        
+                        <div className="grid gap-3">
+                            {cat.skills.map(skillName => {
+                                const skill = SKILLS.find(s => s.name === skillName);
+                                return (
+                                    <div key={skillName} className="group">
+                                        <div className="flex justify-between items-center mb-1.5">
+                                            <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">{skillName}</span>
+                                            <span className="text-[10px] font-mono text-indigo-400/70">{skill?.level}%</span>
+                                        </div>
+                                        <div className="h-1 bg-slate-800/50 rounded-full overflow-hidden border border-white/5">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: `${skill?.level}%` }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 1, ease: "easeOut" }}
+                                                className="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 group-hover:from-indigo-500 group-hover:to-indigo-300 transition-all shadow-[0_0_10px_rgba(79,70,229,0.3)]"
+                                            />
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </motion.div>
                 ))}
-
-                {/* Live Telemetry Card */}
-                <div className="glass-card p-5 bg-gradient-to-br from-indigo-500/5 to-transparent relative group overflow-hidden">
-                    <div className="flex items-center gap-3 mb-4">
-                        <Network size={16} className="text-indigo-400 animate-pulse" />
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Live_Telemetry</span>
-                    </div>
-
-                    <div className="space-y-3 font-mono">
-                        <div className="flex justify-between items-center text-[9px]">
-                            <span className="text-slate-500 uppercase">GPU_CLUSTER:</span>
-                            <span className="text-emerald-400 animate-pulse">OPTIMIZED (98.2%)</span>
-                        </div>
-                        <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-                            <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: "98%" }}
-                                transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-                                className="h-full bg-emerald-500/50"
-                            />
-                        </div>
-
-                        <div className="flex justify-between items-center text-[9px]">
-                            <span className="text-slate-500 uppercase">MISSION_STATUS:</span>
-                            <span className="text-indigo-400">READY_FOR_DEPLOY</span>
-                        </div>
-                        <div className="flex gap-1 mt-2">
-                            {[...Array(12)].map((_, i) => (
-                                <motion.div
-                                    key={i}
-                                    animate={{ height: [4, 12, 4] }}
-                                    transition={{ duration: 0.5 + Math.random(), repeat: Infinity }}
-                                    className="w-1 bg-indigo-500/20 rounded-full"
+                key={i}
+                animate={{ height: [4, 12, 4] }}
+                transition={{ duration: 0.5 + Math.random(), repeat: Infinity }}
+                className="w-1 bg-indigo-500/20 rounded-full"
                                 />
                             ))}
-                        </div>
-                    </div>
-
-                    {/* Decorative Grid */}
-                    <div className="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] [background-size:8px_8px] pointer-events-none" />
-                </div>
             </div>
-        </aside>
+        </div>
+
+                    {/* Decorative Grid */ }
+    <div className="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] [background-size:8px_8px] pointer-events-none" />
+                </div >
+            </div >
+        </aside >
     );
 }
