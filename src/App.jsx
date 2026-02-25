@@ -12,6 +12,9 @@ import AudioPlayer from "./components/AudioPlayer";
 import StatusTicker from "./components/StatusTicker";
 import BootScreen from "./components/BootScreen";
 import TrainingMonitor from "./components/TrainingMonitor";
+import Certifications from "./components/Certifications";
+import GitHubHeatmap from "./components/GitHubHeatmap";
+import TerminalCLI from "./components/Terminal";
 import { Terminal, Cpu, Shield, Wifi, Clock } from "lucide-react";
 
 export default function App() {
@@ -125,15 +128,15 @@ export default function App() {
             <div className="space-y-32">
               <Hero />
               <Projects />
-              <div className="grid md:grid-cols-2 gap-12">
-                <Experience />
-                <Education />
-              </div>
+              <Experience />
               <Publications />
             </div>
 
             <aside className="space-y-12">
               <TrainingMonitor />
+              <GitHubHeatmap />
+              <Certifications />
+              <TerminalCLI />
               <Skills />
               <Contact />
 
