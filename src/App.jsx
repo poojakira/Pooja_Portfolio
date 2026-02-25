@@ -7,7 +7,7 @@ import Publications from "./components/Publications";
 import Education from "./components/Education";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
-
+import AIBot from "./components/AIBot";
 import AudioPlayer from "./components/AudioPlayer";
 import StatusTicker from "./components/StatusTicker";
 import BootScreen from "./components/BootScreen";
@@ -51,6 +51,7 @@ export default function App() {
 
       {/* Global Overlay Elements - Outside of the blur/opacity div */}
 
+      <AIBot />
       <AudioPlayer ref={audioPlayerRef} />
       <StatusTicker />
 
@@ -189,6 +190,7 @@ export default function App() {
 
       {/* Global Overlay Elements - Rendered last for highest stack priority */}
 
+      <AIBot />
       <AudioPlayer ref={audioPlayerRef} />
       <StatusTicker />
     </div>
