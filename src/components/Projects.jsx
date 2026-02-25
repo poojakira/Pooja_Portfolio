@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { PROJECTS } from "../data";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Cpu, Activity, BarChart3, Binary, Zap, ChevronRight } from "lucide-react";
+import { ExternalLink, Cpu, Activity, BarChart3, Binary, Zap, X, Shield, Terminal } from "lucide-react";
 
 export default function Projects() {
-    const [activeProject, setActiveProject] = useState(null);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     return (
         <section id="projects" className="space-y-8">
@@ -18,10 +18,6 @@ export default function Projects() {
                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                         NODE_STABLE
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Activity size={12} className="text-indigo-500" />
-                        LATENCY: 4.8ms
-                    </div>
                 </div>
             </div>
 
@@ -33,9 +29,8 @@ export default function Projects() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        onMouseEnter={() => setActiveProject(p.id)}
-                        onMouseLeave={() => setActiveProject(null)}
-                        className="group glass-card flex flex-col p-6 min-h-[300px] hover:border-indigo-500/30 transition-all duration-500"
+                        onClick={() => setSelectedProject(p)}
+                        className="group glass-card flex flex-col p-6 min-h-[300px] hover:border-indigo-500/30 transition-all duration-500 cursor-pointer relative"
                     >
                         {/* Project Header */}
                         <div className="flex justify-between items-start mb-6">
@@ -50,33 +45,8 @@ export default function Projects() {
                                     {p.title}
                                 </h4>
                             </div>
-                            <div className="flex gap-2">
-                                <a
-                                    href={p.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2 rounded-lg bg-white/5 hover:bg-indigo-500/20 text-slate-400 hover:text-white transition-all transform hover:rotate-12"
-                                >
-                                    <ExternalLink size={16} />
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* Analysis Grid */}
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 space-y-1">
-                                <div className="text-[9px] text-slate-500 font-bold uppercase flex items-center gap-1.5">
-                                    <Zap size={10} className="text-amber-400" />
-                                    Performance
-                                </div>
-                                <div className="text-xs font-mono font-bold text-emerald-400">{p.metric}</div>
-                            </div>
-                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 space-y-1">
-                                <div className="text-[9px] text-slate-500 font-bold uppercase flex items-center gap-1.5">
-                                    <BarChart3 size={10} className="text-indigo-400" />
-                                    Complexity
-                                </div>
-                                <div className="text-xs font-mono font-bold text-indigo-300">{p.complexity}%</div>
+                            <div className="p-2 rounded-lg bg-white/5 text-slate-500 group-hover:text-indigo-400 transition-colors">
+                                <Activity size={16} />
                             </div>
                         </div>
 
@@ -84,32 +54,152 @@ export default function Projects() {
                             {p.desc}
                         </p>
 
-                        {/* Tech Stack Visualizer */}
-                        <div className="mt-auto pt-6 border-t border-white/5">
-                            <div className="flex flex-wrap gap-2">
-                                {p.tech.map((t) => (
-                                    <span
-                                        key={t}
-                                        className="text-[9px] font-mono font-bold px-2 py-1 rounded bg-indigo-500/5 text-indigo-300/80 border border-indigo-500/10 group-hover:border-indigo-500/30 transition-colors"
-                                    >
-                                        {t}
-                                    </span>
-                                ))}
+                        <div className="grid grid-cols-2 gap-4 mb-8">
+                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5">
+                                <div className="text-[8px] text-slate-500 font-bold uppercase mb-1">Performance</div>
+                                <div className="text-xs font-mono font-bold text-emerald-400">{p.metric}</div>
+                            </div>
+                            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5">
+                                <div className="text-[8px] text-slate-500 font-bold uppercase mb-1">Complexity</div>
+                                <div className="text-xs font-mono font-bold text-indigo-300">{p.complexity}%</div>
                             </div>
                         </div>
 
-                        {/* Futuristic Scanner Effect on Hover */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent -translate-x-full group-hover:animate-[scan_2s_linear_infinite]" />
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-indigo-400 uppercase tracking-widest group-hover:gap-4 transition-all mt-auto">
+                            Analyze Mission <ChevronRight size={14} />
+                        </div>
                     </motion.article>
                 ))}
             </div>
 
+            {/* Mission Briefing Modal */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedProject(null)}
+                            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+                        />
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                        >
+                            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-indigo-500/5">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400">
+                                        <Shield size={20} />
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Project_Deep_Dive</div>
+                                        <h4 className="text-lg font-bold text-white">{selectedProject.title}</h4>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setSelectedProject(null)}
+                                    className="p-2 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white transition-colors"
+                                >
+                                    <X size={20} />
+                                </button>
+                            </div>
+
+                            <div className="p-8 space-y-8 overflow-y-auto max-h-[70vh] custom-scrollbar">
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    <div className="space-y-6">
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
+                                                <Terminal size={12} className="text-indigo-500" /> System Architecture
+                                            </div>
+                                            <p className="text-sm text-slate-300 bg-black/40 p-4 rounded-xl border border-white/5">
+                                                {selectedProject.briefing.architecture}
+                                            </p>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
+                                                <Activity size={12} className="text-emerald-500" /> Engineering Challenge
+                                            </div>
+                                            <p className="text-sm text-slate-300 italic">
+                                                "{selectedProject.briefing.challenges}"
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
+                                                <Cpu size={12} className="text-amber-500" /> Technical Solution
+                                            </div>
+                                            <p className="text-sm text-slate-300">
+                                                {selectedProject.briefing.solution}
+                                            </p>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase">Verification Metrics</div>
+                                            <div className="grid grid-cols-1 gap-2">
+                                                {selectedProject.briefing.metrics.map(m => (
+                                                    <div key={m} className="p-2 rounded bg-indigo-500/5 border border-indigo-500/10 text-[11px] font-mono text-indigo-300">
+                                                        {'>'} {m}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-6 border-t border-white/10 bg-black/20 flex justify-between items-center">
+                                <div className="flex gap-2">
+                                    {selectedProject.tech.map(t => (
+                                        <span key={t} className="px-2 py-1 rounded bg-slate-800 text-[9px] font-mono text-slate-500 uppercase border border-white/5">
+                                            {t}
+                                        </span>
+                                    ))}
+                                </div>
+                                <a
+                                    href={selectedProject.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500 transition-all flex items-center gap-2"
+                                >
+                                    View Source <ExternalLink size={14} />
+                                </a>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+
             <style jsx>{`
-                @keyframes scan {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(100%); }
-                }
+                .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(79, 70, 229, 0.2); border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(79, 70, 229, 0.4); }
             `}</style>
         </section>
+    );
+}
+
+function ChevronRight({ size, className }) {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+        >
+            <path d="m9 18 6-6-6-6" />
+        </svg>
     );
 }
