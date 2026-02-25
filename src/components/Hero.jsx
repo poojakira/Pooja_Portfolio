@@ -81,26 +81,58 @@ export default function Hero() {
                         </a>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
                         {[
-                            { icon: <Satellite size={22} />, label: "Domain", value: "Aerospace", color: "indigo" },
-                            { icon: <Shield size={22} />, label: "Priority", value: "Cloud_Security", color: "emerald" },
-                            { icon: <Database size={22} />, label: "Resource", value: "GPU_Clusters", color: "amber" }
+                            {
+                                icon: <Satellite size={22} />,
+                                label: "Domain",
+                                value: "Aerospace",
+                                color: "indigo",
+                                specs: "PINNs • GANs • Trajectory Opt."
+                            },
+                            {
+                                icon: <Shield size={22} />,
+                                label: "Priority",
+                                value: "Cloud_Security",
+                                color: "emerald",
+                                specs: "Auth_V3 • DevSecOps • AES-256"
+                            },
+                            {
+                                icon: <Database size={22} />,
+                                label: "Resource",
+                                value: "GPU_Clusters",
+                                color: "amber",
+                                specs: "CUDA • H100_Dist • Parallel.X"
+                            }
                         ].map((stat, i) => (
                             <motion.div
                                 key={stat.label}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 1 + (i * 0.1) }}
-                                className="glass-card p-5 group flex items-center gap-5 hover:bg-white/5 transition-all"
+                                className="glass-card p-6 group flex flex-col items-start gap-4 hover:bg-white/5 transition-all relative overflow-hidden min-w-[200px]"
                             >
-                                <div className={`p-3 rounded-2xl bg-${stat.color}-500/10 text-${stat.color}-400 group-hover:scale-110 transition-transform`}>
-                                    {stat.icon}
+                                <div className="flex items-center gap-4 w-full">
+                                    <div className={`p-3 rounded-2xl bg-${stat.color}-500/10 text-${stat.color}-400 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500`}>
+                                        {stat.icon}
+                                    </div>
+                                    <div>
+                                        <div className="text-[9px] font-black uppercase text-slate-500 tracking-[0.2em]">{stat.label}</div>
+                                        <div className="text-sm font-bold text-slate-200">{stat.value}</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest">{stat.label}</div>
-                                    <div className="text-sm font-bold text-slate-200">{stat.value}</div>
-                                </div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileHover={{ opacity: 1, x: 0 }}
+                                    className="absolute inset-0 bg-slate-900/90 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 transition-all duration-500"
+                                >
+                                    <div className="text-[8px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-2">Technical_Specs</div>
+                                    <div className="text-[10px] font-bold text-white text-center leading-tight">{stat.specs}</div>
+                                    <div className="mt-3 w-12 h-0.5 bg-indigo-500/50 rounded-full" />
+                                </motion.div>
+
+                                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                             </motion.div>
                         ))}
                     </div>
