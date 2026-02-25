@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Satellite, Shield, Zap, Database, User, Target, Share2 } from "lucide-react";
+import profilePic from "../assets/profile.jpg";
 
 export default function Hero() {
     return (
@@ -103,7 +104,7 @@ export default function Hero() {
                         <div className="relative flex-1 rounded-2xl overflow-hidden bg-black mb-4">
                             <div className="absolute inset-0 bg-gradient-to-tr from-indigo-950/40 to-transparent z-10" />
                             <img
-                                src="/src/assets/profile.jpg"
+                                src={profilePic}
                                 alt="Pooja Kiran Bharadwaj"
                                 className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-110"
                                 onError={(e) => {
