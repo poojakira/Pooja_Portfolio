@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Satellite, Shield, Zap, Database, User, Target, Share2 } from "lucide-react";
+import { Satellite, Shield, Zap, Database, User, Target, Share2, Download } from "lucide-react";
 import profilePic from "../assets/profile.jpg";
+import resumePDF from "../assets/Pooja_Kiran_RESUME.pdf";
 
 export default function Hero() {
     return (
@@ -58,6 +59,27 @@ export default function Hero() {
                         <span className="text-indigo-300">intelligence-driven</span> platforms and security-first cloud infrastructures.
                         Merging applied machine learning with DevSecOps at scale.
                     </p>
+
+                    <div className="flex flex-wrap gap-4 mb-12">
+                        <motion.a
+                            href={resumePDF}
+                            download="Pooja_Kiran_Resume.pdf"
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow-xl shadow-indigo-950/40 hover:bg-indigo-500 transition-all border border-indigo-400/20"
+                        >
+                            <Download size={18} />
+                            DOWNLOAD RESUME
+                        </motion.a>
+
+                        <a
+                            href="#contact"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 text-slate-300 font-bold text-sm border border-white/10 hover:bg-white/10 transition-all"
+                        >
+                            <Target size={18} />
+                            HIRE ME
+                        </a>
+                    </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {[
