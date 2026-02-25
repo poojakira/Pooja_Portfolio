@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pooja Kiran Bharadwaj | Machine Learning Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --card: #101321;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.12);
+      --accent-strong: #22c55e;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-subtle: #1f2933;
+      --chip-bg: #111827;
+      --chip-border: #1f2937;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+    }
+
+    /* Layout */
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Top nav */
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 20% 0, #22c55e 0, #4f46e5 40%, #020617 100%);
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.3);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-role {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: all 0.18s ease-out;
+    }
+
+    .nav-link:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #111827 0, #020617 55%);
+      border-radius: 26px;
+      padding: 24px 22px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3vw, 30px);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .btn-primary {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #4f46e5, #22c55e);
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-secondary {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.16s ease-out;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.7);
+    }
+
+    /* Right column cards */
+
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 14px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: var(--chip-bg);
+      border: 1px solid var(--chip-border);
+      color: var(--muted);
+    }
+
+    .contact-list {
+      font-size: 12px;
+      color: var(--muted);
+      display: grid;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .contact-list a {
+      color: #e5e7eb;
+    }
+
+    /* Sections */
+
+    section {
+      margin-top: 22px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .section-body {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 14px 10px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Projects */
+
+    .project-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .project {
+      padding: 10px 10px 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at top left, #020617 0, #020617 40%, #020617 100%);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .project-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .project-tech {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .project-metric {
+      font-size: 11px;
+      color: #a5b4fc;
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Experience */
+
+    .experience-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .experience {
+      padding: 10px 10px 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: #020617;
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .experience-role {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .experience-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .experience-bullets {
+      margin-top: 4px;
+      padding-left: 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .experience-bullets li + li {
+      margin-top: 2px;
+    }
+
+    /* Two-column small sections */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 800px) {
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .list-compact {
+      font-size: 12px;
+      color: var(--muted);
+      display: grid;
+      gap: 4px;
+    }
+
+    .list-compact strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 26px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Top nav -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-avatar"></div>
+        <div class="brand-text">
+          <div class="brand-name">Pooja Kiran Bharadwaj</div>
+          <div class="brand-role">Machine Learning Engineer · Security & Aerospace</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <button class="nav-link" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+          Projects
+        </button>
+        <button class="nav-link" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">
+          Experience
+        </button>
+        <button class="nav-link" onclick="document.getElementById('publications').scrollIntoView({behavior:'smooth'})">
+          Publications
+        </button>
+        <button class="nav-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          Contact
+        </button>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <!-- Left: Hero + main sections -->
+      <div>
+        <!-- Hero -->
+        <section class="hero-card">
+          <div class="hero-pill-row">
+            <div class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              <span>Open to ML / MLOps / Applied Research roles</span>
+            </div>
+            <div class="hero-pill">
+              <span>Tempe, AZ · US Work Authorization (Student)</span>
+            </div>
+          </div>
+
+          <h1 class="hero-title">Aspiring Machine Learning Engineer for Aerospace, MLOps & Secure Cloud Systems</h1>
+          <p class="hero-subtitle">
+            I design and deploy high-performance ML systems for orbital autonomy, anomaly detection, and secure cloud-native
+            architectures—bridging reinforcement learning, generative models, and DevSecOps.
+          </p>
+
+          <div class="hero-tags">
+            <span class="tag">Reinforcement Learning (Q-Learning, MDP)</span>
+            <span class="tag">GANs & Transformers</span>
+            <span class="tag">Physics-Informed Neural Networks (PINNs)</span>
+            <span class="tag">MLOps & Telemetry</span>
+            <span class="tag">AWS Cloud & Security</span>
+            <span class="tag">DevSecOps · Secure SDLC</span>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+              View ML Projects
+            </button>
+            <button class="btn-secondary" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">
+              Experience & Teaching
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <span><span class="hero-meta-dot"></span> M.S. Information Technology Security · Arizona State University</span>
+            <span><span class="hero-meta-dot"></span> Focus: Aerospace ML, Cloud Security, MLOps</span>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+          <div class="section-header">
+            <h2 class="section-title">Machine learning projects</h2>
+            <p class="section-subtitle">Impact-driven ML systems with measurable performance gains</p>
+          </div>
+          <div class="section-body">
+            <div class="project-list">
+              <article class="project">
+                <div class="project-header">
+                  <h3 class="project-name">Apex-X & Aegis-X: Tactical Command Suite</h3>
+                  <span class="project-tech">PINNs · GANs · Transformers</span>
+                </div>
+                <p class="project-metric">
+                  Reduced simulation latency by 18.2% (12.36ms → 10.11ms) via GAN-based denoising and custom tactical transformer.
+                </p>
+                <p class="project-desc">
+                  Engineered an AI dashboard for tactical simulations using GANs for noise reduction and a transformer-based
+                  surrogate model to support &gt;100k scenarios with &lt;11ms inference latency, enabling real-time decision support
+                  in mission-critical environments.
+                </p>
+              </article>
+
+              <article class="project">
+                <div class="project-header">
+                  <h3 class="project-name">OrbitIQ: CubeSat Anomaly MLOps</h3>
+                  <span class="project-tech">MLOps · Telemetry · Orchestration</span>
+                </div>
+                <p class="project-metric">
+                  Decreased anomaly response time by 99.6% (2000ms → 8ms) with an end-to-end MLOps stack.
+                </p>
+                <p class="project-desc">
+                  Architected a telemetry-driven anomaly detection pipeline with automated retraining and deployment, maintaining
+                  95.8% predictive accuracy while orchestrating continuous model updates for evolving satellite behavior.
+                </p>
+              </article>
+
+              <article class="project">
+                <div class="project-header">
+                  <h3 class="project-name">EcoTrack Enterprise: Carbon Analytics</h3>
+                  <span class="project-tech">Random/Isolation Forests · FastAPI · Docker</span>
+                </div>
+                <p class="project-metric">
+                  Achieved 99.5% accuracy with containerized Isolation Forest microservices; P90 latency of 281ms for 1,000+ concurrent requests.
+                </p>
+                <p class="project-desc">
+                  Built a Docker-orchestrated FastAPI backend exposing ML micro-architectures for enterprise carbon analytics,
+                  enabling scalable anomaly detection on emissions data with low-latency inference under concurrent load.
+                </p>
+              </article>
+
+              <article class="project">
+                <div class="project-header">
+                  <h3 class="project-name">CommandX: Orbital Mission Control</h3>
+                  <span class="project-tech">Genetic Algorithms · Monte Carlo</span>
+                </div>
+                <p class="project-metric">
+                  Reduced fuel consumption by 60% and accelerated verification cycles by 99.9% (2 weeks → &lt;7 minutes).
+                </p>
+                <p class="project-desc">
+                  Designed a Genetic Algorithm for autonomous orbital trajectory routing and integrated a 1,000+ iteration Monte
+                  Carlo suite to rapidly validate mission profiles, dramatically compressing mission planning timelines.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience">
+          <div class="section-header">
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle">Teaching, security compliance, and engineering mentorship</p>
+          </div>
+          <div class="section-body">
+            <div class="experience-list">
+              <article class="experience">
+                <div class="experience-header">
+                  <div>
+                    <h3 class="experience-role">Graduate IT Grader – Web Programming & Security Compliance</h3>
+                    <div class="experience-meta">
+                      Arizona State University · Tempe, AZ · Feb 2025 – Oct 2025
+                    </div>
+                  </div>
+                </div>
+                <ul class="experience-bullets">
+                  <li>
+                    Enforced data governance and risk management for 85+ enterprise-style assignments by auditing security
+                    policies, incident response plans, and compliance frameworks.
+                  </li>
+                  <li>
+                    Improved front-end quality and UI/UX accessibility across 85+ student applications through rigorous reviews
+                    of HTML, CSS, and JavaScript wireframes.
+                  </li>
+                  <li>
+                    Elevated secure SDLC practices by delivering targeted technical remediation feedback, bridging web design
+                    with enterprise security compliance expectations.
+                  </li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Publications & Research -->
+        <section id="publications">
+          <div class="section-header">
+            <h2 class="section-title">Publications & research</h2>
+            <p class="section-subtitle">Reinforcement learning, e-learning, and smart mobility</p>
+          </div>
+          <div class="section-body">
+            <div class="list-compact">
+              <div>
+                <strong>IEEE INDICON (2023)</strong> — Personalized E-learning System Using RL Through Satellite  
+                Optimized learning trajectories with 80% dynamic progression accuracy using a Q-learning agent to adapt
+                content delivery over satellite-based infrastructure.
+              </div>
+              <div>
+                <strong>IOSR Journal (2023)</strong> — Smart Charge Pro: Empowering Future Mobility  
+                Managed concurrent power for 4 vehicles with zero-delay isolation using NodeMCU IoT controllers, enabling
+                safe and efficient EV charging orchestration.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section id="education">
+          <div class="section-header">
+            <h2 class="section-title">Education & certifications</h2>
+            <p class="section-subtitle">Security-focused ML foundation</p>
+          </div>
+          <div class="section-body two-col">
+            <div>
+              <div class="list-compact">
+                <div>
+                  <strong>Arizona State University</strong> — M.S., Information Technology Security  
+                  Aug 2024 – May 2026 · Tempe, AZ
+                </div>
+                <div>
+                  <strong>M. S. Ramaiah University of Applied Sciences</strong> — B.Tech, Computer Science  
+                  Aug 2019 – Aug 2023 · India
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="list-compact">
+                <div>
+                  <strong>AWS Academy Cloud Architecting</strong> — Apr 2025
+                </div>
+                <div>
+                  <strong>AWS Cloud Security Foundations</strong> — Nov 2025
+                </div>
+                <div>
+                  <strong>Honeywell Tech Innovation Lab</strong> — Nov 2025
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right column: Skills + Contact -->
+      <aside class="side-column">
+        <!-- Skills -->
+        <section>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Technical skills</h2>
+              <p class="card-subtitle">Languages · ML · Security · Analytics</p>
+            </div>
+            <div class="chip-row">
+              <span class="chip">Python</span>
+              <span class="chip">FastAPI</span>
+              <span class="chip">Docker</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">HTML/CSS</span>
+              <span class="chip">NodeMCU IoT</span>
+            </div>
+            <div class="chip-row">
+              <span class="chip">GANs</span>
+              <span class="chip">Transformers</span>
+              <span class="chip">PINNs</span>
+              <span class="chip">Reinforcement Learning</span>
+              <span class="chip">Q-Learning</span>
+              <span class="chip">MDP</span>
+            </div>
+            <div class="chip-row">
+              <span class="chip">MLOps</span>
+              <span class="chip">AWS Cloud</span>
+              <span class="chip">Cloud Security</span>
+              <span class="chip">DevSecOps</span>
+              <span class="chip">Secure SDLC</span>
+              <span class="chip">AI Threat Modeling</span>
+            </div>
+            <div class="chip-row">
+              <span class="chip">Monte Carlo Simulations</span>
+              <span class="chip">Random Forests</span>
+              <span class="chip">Isolation Forests</span>
+              <span class="chip">Anomaly Detection</span>
+              <span class="chip">Carbon Analytics</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Contact</h2>
+              <p class="card-subtitle">Let’s talk about ML, MLOps, or aerospace systems</p>
+            </div>
+            <div class="contact-list">
+              <div><strong>Email:</strong> <a href="mailto:poojakiranbharadwaj@gmail.com">poojakiranbharadwaj@gmail.com</a></div>
+              <div><strong>Phone:</strong> +1 (480) 776-7445</div>
+              <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/poojakiran" target="_blank">linkedin.com/in/poojakiran</a></div>
+              <div><strong>GitHub:</strong> <a href="https://github.com/poojakira" target="_blank">github.com/poojakira</a></div>
+              <div><strong>Location:</strong> Tempe, AZ</div>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      <span>© <span id="year"></span> Pooja Kiran Bharadwaj</span>
+      <span>Machine Learning · MLOps · Secure Cloud & Aerospace Systems</span>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --glass-bg: rgba(15, 23, 42, 0.65);
+        --glass-border: rgba(148, 163, 184, 0.1);
+        --accent-primary: 79, 70, 229;
+        --accent-secondary: 34, 197, 94;
+    }
+
+    body {
+        @apply bg-[#030712] text-slate-200 antialiased selection:bg-indigo-500/30;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply relative overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 backdrop-blur-md;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card::before {
+        content: "";
+        @apply absolute inset-0 -z-10 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500;
+    }
+
+    .glass-card:hover::before {
+        @apply opacity-100;
+    }
+
+    .glass-card:hover {
+        @apply border-white/10 shadow-2xl shadow-indigo-500/10 -translate-y-0.5;
+    }
+
+    .neo-blur {
+        @apply backdrop-blur-2xl bg-slate-950/80 border border-white/10;
+    }
+
+    .text-glow {
+        text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+}
+
+/* Noise texture */
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    opacity: 0.03;
+    pointer-events: none;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-slate-800 rounded-full hover:bg-slate-700 transition-colors;
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes reverse-spin {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-reverse-spin {
+    animation: reverse-spin 10s linear infinite;
+}
+
+.animate-spin-slow {
+    animation: spin 15s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scan {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-scan {
+    animation: scan 3s linear infinite;
+}
+
+/* Advanced Cinematic Overlays */
+.vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+    background: radial-gradient(circle, transparent 40%, rgba(3, 7, 18, 0.4) 100%);
+}
+
+.scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 45;
+    background: linear-gradient(0deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(99, 102, 241, 0.02) 50%,
+            rgba(0, 0, 0, 0) 100%);
+    opacity: 0.1;
+    position: fixed;
+    bottom: 100%;
+    left: 0;
+    pointer-events: none;
+    animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        bottom: 100%;
+    }
+
+    100% {
+        bottom: -100px;
+    }
+}
