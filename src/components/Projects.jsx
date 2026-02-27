@@ -6,6 +6,11 @@ import { ExternalLink, Cpu, Activity, BarChart3, Binary, Zap, X, Shield, Termina
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState(null);
 
+    const handleCardClick = (p) => {
+        console.log("Card clicked:", p.id);
+        setSelectedProject(p);
+    };
+
     return (
         <section id="projects" className="space-y-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 px-2">
@@ -29,7 +34,7 @@ export default function Projects() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        onClick={() => setSelectedProject(p)}
+                        onClick={() => handleCardClick(p)}
                         className="group glass-card flex flex-col p-6 min-h-[300px] hover:border-indigo-500/30 transition-all duration-500 cursor-pointer relative"
                     >
                         {/* Project Header */}
@@ -73,76 +78,81 @@ export default function Projects() {
             </div>
 
             {/* Mission Briefing Modal */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {selectedProject && (
-                    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8"
+                    >
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setSelectedProject(null)}
-                            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+                            className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
                         />
 
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                            className="relative w-full max-w-4xl bg-slate-900 border border-white/10 rounded-3xl shadow-[0_0_50px_rgba(79,70,229,0.3)] overflow-hidden z-10"
                         >
-                            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-indigo-500/5">
+                            <div className="p-6 md:p-8 border-b border-white/10 flex justify-between items-center bg-indigo-500/5">
                                 <div className="flex items-center gap-4">
-                                    <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400">
-                                        <Shield size={20} />
+                                    <div className="p-3 rounded-2xl bg-indigo-500/20 text-indigo-400">
+                                        <Shield size={24} />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Project_Deep_Dive</div>
-                                        <h4 className="text-lg font-bold text-white">{selectedProject.title}</h4>
+                                        <div className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-1">Project_Deep_Dive</div>
+                                        <h4 className="text-2xl font-bold text-white tracking-tight">{selectedProject.title}</h4>
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => setSelectedProject(null)}
-                                    className="p-2 hover:bg-white/10 rounded-lg text-slate-400 hover:text-white transition-colors"
+                                    className="p-3 hover:bg-white/10 rounded-2xl text-slate-400 hover:text-white transition-all bg-white/5"
                                 >
-                                    <X size={20} />
+                                    <X size={24} />
                                 </button>
                             </div>
 
-                            <div className="p-8 space-y-8 overflow-y-auto max-h-[70vh] custom-scrollbar">
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div className="space-y-6">
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
-                                                <Terminal size={12} className="text-indigo-500" /> System Architecture
+                            <div className="p-8 md:p-12 space-y-12 overflow-y-auto max-h-[80vh] custom-scrollbar">
+                                <div className="grid lg:grid-cols-2 gap-12">
+                                    <div className="space-y-10">
+                                        <div className="space-y-4">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
+                                                <Terminal size={14} className="text-indigo-500" /> System_Architecture
                                             </div>
-                                            <p className="text-sm text-slate-300 bg-black/40 p-4 rounded-xl border border-white/5">
+                                            <p className="text-sm text-slate-300 bg-black/40 p-6 rounded-2xl border border-white/5 leading-relaxed font-sans shadow-inner">
                                                 {selectedProject.briefing.architecture}
                                             </p>
                                         </div>
 
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
-                                                <Activity size={12} className="text-emerald-500" /> Engineering Challenge
+                                        <div className="space-y-4">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
+                                                <Activity size={14} className="text-emerald-500" /> Engineering_Challenge
                                             </div>
-                                            <p className="text-sm text-slate-300 italic">
+                                            <p className="text-sm text-slate-300 italic border-l-4 border-emerald-500/50 pl-6 py-2 bg-emerald-500/5 rounded-r-2xl font-sans">
                                                 "{selectedProject.briefing.challenges}"
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div className="space-y-6">
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
-                                                <Cpu size={12} className="text-amber-500" /> Technical Solution
+                                    <div className="space-y-10">
+                                        <div className="space-y-4">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
+                                                <Cpu size={14} className="text-amber-500" /> Technical_Solution
                                             </div>
-                                            <p className="text-sm text-slate-300">
+                                            <p className="text-sm text-slate-300 font-sans leading-relaxed">
                                                 {selectedProject.briefing.solution}
                                             </p>
                                         </div>
 
-                                        <div className="space-y-2">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
-                                                <Activity size={12} className="text-indigo-500" /> LIVE_METRICS_FEED
+                                        <div className="space-y-4">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
+                                                <Activity size={14} className="text-indigo-500" /> LIVE_METRICS_FEED
                                             </div>
                                             <LiveDashboard project={selectedProject} />
                                         </div>
@@ -150,28 +160,26 @@ export default function Projects() {
                                 </div>
                             </div>
 
-                            <div className="p-6 border-t border-white/10 bg-black/20 flex justify-between items-center">
-                                <div className="flex gap-2">
+                            <div className="p-8 border-t border-white/10 bg-black/40 flex flex-col md:flex-row justify-between items-center gap-8">
+                                <div className="flex flex-wrap gap-3">
                                     {selectedProject.tech.map(t => (
-                                        <span key={t} className="px-2 py-1 rounded bg-slate-800 text-[9px] font-mono text-slate-500 uppercase border border-white/5">
+                                        <span key={t} className="px-4 py-1.5 rounded-full bg-slate-800/50 text-[10px] font-mono text-indigo-300 border border-indigo-500/20 uppercase tracking-tighter">
                                             {t}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                                    <a
-                                        href={selectedProject.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-8 py-3 rounded-xl bg-indigo-600 text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-indigo-500 transition-all flex items-center justify-center gap-3 shadow-xl shadow-indigo-950/50 group/btn"
-                                    >
-                                        TRANSFER_TO_GITHUB
-                                        <ExternalLink size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                                    </a>
-                                </div>
+                                <a
+                                    href={selectedProject.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full md:w-auto px-10 py-4 rounded-2xl bg-indigo-600 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-indigo-500 transition-all flex items-center justify-center gap-4 shadow-xl shadow-indigo-900/40 hover:scale-[1.02] active:scale-95 group/btn"
+                                >
+                                    TRANSFER_TO_GITHUB
+                                    <ExternalLink size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                                </a>
                             </div>
                         </motion.div>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
