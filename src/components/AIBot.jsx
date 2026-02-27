@@ -66,7 +66,7 @@ const AIBot = () => {
                         {/* Chat Messages */}
                         <div
                             ref={scrollRef}
-                            className="flex-1 overflow-y-auto p-4 space-y-4 font-sans"
+                            className="flex-1 overflow-y-auto p-4 space-y-4 font-sans scroll-smooth"
                         >
                             {messages.map((msg, i) => (
                                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -76,14 +76,36 @@ const AIBot = () => {
                                             {msg.role === "user" ? <User size={14} /> : <Sparkles size={14} />}
                                         </div>
                                         <div className={`p-3 rounded-2xl text-[13px] leading-relaxed ${msg.role === "user"
-                                                ? "bg-indigo-600 text-white rounded-tr-none"
-                                                : "bg-white/5 text-slate-300 border border-white/5 rounded-tl-none"
+                                            ? "bg-indigo-600 text-white rounded-tr-none"
+                                            : "bg-white/5 text-slate-300 border border-white/5 rounded-tl-none"
                                             }`}>
                                             {msg.content}
                                         </div>
                                     </div>
                                 </div>
                             ))}
+
+                            {/* Suggested Questions for Recruiters */}
+                            {messages.length === 1 && !isTyping && (
+                                <div className="flex flex-col gap-2 pt-2 ml-11">
+                                    <p className="text-[9px] font-bold text-slate-600 uppercase tracking-widest mb-1">Analyze_Profile_Data:</p>
+                                    {[
+                                        "Analyze ML Research & Projects",
+                                        "View Technical Skill Stack",
+                                        "Education & Certifications",
+                                        "Hiring & Contact Info"
+                                    ].map((q) => (
+                                        <button
+                                            key={q}
+                                            onClick={() => { setInput(q); }}
+                                            className="text-left px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-[11px] text-slate-400 hover:text-white hover:border-indigo-500/30 hover:bg-indigo-500/5 transition-all w-fit"
+                                        >
+                                            {q}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
                             {isTyping && (
                                 <div className="flex justify-start">
                                     <div className="flex gap-3">
@@ -129,8 +151,8 @@ const AIBot = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
                 className={`w-14 h-14 rounded-2xl flex items-center justify-center border shadow-2xl transition-all duration-500 ${isOpen
-                        ? "bg-indigo-600 border-indigo-400/50 text-white shadow-indigo-500/40"
-                        : "bg-slate-950 border-white/10 text-indigo-400 hover:text-white"
+                    ? "bg-indigo-600 border-indigo-400/50 text-white shadow-indigo-500/40"
+                    : "bg-slate-950 border-white/10 text-indigo-400 hover:text-white"
                     }`}
             >
                 {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
