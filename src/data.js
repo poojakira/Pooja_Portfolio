@@ -4,7 +4,7 @@ export const CONTACT = {
     linkedin: "https://linkedin.com/in/poojakiran",
     github: "https://github.com/poojakira",
     location: "Tempe, AZ",
-    resume: "#"
+    resume: "/src/assets/Pooja_Kiran_RESUME.pdf"
 };
 
 export const PROJECTS = [
@@ -97,58 +97,80 @@ export const CERTIFICATIONS = [
     {
         name: "AWS Academy Cloud Architecting",
         issuer: "Amazon Web Services",
-        id: "AWS-ARCH-2024",
-        date: "2024",
+        id: "AWS-ARCH-2025",
+        date: "Apr 2025",
         color: "indigo"
     },
     {
-        name: "Generative AI Fundamentals",
-        issuer: "NVIDIA / Deep Learning Institute",
-        id: "NV-GAI-2025",
-        date: "2025",
+        name: "AWS Cloud Security Foundations",
+        issuer: "Amazon Web Services",
+        id: "AWS-SEC-2025",
+        date: "Nov 2025",
         color: "emerald"
     },
     {
-        name: "Azure Solutions Associate",
-        issuer: "Microsoft",
-        id: "AZ-900-EXP",
-        date: "2024",
-        color: "blue"
+        name: "Honeywell Tech Innovation Lab",
+        issuer: "Honeywell",
+        id: "HON-TIL-2025",
+        date: "Nov 2025",
+        color: "amber"
+    }
+];
+
+export const EDUCATION = [
+    {
+        school: "Arizona State University",
+        location: "Tempe, AZ",
+        degree: "M.S., Information Technology Security",
+        period: "Aug 2024 – May 2026"
+    },
+    {
+        school: "M. S. Ramaiah University",
+        location: "India",
+        degree: "B.Tech, Computer Science",
+        period: "Aug 2019 – Aug 2023"
+    }
+];
+
+export const PUBLICATIONS = [
+    {
+        title: "Personalized E-learning System Using RL Through Satellite",
+        publisher: "IEEE INDICON",
+        year: "2023",
+        description: "Optimized learning trajectories with 80% dynamic progression accuracy using a Q-learning agent."
+    },
+    {
+        title: "Smart Charge Pro: Empowering Future Mobility",
+        publisher: "IOSR Journal",
+        year: "2023",
+        description: "Managed concurrent power for 4 vehicles with zero-delay isolation via NodeMCU IoT controllers."
     }
 ];
 
 export const EXPERIENCE = [
     {
-        role: "Machine Learning Engineer",
+        role: "Graduate IT Grader (Web Programming & Security Compliance)",
         company: "Arizona State University",
-        period: "Feb 2025 – Present",
+        period: "Feb 2025 – Oct 2025",
         description: [
-            "Leading efforts in ML-driven security compliance and data governance for 85+ enterprise applications.",
-            "Automated audit workflows and risk assessment pipelines, reducing manual review time by 60%.",
-            "Improving technical standards and secure SDLC practices through advanced technical reviews."
+            "Security Compliance: Enforced data governance and risk management for 85+ enterprise assignments by auditing security policies, incident response plans, and compliance frameworks.",
+            "Code Review: Improved front-end quality and UI/UX accessibility across 85+ student applications via rigorous reviews of HTML, CSS, and JavaScript wireframes.",
+            "SDLC Mentorship: Elevated secure SDLC practices for 85+ students by delivering targeted technical remediation feedback bridging web design with enterprise security compliance."
         ],
-        tags: ["MLOps", "Security Compliance", "Infrastructure"]
-    },
-    {
-        role: "Research Intern (Intelligence Systems)",
-        company: "M. S. Ramaiah University",
-        period: "2022 – 2023",
-        description: [
-            "Developed Q-learning agents for satellite-based systems with 80% progression accuracy.",
-            "Optimized hardware-software concurrent power management for EV charging stations.",
-            "Analyzed high-dimensional telemetry data for anomaly detection research."
-        ],
-        tags: ["Reinforcement Learning", "IoT", "Data Analysis"]
+        tags: ["Security Compliance", "Code Review", "SDLC"]
     }
 ];
 
 export const SKILLS = [
-    { name: "Full-Stack AI", level: 85 },
-    { name: "React / Vite", level: 90 },
     { name: "Python", level: 98 },
-    { name: "PyTorch", level: 95 },
-    { name: "TensorFlow", level: 92 },
-    { name: "FastAPI", level: 88 },
+    { name: "FastAPI", level: 90 },
     { name: "Docker", level: 85 },
+    { name: "NodeMCU IoT", level: 82 },
+    { name: "GANs", level: 95 },
+    { name: "Transformers", level: 92 },
+    { name: "PINNs", level: 88 },
+    { name: "RL (Q-Learning)", level: 85 },
+    { name: "AWS Cloud", level: 90 },
+    { name: "DevSecOps", level: 85 },
     { name: "Security Auditing", level: 82 }
 ];

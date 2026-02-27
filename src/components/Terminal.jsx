@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const COMMANDS = {
     help: "Available: clear, help, download, status, whoami, version",
-    whoami: "Pooja Kiran Bharadwaj | Machine Learning Engineer | System Architect",
+    whoami: "Pooja Kiran Bharadwaj | Aspiring Machine Learning Engineer",
     version: "PKB_OS v2026.4.2 [Production Build]",
     status: "SYSTEM: ONLINE | ENCRYPTION: ACTIVE | MISSION: READY",
-    download: "Initializing secure downlink... [Redirecting to resume_source]"
+    download: "Initializing secure downlink... [Redirecting to resume_pdf_source]"
 };
 
 export default function Terminal() {
@@ -72,7 +72,7 @@ export default function Terminal() {
                     <div
                         key={i}
                         className={`text-[11px] leading-relaxed ${line.type === 'user' ? 'text-indigo-400' :
-                                line.type === 'error' ? 'text-rose-400' : 'text-emerald-500/80'
+                            line.type === 'error' ? 'text-rose-400' : 'text-emerald-500/80'
                             }`}
                     >
                         {line.text}
