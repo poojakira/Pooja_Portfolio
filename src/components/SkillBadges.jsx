@@ -153,86 +153,161 @@ function AdvancedCertDashboard({ badge }) {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            {/* Live Visualizer */}
-            <div className="p-5 bg-black/40 rounded-xl border border-indigo-500/20 shadow-inner overflow-hidden">
+            {/* Live Visualizer HUD */}
+            <div className="p-6 bg-black/60 rounded-2xl border border-indigo-500/30 shadow-[inset_0_0_20px_rgba(79,70,229,0.2)] overflow-hidden relative">
+                <div className="absolute top-0 right-0 p-2 opacity-20">
+                    <Terminal size={40} className="text-indigo-500" />
+                </div>
+
                 {isBert ? (
-                    <div className="space-y-3">
-                        <div className="flex justify-between text-[7px] font-mono text-indigo-400 uppercase">
-                            <span>Attention_Head_Matrix</span>
-                            <span>Scale: 0.82</span>
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center text-[8px] font-mono text-indigo-400 uppercase tracking-widest">
+                            <span className="flex items-center gap-2"><Activity size={10} /> Model_Attention_Heads</span>
+                            <span className="bg-indigo-500/20 px-2 py-0.5 rounded">LAYER_12_SYNC</span>
                         </div>
-                        <div className="grid grid-cols-6 gap-1">
-                            {[...Array(18)].map((_, i) => (
+                        <div className="grid grid-cols-12 gap-1.5 h-16">
+                            {[...Array(24)].map((_, i) => (
                                 <motion.div
                                     key={i}
                                     animate={{
-                                        opacity: [0.1, 0.8, 0.4],
-                                        backgroundColor: ["rgba(99, 102, 241, 0.1)", "rgba(99, 102, 241, 0.4)", "rgba(99, 102, 241, 0.2)"]
+                                        height: [Math.random() * 40 + 20 + "%", Math.random() * 80 + 20 + "%", Math.random() * 40 + 20 + "%"],
+                                        opacity: [0.3, 1, 0.3],
+                                        backgroundColor: ["rgba(99, 102, 241, 0.2)", "rgba(99, 102, 241, 0.6)", "rgba(99, 102, 241, 0.2)"]
                                     }}
-                                    transition={{ duration: 2, delay: i * 0.1, repeat: Infinity }}
-                                    className="aspect-square rounded-sm"
+                                    transition={{ duration: 1.5 + Math.random(), repeat: Infinity, ease: "easeInOut" }}
+                                    className="w-full rounded-full"
                                 />
                             ))}
+                        </div>
+                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                            <span>TRANSFORMER_SURROGATE_V4</span>
+                            <span>PARAMS: 110M_UNCASED</span>
                         </div>
                     </div>
                 ) : isOps ? (
-                    <div className="space-y-3">
-                        <div className="flex justify-between text-[7px] font-mono text-emerald-400 uppercase">
-                            <span>Pipeline_Stability_Index</span>
-                            <span>99.9% Uptime</span>
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center text-[8px] font-mono text-emerald-400 uppercase tracking-widest">
+                            <span className="flex items-center gap-2"><Cpu size={10} /> MLOps_Pipeline_Telemetry</span>
+                            <span className="text-emerald-500 animate-pulse">DEPLOYMENT_STABLE</span>
                         </div>
-                        <div className="flex items-end gap-1 h-12">
-                            {[10, 40, 30, 80, 50, 90, 60, 40, 70].map((h, i) => (
-                                <motion.div
-                                    key={i}
-                                    animate={{ height: [`${h}%`, `${h + 10}%`, `${h}%`] }}
-                                    transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
-                                    className="flex-1 bg-emerald-500/30 rounded-t-sm"
-                                />
+                        <div className="flex items-end gap-2 h-16 px-2">
+                            {[60, 80, 45, 90, 70, 85, 50, 95, 75, 80].map((h, i) => (
+                                <div key={i} className="flex-1 relative group">
+                                    <motion.div
+                                        animate={{ height: [`${h}%`, `${h - 20}%`, `${h}%`] }}
+                                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                                        className="w-full bg-gradient-to-t from-emerald-500/10 to-emerald-500/40 rounded-t-lg border-t border-emerald-500/50"
+                                    />
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-[6px] text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        {h}%
+                                    </div>
+                                </div>
                             ))}
+                        </div>
+                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                            <span>CI/CD_AUTO_SYNC: ON</span>
+                            <span>GPU_CLUSTER_H100: READY</span>
                         </div>
                     </div>
                 ) : (
-                    <div className="space-y-3 text-center py-4">
-                        <div className="text-[10px] font-mono text-amber-400 animate-pulse">DEPLOYMENT_ARCHITECTURE_VALIDATED</div>
-                        <div className="flex justify-center gap-4">
-                            <CheckCircle2 size={16} className="text-emerald-500" />
-                            <div className="h-px w-12 bg-white/10 mt-2" />
-                            <CheckCircle2 size={16} className="text-emerald-500" />
+                    <div className="space-y-4 py-2">
+                        <div className="flex justify-center mb-2">
+                            <div className="relative">
+                                <Shield size={32} className="text-amber-500/20" />
+                                <motion.div
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                                    className="absolute inset-0 border-2 border-dashed border-amber-500/40 rounded-full"
+                                />
+                            </div>
+                        </div>
+                        <div className="text-center space-y-1">
+                            <div className="text-[9px] font-mono text-amber-400 animate-pulse tracking-[0.2em]">CLOUD_ENGINEER_VERIFICATION_SYNC</div>
+                            <div className="text-[7px] font-mono text-slate-500">AUTH_TOKEN: AWS_ACAD_PRO_2026_X91</div>
+                        </div>
+                        <div className="flex justify-center gap-1">
+                            {[...Array(5)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    animate={{ opacity: [0.2, 1, 0.2] }}
+                                    transition={{ duration: 1, delay: i * 0.1, repeat: Infinity }}
+                                    className="w-8 h-1 bg-amber-500/30 rounded-full"
+                                />
+                            ))}
                         </div>
                     </div>
                 )}
             </div>
 
-            {/* Code Snippet Area */}
-            <div className="space-y-2">
-                <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                    Technical_Implementation_Snippet
+            {/* Code Environment Container */}
+            <div className="space-y-3">
+                <div className="flex justify-between items-center px-1">
+                    <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
+                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping" />
+                        Implementation_Kernel_Source
+                    </div>
+                    <div className="flex gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-red-500/30" />
+                        <div className="w-2 h-2 rounded-full bg-amber-500/30" />
+                        <div className="w-2 h-2 rounded-full bg-emerald-500/30" />
+                    </div>
                 </div>
-                <div className="bg-[#030712] p-4 rounded-xl border border-white/5 font-mono text-[10px] overflow-x-auto text-indigo-300">
-                    {isBert ? (
-                        <pre><code>{`tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertForSequenceClassification.from_pretrained('bert-base')
-# Multi-head Attention weights mapped`}</code></pre>
-                    ) : isOps ? (
-                        <pre><code>{`# CI/CD MLOps Pipeline
-- step: Dockerize_Inference_Core
-- step: Deploy_to_H100_Cluster
-- step: Automated_Health_Sync`}</code></pre>
-                    ) : (
-                        <pre><code>{`config = AWS.Academy.MLConfig(
-    engine="SageMaker_V2",
-    instance="p4d.24xlarge",
-    optimized=True
-)`}</code></pre>
-                    )}
+                <div className="bg-[#020617] rounded-2xl border border-white/5 font-mono text-[11px] overflow-hidden shadow-2xl relative group">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500/50 group-hover:bg-indigo-500 transition-colors" />
+                    <div className="p-6 overflow-x-auto text-indigo-300 custom-scrollbar leading-relaxed">
+                        {isBert ? (
+                            <pre><code className="language-python">{`# Advanced Transformer Configuration
+from transformers import BertConfig, BertModel
+
+config = BertConfig.from_pretrained('bert-base-uncased', 
+    output_attentions=True,
+    hidden_dropout_prob=0.1,
+    attention_probs_dropout_prob=0.1
+)
+
+# Initializing multi-modal head for semantic mapping
+model = BertModel(config)
+attention_heads = model.get_attention_vectors(layer=12)`}</code></pre>
+                        ) : isOps ? (
+                            <pre><code className="language-yaml">{`# MLOps Deployment Orchestration
+pipeline:
+  name: GenAI_Inference_Sync
+  stages:
+    - build:
+        image: poojakira/inference-core:latest
+        hardware: NVIDIA_H100_80GB
+    - test:
+        suite: Latency_Stress_V4
+        threshold: 12ms
+    - deploy:
+        strategy: Blue_Green
+        canary_weight: 10%`}</code></pre>
+                        ) : (
+                            <pre><code className="language-python">{`# Cloud ML Architecture Definition
+class ML_Infrastructure:
+    provider = "AWS_Sagemaker"
+    instance = "ml.p4d.24xlarge"
+    security = "IAM_Role_V3"
+
+    def deploy_optimized(self, model_uri):
+        return self.engine.launch(
+            tensor_parallel=True,
+            quantization="int8",
+            encryption=True
+        )`}</code></pre>
+                        )}
+                    </div>
                 </div>
             </div>
 
-            <p className="text-slate-400 text-[10px] leading-relaxed italic border-l-2 border-indigo-500/50 pl-4 bg-white/5 py-3 rounded-r-lg">
-                "Verified competency in architecting advanced technical solutions using industry-standard ML frameworks."
-            </p>
+            <div className="flex items-start gap-4 p-4 bg-indigo-500/5 rounded-2xl border border-indigo-500/10">
+                <div className="p-1.5 bg-indigo-500/20 rounded-lg text-indigo-400">
+                    <Shield size={14} />
+                </div>
+                <p className="text-[10px] text-slate-400 leading-relaxed font-sans mt-0.5">
+                    "This certification validates extensive hands-on experience in architecting and deploying secure, scalable, and optimized AI/ML solutions using industry-standard enterprise frameworks."
+                </p>
+            </div>
         </div>
     );
 }
