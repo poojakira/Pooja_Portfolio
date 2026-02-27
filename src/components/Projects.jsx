@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PROJECTS } from "../data";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Cpu, Activity, BarChart3, Binary, Zap, X, Shield, Terminal, Radar } from "lucide-react";
