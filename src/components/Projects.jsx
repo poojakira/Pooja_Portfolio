@@ -279,50 +279,76 @@ export default function Projects() {
                             </div>
 
                             {/* body */}
-                            <div className="p-6 md:p-10 space-y-10 overflow-y-auto max-h-[75vh]">
-                                <div className="grid lg:grid-cols-2 gap-10">
-                                    {/* Left col */}
-                                    <div className="space-y-8">
-                                        <div className="space-y-3">
-                                            <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
-                                                <Terminal size={12} className="text-indigo-400" /> System_Architecture
-                                            </div>
-                                            <p className="text-sm text-slate-300 bg-black/40 p-5 rounded-2xl border border-white/5 leading-relaxed">
-                                                {selected.briefing.architecture}
-                                            </p>
+                            <div className="p-6 md:p-10 space-y-8 overflow-y-auto max-h-[75vh]">
+
+                                {/* Main Points */}
+                                {selected.mainPoints && (
+                                    <div className="space-y-3">
+                                        <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
+                                            <Terminal size={12} className="text-indigo-400" /> Mission_Key_Points
                                         </div>
-                                        <div className="space-y-3">
-                                            <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
-                                                <Activity size={12} className="text-emerald-400" /> Engineering_Challenge
-                                            </div>
-                                            <p className="text-sm text-slate-300 italic border-l-4 border-emerald-500/50 pl-5 py-2 bg-emerald-500/5 rounded-r-2xl">
-                                                "{selected.briefing.challenges}"
-                                            </p>
-                                        </div>
-                                        <div className="space-y-3">
-                                            <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
-                                                <Cpu size={12} className="text-amber-400" /> Technical_Solution
-                                            </div>
-                                            <p className="text-sm text-slate-300 leading-relaxed">
-                                                {selected.briefing.solution}
-                                            </p>
+                                        <div className="grid gap-2">
+                                            {selected.mainPoints.map((pt, i) => (
+                                                <div key={i} className="flex items-start gap-3 p-3 bg-black/30 rounded-xl border border-white/5">
+                                                    <div className="mt-0.5 w-5 h-5 rounded-full bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center shrink-0">
+                                                        <span className="text-[8px] font-black text-indigo-400">{i + 1}</span>
+                                                    </div>
+                                                    <p className="text-[12px] text-slate-300 leading-relaxed">{pt}</p>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
+                                )}
 
-                                    {/* Right col — live dashboard */}
-                                    <div className="space-y-4">
+                                {/* Architecture */}
+                                <div className="grid lg:grid-cols-2 gap-8">
+                                    <div className="space-y-3">
                                         <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
-                                            <Activity size={12} className="text-indigo-400" /> LIVE_METRICS_FEED
+                                            <Cpu size={12} className="text-amber-400" /> System_Architecture
                                         </div>
-                                        <div className="p-5 bg-slate-900/60 rounded-2xl border border-white/5 shadow-inner">
-                                            <LiveDashboard project={selected} />
-                                        </div>
+                                        <p className="text-sm text-slate-300 bg-black/40 p-4 rounded-xl border border-white/5 leading-relaxed">
+                                            {selected.briefing.architecture}
+                                        </p>
 
-                                        {/* key metrics */}
-                                        <div className="grid grid-cols-3 gap-2">
+                                        <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest mt-4">
+                                            <Activity size={12} className="text-emerald-400" /> Engineering_Challenge
+                                        </div>
+                                        <p className="text-sm text-slate-300 italic border-l-4 border-emerald-500/50 pl-4 py-2 bg-emerald-500/5 rounded-r-xl">
+                                            "{selected.briefing.challenges}"
+                                        </p>
+                                    </div>
+
+                                    {/* Dashboard Screenshot or Live Visual */}
+                                    <div className="space-y-3">
+                                        <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
+                                            <Activity size={12} className="text-indigo-400" /> Live_Dashboard_Preview
+                                        </div>
+                                        {selected.dashboardImg ? (
+                                            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-indigo-900/30">
+                                                <img
+                                                    src={selected.dashboardImg}
+                                                    alt={`${selected.title} live dashboard`}
+                                                    className="w-full object-cover rounded-2xl"
+                                                    onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
+                                                />
+                                                <div style={{ display: 'none' }} className="p-5 bg-slate-900/60 rounded-2xl border border-white/5">
+                                                    <LiveDashboard project={selected} />
+                                                </div>
+                                                <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-slate-950 to-transparent">
+                                                    <div className="text-[8px] font-mono text-indigo-400 uppercase tracking-widest animate-pulse">● LIVE_DASHBOARD_SCREENSHOT</div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="p-5 bg-slate-900/60 rounded-2xl border border-white/5 shadow-inner">
+                                                <LiveDashboard project={selected} />
+                                            </div>
+                                        )}
+
+                                        {/* Key Metrics row */}
+                                        <div className="grid grid-cols-3 gap-2 mt-2">
                                             {selected.briefing.metrics.map(m => (
                                                 <div key={m} className="p-2 rounded-xl bg-black/40 border border-white/5 text-center">
-                                                    <div className="text-[8px] font-mono text-indigo-300 font-bold">{m}</div>
+                                                    <div className="text-[8px] font-mono text-indigo-300 font-bold leading-tight">{m}</div>
                                                 </div>
                                             ))}
                                         </div>

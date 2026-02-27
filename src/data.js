@@ -12,68 +12,100 @@ export const PROJECTS = [
         id: "apex",
         title: "Apex-X & Aegis-X: Tactical Defense HUD",
         category: "Hypersonic AI",
-        tech: ["PINNs", "Lattice Cryptography", "Transformers"],
-        metric: "10.11ms Inference Latency (18.2% Optimization)",
+        tech: ["PINNs", "Lattice Cryptography", "StyleGAN", "Transformers"],
+        metric: "10.11ms Inference Latency (18.19% Optimization)",
         desc: "A hyper-advanced tactical command suite for hypersonic defense. Integrates Physics-Informed Neural Networks (PINNs) for aerodynamic forecasting and GAN-based adversarial denoising for resilient signal reconstruction.",
         link: "https://github.com/poojakira/Apex-Aegis-Tactical-Suite",
         complexity: 99,
+        dashboardImg: null,
+        mainPoints: [
+            "PINN Engine with Navier-Stokes physics constraints achieving <5ms surrogate inference",
+            "StyleGAN denoising autoencoder — neutralizes electronic warfare & signal jamming",
+            "Tactical Transformer trained on 100k+ hypersonic engagement scenarios",
+            "Byzantine-Mesh with SHA3-512 lattice signatures & 10Hz self-healing logic",
+            "NASA TLE integration for live satellite tracking + FEM structural simulation",
+            "Baseline 12.36ms → Optimized 10.11ms (18.19% net reduction), 99.8% signal integrity"
+        ],
         briefing: {
-            architecture: "PINN Surrogate Model -> Tactical Transformer (Intent) -> Post-Quantum Secure (Lattice) Mesh Sync",
+            architecture: "PINN Surrogate Model → Tactical Transformer (Intent) → Post-Quantum Secure (Lattice) Byzantine-Mesh Sync",
             challenges: "Neutralizing hypersonic trajectory noise and identifying adversarial jamming in high-velocity simulations.",
             solution: "Implemented StyleGAN-based denoising autoencoders and PINNs with custom Navier-Stokes loss constraints.",
-            metrics: ["10.11ms Latency", "99.8% Signal Integrity", "500Hz Sync Rate"],
-            architecture_flow: "graph LR; A[Sensor] --> B[PINN]; B --> C[Transformer]; C --> D[Secure Mesh];"
+            metrics: ["10.11ms Latency", "99.8% Signal Integrity", "500Hz Sync Rate"]
         }
     },
     {
         id: "orbi",
         title: "OrbitIQ: Satellite Health MLOps",
         category: "Orbital Monitoring",
-        tech: ["Isolation Forest", "Firebase", "MLflow"],
+        tech: ["Isolation Forest", "Firebase", "MLflow", "Streamlit"],
         metric: "99.9% Latency Reduction (2000ms → 8ms)",
-        desc: "Autonomous satellite health and telemetry ecosystem. Features a 10-page command center visualizing N/S/E/W sensor data across CubeSat clusters with edge-optimized anomaly detection.",
+        desc: "Autonomous satellite health and telemetry ecosystem. 10-page command center visualizing N/S/E/W sensor data across CubeSat clusters with edge-optimized anomaly detection and a 360° orbital proximity radar.",
         link: "https://github.com/poojakira/orbit-Q",
         complexity: 96,
+        dashboardImg: "https://github.com/user-attachments/assets/ca586a8d-13a9-4a04-8d69-686f829b3516",
+        mainPoints: [
+            "Isolation Forest unsupervised ML — detects spatial anomalies across N/S/E/W sensor faces",
+            "Cloud latency slashed from 2000ms → 8ms via edge-optimized rolling window feature extraction",
+            "360° polar orbital radar for real-time debris proximity visualization",
+            "Firebase Realtime DB ground station with continuous 10-second Mission Pulse orchestrator",
+            "MLflow experiment tracking — full audit trail for every model version",
+            "95.8% predictive accuracy with 0.05 contamination rate (high-precision outlier detection)"
+        ],
         briefing: {
-            architecture: "Rolling Window Feature Extraction -> Isolation Forest -> Firebase Realtime Ground Station",
+            architecture: "Rolling Window Feature Extraction → Isolation Forest → Firebase Realtime Ground Station",
             challenges: "Reducing cloud-polling latency for critical debris avoidance maneuvers.",
             solution: "Developed an edge-optimized ML pipeline that predicts trajectory anomalies with sub-10ms latency.",
-            metrics: ["8ms Response Time", "95.8% Accuracy", "0.05 Contamination"],
-            architecture_flow: "graph TD; A[CubeSat] --> B[Rolling Window]; B --> C[Isolation Forest]; C --> D[Firebase];"
+            metrics: ["8ms Response Time", "95.8% Accuracy", "0.05 Contamination Rate"]
         }
     },
     {
         id: "cmdx",
         title: "CommandX: Mission Control Platform",
         category: "Aerospace GNC",
-        tech: ["Kalman Filters", "RL Pilot", "Genetic Algs"],
-        metric: "98% Docking Accuracy (Proven via Monte Carlo)",
-        desc: "Industrial mission control system built on real orbital physics. Combines EKF state estimation, RL-driven thruster control, and Genetic Algorithms for fuel-optimized trajectory mapping.",
+        tech: ["Kalman Filters", "RL Pilot", "Genetic Algs", "Monte Carlo"],
+        metric: "98% Docking Accuracy (3-Sigma Monte Carlo Certified)",
+        desc: "Industrial mission control system built on real orbital physics. Parses the live Space-Track satellite catalog. EKF at 10Hz fuses sensor data across 6-DOF. RL Pilot steers a 500kg spacecraft via 50N thruster.",
         link: "https://github.com/poojakira/CommandX",
         complexity: 94,
+        dashboardImg: "https://github.com/user-attachments/assets/3e3c3e07-0fa4-4d66-8df5-e840ecd55b03",
+        mainPoints: [
+            "Extended Kalman Filter (EKF) @ 10Hz — 6-DOF state estimation fusing noisy IMU data",
+            "RL Pilot — reinforcement learning agent controlling a 500kg spacecraft with a 50N thruster",
+            "Entropy Engine — injects thermal noise, IMU drift & radiation bit-flips for honest testing",
+            "Monte Carlo IV&V certification — thousands of docking simulations, 3-sigma worst-case proven",
+            "Genetic Algorithm trajectory optimizer — 60% fuel efficiency improvement",
+            "Parses live Space-Track catalog of 15,000+ real satellites for collision avoidance"
+        ],
         briefing: {
-            architecture: "6-DOF EKF -> RL Pilot Thruster Ctrl -> Monte Carlo IV&V Engine",
+            architecture: "6-DOF EKF → RL Pilot Thruster Ctrl → Entropy Engine → Monte Carlo IV&V Engine",
             challenges: "Managing hardware degradation and IMU drift through physics-accurate stochastic noise injection.",
             solution: "Engineered an 'Entropy Engine' to simulate 3-sigma worst-case environments for flight certification.",
-            metrics: ["60% Fuel Efficiency", "98% Mission Success", "10Hz GNC Cycle"],
-            architecture_flow: "graph TD; A[Catalog] --> B[EKF/GNC]; B --> C[RL Pilot]; C --> D[Monte Carlo];"
+            metrics: ["60% Fuel Efficiency", "98% Mission Success", "10Hz GNC Cycle"]
         }
     },
     {
         id: "eco",
         title: "EcoTrack-Enterprise: Carbon Analytics",
         category: "Industrial ML",
-        tech: ["FastAPI", "Random Forest", "Docker"],
-        metric: "0.9952 R² Variance Score (High Precision)",
-        desc: "Full-stack ML microservice for product carbon lifecycle analytics. Utilizes Docker orchestration to scale FastAPI backends for real-time predictive carbon scoring and security auditing.",
+        tech: ["FastAPI", "Random Forest", "Docker", "Isolation Forest"],
+        metric: "R² = 0.9952 | P90 = 281ms @ 1,000 Users",
+        desc: "Full-stack ML microservice for product carbon lifecycle analytics. Docker-orchestrated FastAPI backend with Random Forest regression for carbon prediction and Isolation Forest zero-trust security layer.",
         link: "https://github.com/poojakira/EcoTrack-Enterprise",
         complexity: 90,
+        dashboardImg: "https://github.com/user-attachments/assets/18b5aeb5-1695-41cd-b8e9-504b998397c1",
+        mainPoints: [
+            "Random Forest Regressor — R²=0.9952, explains 99.5% of carbon footprint variance",
+            "Isolation Forest zero-trust security layer — flags out-of-distribution inputs in <5ms",
+            "FastAPI async REST API — handles 1,000 concurrent requests at P90=281ms",
+            "Docker Compose multi-container orchestration (backend + frontend)",
+            "18-feature product carbon prediction from Kaggle Product Lifecycle dataset",
+            "Stateless architecture with horizontal scaling via multiple Uvicorn workers"
+        ],
         briefing: {
-            architecture: "FastAPI Async Core -> Random Forest Regressor -> Isolation Forest Shield",
+            architecture: "FastAPI Async Core → Random Forest Regressor → Isolation Forest Shield → Streamlit Dashboard",
             challenges: "Processing high-volume concurrent carbon telemetry streams with zero-trust security constraints.",
             solution: "Deployed Docker-orchestrated micro-architectures achieving P90 latency under 300ms for 1,000+ users.",
-            metrics: ["0.9952 R2 Score", "<5ms Anomaly Flagging", "281ms P90 Latency"],
-            architecture_flow: "graph LR; A[API POST] --> B[RF Predict]; B --> C[Anomaly Shield]; C --> D[Audit Log];"
+            metrics: ["R²=0.9952", "<5ms Anomaly Flagging", "281ms P90 Latency"]
         }
     }
 ];
