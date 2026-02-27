@@ -111,6 +111,7 @@ export default function App() {
                   { name: "Projects", href: "#projects" },
                   { name: "Experience", href: "#experience" },
                   { name: "Research", href: "#publications" },
+                  { name: "Education", href: "#education" },
                   { name: "Contact", href: "#contact" }
                 ].map((item) => (
                   <a key={item.name} href={item.href} className="px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white rounded-xl hover:bg-white/5 transition-all">
@@ -161,6 +162,7 @@ export default function App() {
               <div id="projects" className="holographic-card"><Projects /></div>
               <div id="experience" className="holographic-card"><Experience /></div>
               <div id="publications" className="holographic-card"><Publications /></div>
+              <div id="education" className="holographic-card"><Education /></div>
               <div id="badges" className="holographic-card"><SkillBadges /></div>
             </div>
 

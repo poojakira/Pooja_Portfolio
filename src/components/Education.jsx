@@ -1,32 +1,21 @@
 import React from "react";
-import { GraduationCap, ShieldCheck, Library, MapPin, ArrowUpRight } from "lucide-react";
+import { GraduationCap, ShieldCheck, Library, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { EDUCATION } from "../data";
 
 export default function Education() {
-    const degrees = [
-        {
-            school: "Arizona State University",
-            location: "Tempe, AZ",
-            degree: "M.S. in Information Technology Security",
-            period: "Aug 2024 – May 2026",
-            status: "ENROLLED",
-            statusColor: "indigo",
-            icon: <GraduationCap size={26} />,
-            details: "Core focus: Deep Learning for Security, AI-Driven Threat Detection, Network Defense, Risk Governance, and Enterprise Compliance.",
-            highlights: ["AI Security Research", "SDLC Mentorship", "GPA: 3.8+"]
-        },
-        {
-            school: "M. S. Ramaiah University",
-            location: "Bengaluru, India",
-            degree: "B.Tech in Computer Science & Engineering",
-            period: "Aug 2019 – Aug 2023",
-            status: "GRADUATED",
-            statusColor: "emerald",
-            icon: <Library size={26} />,
-            details: "Specialization in Intelligent Systems, Cloud Computing, and IoT. Published 2 papers (IEEE INDICON + IOSR Journal).",
-            highlights: ["IEEE Published", "Top of Cohort", "2 Research Papers"]
-        }
-    ];
+    const degrees = EDUCATION.map((edu, i) => ({
+        ...edu,
+        status: i === 0 ? "ENROLLED" : "GRADUATED",
+        statusColor: i === 0 ? "indigo" : "emerald",
+        icon: i === 0 ? <GraduationCap size={26} /> : <Library size={26} />,
+        details: i === 0
+            ? "Core focus: Deep Learning for Security, AI-Driven Threat Detection, Network Defense, Risk Governance, and Enterprise Compliance."
+            : "Specialization in Intelligent Systems, Cloud Computing, and IoT. Published 2 papers (IEEE INDICON + IOSR Journal).",
+        highlights: i === 0
+            ? ["AI Security Research", "SDLC Mentorship", "GPA: 3.8+"]
+            : ["IEEE Published", "Top of Cohort", "2 Research Papers"]
+    }));
 
     const certifications = [
         { name: "Transformer Models & BERT", issuer: "Google Cloud", color: "blue" },

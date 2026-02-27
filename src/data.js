@@ -13,7 +13,7 @@ export const PROJECTS = [
         title: "Apex-X & Aegis-X: Tactical Defense HUD",
         category: "Hypersonic AI",
         tech: ["PINNs", "Lattice Cryptography", "StyleGAN", "Transformers"],
-        metric: "10.11ms Inference Latency (18.19% Optimization)",
+        metric: "10.11ms Inference Latency (18.2% Optimization)",
         desc: "A hyper-advanced tactical command suite for hypersonic defense. Integrates Physics-Informed Neural Networks (PINNs) for aerodynamic forecasting and GAN-based adversarial denoising for resilient signal reconstruction.",
         link: "https://github.com/poojakira/Apex-Aegis-Tactical-Suite",
         complexity: 99,
@@ -24,7 +24,7 @@ export const PROJECTS = [
             "Tactical Transformer trained on 100k+ hypersonic engagement scenarios",
             "Byzantine-Mesh with SHA3-512 lattice signatures & 10Hz self-healing logic",
             "NASA TLE integration for live satellite tracking + FEM structural simulation",
-            "Baseline 12.36ms → Optimized 10.11ms (18.19% net reduction), 99.8% signal integrity"
+            "Baseline 12.36ms → Optimized 10.11ms (18.2% net reduction), 99.8% signal integrity"
         ],
         briefing: {
             architecture: "PINN Surrogate Model → Tactical Transformer (Intent) → Post-Quantum Secure (Lattice) Byzantine-Mesh Sync",
@@ -63,7 +63,7 @@ export const PROJECTS = [
         title: "CommandX: Mission Control Platform",
         category: "Aerospace GNC",
         tech: ["Kalman Filters", "RL Pilot", "Genetic Algs", "Monte Carlo"],
-        metric: "98% Docking Accuracy (3-Sigma Monte Carlo Certified)",
+        metric: "99.28% Docking Reliability (3-Sigma Monte Carlo Certified)",
         desc: "Industrial mission control system built on real orbital physics. Parses the live Space-Track satellite catalog. EKF at 10Hz fuses sensor data across 6-DOF. RL Pilot steers a 500kg spacecraft via 50N thruster.",
         link: "https://github.com/poojakira/CommandX",
         complexity: 94,
@@ -154,7 +154,7 @@ export const EDUCATION = [
         school: "Arizona State University",
         location: "Tempe, AZ",
         degree: "M.S., Information Technology Security",
-        period: "Aug 2024 – May 2026"
+        period: "Aug 2024 – Expected May 2026"
     },
     {
         school: "M. S. Ramaiah University",
@@ -185,9 +185,9 @@ export const EXPERIENCE = [
         company: "Arizona State University",
         period: "Feb 2025 – Oct 2025",
         description: [
-            "Security Compliance: Enforced data governance and risk management for 85+ enterprise assignments by auditing security policies, incident response plans, and compliance frameworks.",
-            "Code Review: Improved front-end quality and UI/UX accessibility across 85+ student applications via rigorous reviews of HTML, CSS, and JavaScript wireframes.",
-            "SDLC Mentorship: Elevated secure SDLC practices for 85+ students by delivering targeted technical remediation feedback bridging web design with enterprise security compliance."
+            "Enforced data governance and risk management across 85+ enterprise assignments by auditing security policies, incident response plans, and compliance frameworks.",
+            "Improved front-end quality and UI/UX accessibility across 85+ student applications through rigorous code reviews of React, JavaScript, and CSS implementations.",
+            "Elevated secure SDLC practices for 85+ students by delivering targeted technical remediation bridging web development with enterprise security compliance."
         ],
         tags: ["Security Compliance", "Code Review", "SDLC"]
     }
