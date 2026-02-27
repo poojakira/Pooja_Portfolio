@@ -119,23 +119,37 @@ export default function App() {
                 ))}
               </nav>
 
-              {/* Global HUD Widgets */}
+              {/* Global HUD Widgets — LIVE */}
               <div className="hidden xl:flex items-center gap-6 font-mono text-[9px] text-slate-500">
                 <div className="flex items-center gap-2">
                   <Clock size={12} className="text-indigo-400" />
                   <span>UTC: {time}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Wifi size={12} className="text-emerald-400" />
-                  <span>LINK: STABLE</span>
+                  <Wifi size={12} className="text-emerald-400 animate-pulse" />
+                  <span className="text-emerald-500">LINK: STABLE</span>
                 </div>
                 <div className="flex items-center gap-2 border-l border-white/10 pl-6">
                   <Database size={12} className="text-amber-400" />
-                  <span>HBM: 2.4TB/s</span>
+                  <motion.span
+                    key={`hbm-${Math.floor(Date.now() / 3000)}`}
+                    initial={{ opacity: 0.5 }}
+                    animate={{ opacity: 1 }}
+                    className="tabular-nums"
+                  >
+                    HBM: {(2.2 + Math.sin(Date.now() / 5000) * 0.3).toFixed(1)}TB/s
+                  </motion.span>
                 </div>
                 <div className="flex items-center gap-2 border-l border-white/10 pl-6">
                   <Activity size={12} className="text-indigo-400" />
-                  <span>INF: {Math.floor(Math.random() * 50 + 100)} TLU/s</span>
+                  <motion.span
+                    key={`inf-${Math.floor(Date.now() / 2000)}`}
+                    initial={{ opacity: 0.5 }}
+                    animate={{ opacity: 1 }}
+                    className="tabular-nums"
+                  >
+                    INF: {Math.floor(120 + Math.sin(Date.now() / 4000) * 30)} TLU/s
+                  </motion.span>
                 </div>
               </div>
             </div>
