@@ -194,15 +194,49 @@ export const EXPERIENCE = [
 ];
 
 export const SKILLS = [
-    { name: "Python", level: 98 },
-    { name: "FastAPI", level: 90 },
-    { name: "Docker", level: 85 },
-    { name: "NodeMCU IoT", level: 82 },
-    { name: "GANs", level: 95 },
-    { name: "Transformers", level: 92 },
-    { name: "PINNs", level: 88 },
-    { name: "RL (Q-Learning)", level: 85 },
-    { name: "AWS Cloud", level: 90 },
-    { name: "DevSecOps", level: 85 },
-    { name: "Security Auditing", level: 82 }
+    { name: "Python", level: 98, category: "Languages" },
+    { name: "JavaScript / React", level: 88, category: "Languages" },
+    { name: "SQL", level: 82, category: "Languages" },
+    { name: "HTML / CSS", level: 90, category: "Languages" },
+
+    { name: "PINNs", level: 94, category: "ML / Deep Learning" },
+    { name: "GANs / StyleGAN", level: 95, category: "ML / Deep Learning" },
+    { name: "Random Forest", level: 92, category: "ML / Deep Learning" },
+    { name: "Isolation Forest", level: 90, category: "ML / Deep Learning" },
+    { name: "Reinforcement Learning", level: 88, category: "ML / Deep Learning" },
+    { name: "Kalman Filters (EKF)", level: 86, category: "ML / Deep Learning" },
+    { name: "Monte Carlo Methods", level: 84, category: "ML / Deep Learning" },
+    { name: "Genetic Algorithms", level: 82, category: "ML / Deep Learning" },
+
+    { name: "Transformers / BERT", level: 93, category: "NLP & Transformers" },
+    { name: "Fine-Tuning LLMs", level: 88, category: "NLP & Transformers" },
+    { name: "Attention Mechanisms", level: 90, category: "NLP & Transformers" },
+    { name: "Tokenization & Embeddings", level: 87, category: "NLP & Transformers" },
+
+    { name: "PyTorch", level: 94, category: "Frameworks & Tools" },
+    { name: "TensorFlow", level: 90, category: "Frameworks & Tools" },
+    { name: "FastAPI", level: 92, category: "Frameworks & Tools" },
+    { name: "Streamlit", level: 88, category: "Frameworks & Tools" },
+    { name: "Docker", level: 88, category: "Frameworks & Tools" },
+    { name: "MLflow", level: 85, category: "Frameworks & Tools" },
+    { name: "Git / GitHub", level: 92, category: "Frameworks & Tools" },
+    { name: "Vite / React", level: 86, category: "Frameworks & Tools" },
+
+    { name: "AWS (SageMaker / EC2 / S3)", level: 90, category: "Cloud & MLOps" },
+    { name: "Firebase Realtime DB", level: 88, category: "Cloud & MLOps" },
+    { name: "Google Cloud / Vertex AI", level: 85, category: "Cloud & MLOps" },
+    { name: "CI/CD Pipelines", level: 84, category: "Cloud & MLOps" },
+    { name: "Kubernetes", level: 78, category: "Cloud & MLOps" },
+    { name: "Model Monitoring & Drift", level: 83, category: "Cloud & MLOps" },
+
+    { name: "Post-Quantum Cryptography", level: 86, category: "Security" },
+    { name: "Zero-Trust Architecture", level: 84, category: "Security" },
+    { name: "DevSecOps / SDLC", level: 88, category: "Security" },
+    { name: "IAM & Access Control", level: 85, category: "Security" },
+    { name: "Security Compliance", level: 86, category: "Security" },
+    { name: "Incident Response", level: 80, category: "Security" },
+
+    { name: "IEEE Research Publishing", level: 90, category: "Research" },
+    { name: "Technical Writing", level: 88, category: "Research" },
+    { name: "IoT (NodeMCU)", level: 82, category: "Research" }
 ];
