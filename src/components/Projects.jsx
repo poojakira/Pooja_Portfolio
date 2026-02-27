@@ -1,31 +1,193 @@
 import React, { useState, useEffect } from "react";
-import { PROJECTS } from "../data";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Cpu, Activity, BarChart3, Binary, Zap, X, Shield, Terminal, Radar } from "lucide-react";
+import { PROJECTS } from "../data";
+import {
+    ExternalLink, Cpu, Activity, BarChart3, Binary,
+    X, Shield, Terminal, Radar, ZoomIn
+} from "lucide-react";
 
+/* ─── Live Dashboard ──────────────────────────────────────────────── */
+function LiveDashboard({ project }) {
+    const [ticks, setTicks] = useState(0);
+    const [radarAngle, setRadarAngle] = useState(0);
+    const [barData] = useState([92, 98, 95, 99, 97, 94, 98, 96, 99, 95]);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            setTicks(t => t + 1);
+            setRadarAngle(a => (a + 15) % 360);
+        }, 800);
+        return () => clearInterval(id);
+    }, []);
+
+    if (project.id === "apex") {
+        return (
+            <div className="space-y-3">
+                <div className="flex justify-between items-center text-[8px] font-mono text-indigo-400 uppercase tracking-widest">
+                    <span className="flex items-center gap-1"><Cpu size={10} /> PINN_SURROGATE_MATRIX</span>
+                    <span className="text-emerald-400 animate-pulse">OPTIMIZED · 10.11ms</span>
+                </div>
+                <div className="grid grid-cols-5 gap-1 h-28 p-2 bg-black/40 rounded-xl border border-indigo-500/10">
+                    {Array.from({ length: 15 }, (_, i) => (
+                        <motion.div
+                            key={i}
+                            animate={{
+                                opacity: [(i + ticks) % 3 === 0 ? 0.8 : 0.15, (i + ticks) % 3 === 0 ? 0.15 : 0.8],
+                                backgroundColor: (i + ticks) % 3 === 0 ? "rgba(79,70,229,0.5)" : "rgba(79,70,229,0.08)"
+                            }}
+                            transition={{ duration: 0.8 }}
+                            className="rounded-md flex items-center justify-center text-[6px] text-white/20 font-mono"
+                        >
+                            {((i * 7 + ticks * 3) % 99).toString().padStart(2, "0")}
+                        </motion.div>
+                    ))}
+                </div>
+                <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                    <span>TRAJECTORY_NODES: 15/15</span>
+                    <span>LOSS: 0.00012</span>
+                </div>
+            </div>
+        );
+    }
+
+    if (project.id === "orbi") {
+        return (
+            <div className="space-y-3">
+                <div className="flex justify-between items-center text-[8px] font-mono text-emerald-400 uppercase tracking-widest">
+                    <span className="flex items-center gap-1"><Radar size={10} /> ORBITAL_PROXIMITY_RADAR</span>
+                    <span className="text-amber-400 animate-pulse">DEBRIS_SCAN_ACTIVE</span>
+                </div>
+                <div className="relative h-28 bg-black/40 rounded-xl border border-emerald-500/10 overflow-hidden flex items-center justify-center">
+                    {/* rings */}
+                    {[40, 60, 80].map(d => (
+                        <div key={d} className="absolute rounded-full border border-emerald-500/10" style={{ width: d + "%", height: d + "%" }} />
+                    ))}
+                    {/* sweep line */}
+                    <div
+                        className="absolute origin-bottom rounded-full"
+                        style={{
+                            width: 2, height: "42%", bottom: "50%", left: "calc(50% - 1px)",
+                            background: "linear-gradient(to top, #10b981, transparent)",
+                            transformOrigin: "bottom center",
+                            transform: `rotate(${radarAngle}deg)`
+                        }}
+                    />
+                    {/* center dot */}
+                    <div className="absolute w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_#10b981]" />
+                    {/* debris dots */}
+                    {[{ x: 28, y: 22 }, { x: 65, y: 40 }, { x: 45, y: 70 }].map((p, i) => (
+                        <motion.div
+                            key={i}
+                            animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
+                            transition={{ duration: 1.5, delay: i * 0.4, repeat: Infinity }}
+                            className="absolute w-1 h-1 bg-red-500 rounded-full"
+                            style={{ left: p.x + "%", top: p.y + "%" }}
+                        />
+                    ))}
+                </div>
+                <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                    <span>ACCURACY: 95.8%</span>
+                    <span>LATENCY: 8.24ms</span>
+                </div>
+            </div>
+        );
+    }
+
+    if (project.id === "cmdx") {
+        return (
+            <div className="space-y-3">
+                <div className="flex justify-between items-center text-[8px] font-mono text-blue-400 uppercase tracking-widest">
+                    <span className="flex items-center gap-1"><BarChart3 size={10} /> MONTE_CARLO_IV_V_SUITE</span>
+                    <span className="text-blue-300">PASS ≥ 98%</span>
+                </div>
+                <div className="h-28 bg-black/40 rounded-xl border border-blue-500/10 p-3 flex items-end gap-1">
+                    {barData.map((h, i) => (
+                        <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
+                            <motion.div
+                                initial={{ height: 0 }}
+                                animate={{ height: `${h}%` }}
+                                transition={{ duration: 0.8, delay: i * 0.05 }}
+                                className={`w-full rounded-t-sm border-t ${h >= 98 ? "bg-blue-500/50 border-blue-400" : "bg-blue-500/10 border-blue-500/30"}`}
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                    <span>DOCKING_SIMS: 1,000</span>
+                    <span>FAILED: 2</span>
+                </div>
+            </div>
+        );
+    }
+
+    if (project.id === "eco") {
+        return (
+            <div className="space-y-3">
+                <div className="flex justify-between items-center text-[8px] font-mono text-emerald-400 uppercase tracking-widest">
+                    <span className="flex items-center gap-1"><Activity size={10} /> LIFECYCLE_ANOMALY_SHIELD</span>
+                    <span className="text-emerald-300">R²: 0.9952</span>
+                </div>
+                <div className="h-28 bg-black/40 rounded-xl border border-emerald-500/10 p-4 space-y-3">
+                    {[
+                        { label: "Input Reliability", value: "99%", pct: 99, color: "bg-emerald-500" },
+                        { label: "Prediction Variance", value: "1.5%", pct: 2, color: "bg-indigo-500" },
+                    ].map(row => (
+                        <div key={row.label} className="flex items-center gap-3">
+                            <span className="text-[7px] text-slate-500 w-28 uppercase shrink-0">{row.label}</span>
+                            <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <motion.div
+                                    animate={{ width: row.value }}
+                                    transition={{ duration: 1 }}
+                                    className={`h-full ${row.color} rounded-full`}
+                                    style={{ width: row.pct + "%" }}
+                                />
+                            </div>
+                            <span className="text-[7px] font-mono text-slate-400">{row.value}</span>
+                        </div>
+                    ))}
+                    <div className="flex items-center justify-between bg-emerald-500/5 px-3 py-1.5 rounded-lg mt-1">
+                        <span className="text-[8px] font-mono text-emerald-400 animate-pulse">NO_ANOMALY_DETECTED</span>
+                        <Shield size={10} className="text-emerald-400" />
+                    </div>
+                </div>
+                <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                    <span>MICROSERVICE: 100%</span>
+                    <span>P90 LATENCY: 281ms</span>
+                </div>
+            </div>
+        );
+    }
+
+    // fallback
+    return (
+        <div className="space-y-3">
+            <div className="text-[8px] font-mono text-indigo-400 uppercase tracking-widest">SYSTEM_METRICS_MONITOR</div>
+            <div className="h-20 bg-black/40 rounded-xl border border-white/5 flex items-center justify-center">
+                <Activity size={20} className="text-indigo-400 animate-pulse" />
+            </div>
+        </div>
+    );
+}
+
+/* ─── Main Component ─────────────────────────────────────────────── */
 export default function Projects() {
-    const [selectedProject, setSelectedProject] = useState(null);
-
-    const handleCardClick = (p) => {
-        console.log("Card clicked:", p.id);
-        setSelectedProject(p);
-    };
+    const [selected, setSelected] = useState(null);
 
     return (
         <section id="projects" className="space-y-8">
+            {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 px-2">
                 <div className="space-y-1">
                     <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500">Selected_Projects</h2>
                     <h3 className="text-3xl font-bold tracking-tight">Main Deployments</h3>
                 </div>
-                <div className="flex gap-4 text-[10px] font-mono text-slate-500">
-                    <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        NODE_STABLE
-                    </div>
+                <div className="flex items-center gap-2 text-[10px] font-mono text-slate-500">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    NODE_STABLE
                 </div>
             </div>
 
+            {/* Cards */}
             <div className="grid gap-6 md:grid-cols-2">
                 {PROJECTS.map((p, i) => (
                     <motion.article
@@ -34,32 +196,27 @@ export default function Projects() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        onClick={() => handleCardClick(p)}
-                        className="group glass-card flex flex-col p-6 min-h-[300px] hover:border-indigo-500/30 transition-all duration-500 cursor-pointer relative"
+                        onClick={() => setSelected(p)}
+                        className="group glass-card flex flex-col p-6 min-h-[280px] cursor-pointer hover:border-indigo-500/30 transition-all duration-500 relative"
                     >
-                        {/* Project Header */}
-                        <div className="flex justify-between items-start mb-6">
-                            <div className="space-y-2">
+                        <div className="flex justify-between items-start mb-4">
+                            <div className="space-y-1">
                                 <div className="flex items-center gap-2">
-                                    <Binary size={14} className="text-indigo-400 opacity-50" />
-                                    <span className="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-tighter">
+                                    <Binary size={12} className="text-indigo-400 opacity-50" />
+                                    <span className="text-[9px] font-mono text-indigo-400 font-bold uppercase tracking-tighter">
                                         ID_{p.id.toUpperCase()}_LOG
                                     </span>
                                 </div>
-                                <h4 className="text-xl font-bold leading-tight group-hover:text-white transition-colors">
-                                    {p.title}
-                                </h4>
+                                <h4 className="text-lg font-bold leading-tight group-hover:text-white transition-colors">{p.title}</h4>
                             </div>
                             <div className="p-2 rounded-lg bg-white/5 text-slate-500 group-hover:text-indigo-400 transition-colors">
                                 <Activity size={16} />
                             </div>
                         </div>
 
-                        <p className="text-sm text-slate-400 leading-relaxed mb-8 flex-1">
-                            {p.desc}
-                        </p>
+                        <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">{p.desc}</p>
 
-                        <div className="grid grid-cols-2 gap-4 mb-8">
+                        <div className="grid grid-cols-2 gap-3 mb-6">
                             <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5">
                                 <div className="text-[8px] text-slate-500 font-bold uppercase mb-1">Performance</div>
                                 <div className="text-xs font-mono font-bold text-emerald-400">{p.metric}</div>
@@ -71,313 +228,131 @@ export default function Projects() {
                         </div>
 
                         <div className="flex items-center gap-2 text-[10px] font-bold text-indigo-400 uppercase tracking-widest group-hover:gap-4 transition-all mt-auto">
-                            Analyze Mission <ChevronRight size={14} />
+                            Analyse Mission <ZoomIn size={14} />
                         </div>
                     </motion.article>
                 ))}
             </div>
 
-            {/* Mission Briefing Modal */}
-            <AnimatePresence mode="wait">
-                {selectedProject && (
+            {/* Modal */}
+            <AnimatePresence>
+                {selected && (
                     <motion.div
+                        key="overlay"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8"
+                        onClick={() => setSelected(null)}
                     >
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setSelectedProject(null)}
-                            className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
-                        />
+                        {/* backdrop */}
+                        <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md" />
 
+                        {/* panel */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            key="panel"
+                            initial={{ opacity: 0, scale: 0.9, y: 30 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="relative w-full max-w-4xl bg-slate-900 border border-white/10 rounded-3xl shadow-[0_0_50px_rgba(79,70,229,0.3)] overflow-hidden z-10"
+                            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+                            onClick={e => e.stopPropagation()}
+                            className="relative w-full max-w-4xl bg-slate-900 border border-white/10 rounded-3xl shadow-[0_0_60px_rgba(79,70,229,0.35)] overflow-hidden"
                         >
-                            <div className="p-6 md:p-8 border-b border-white/10 flex justify-between items-center bg-indigo-500/5">
+                            {/* top bar */}
+                            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-indigo-500/5">
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-2xl bg-indigo-500/20 text-indigo-400">
-                                        <Shield size={24} />
+                                    <div className="p-3 rounded-xl bg-indigo-500/20 text-indigo-400">
+                                        <Shield size={22} />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-1">Project_Deep_Dive</div>
-                                        <h4 className="text-2xl font-bold text-white tracking-tight">{selectedProject.title}</h4>
+                                        <div className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-0.5">
+                                            Project_Deep_Dive
+                                        </div>
+                                        <h4 className="text-2xl font-bold text-white tracking-tight">{selected.title}</h4>
                                     </div>
                                 </div>
                                 <button
-                                    onClick={() => setSelectedProject(null)}
-                                    className="p-3 hover:bg-white/10 rounded-2xl text-slate-400 hover:text-white transition-all bg-white/5"
+                                    onClick={() => setSelected(null)}
+                                    className="p-3 hover:bg-white/10 rounded-xl text-slate-400 hover:text-white transition-all bg-white/5"
                                 >
-                                    <X size={24} />
+                                    <X size={22} />
                                 </button>
                             </div>
 
-                            <div className="p-8 md:p-12 space-y-12 overflow-y-auto max-h-[80vh] custom-scrollbar">
-                                <div className="grid lg:grid-cols-2 gap-12">
-                                    <div className="space-y-10">
-                                        <div className="space-y-4">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
-                                                <Terminal size={14} className="text-indigo-500" /> System_Architecture
+                            {/* body */}
+                            <div className="p-6 md:p-10 space-y-10 overflow-y-auto max-h-[75vh]">
+                                <div className="grid lg:grid-cols-2 gap-10">
+                                    {/* Left col */}
+                                    <div className="space-y-8">
+                                        <div className="space-y-3">
+                                            <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
+                                                <Terminal size={12} className="text-indigo-400" /> System_Architecture
                                             </div>
-                                            <p className="text-sm text-slate-300 bg-black/40 p-6 rounded-2xl border border-white/5 leading-relaxed font-sans shadow-inner">
-                                                {selectedProject.briefing.architecture}
+                                            <p className="text-sm text-slate-300 bg-black/40 p-5 rounded-2xl border border-white/5 leading-relaxed">
+                                                {selected.briefing.architecture}
                                             </p>
                                         </div>
-
-                                        <div className="space-y-4">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
-                                                <Activity size={14} className="text-emerald-500" /> Engineering_Challenge
+                                        <div className="space-y-3">
+                                            <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
+                                                <Activity size={12} className="text-emerald-400" /> Engineering_Challenge
                                             </div>
-                                            <p className="text-sm text-slate-300 italic border-l-4 border-emerald-500/50 pl-6 py-2 bg-emerald-500/5 rounded-r-2xl font-sans">
-                                                "{selectedProject.briefing.challenges}"
+                                            <p className="text-sm text-slate-300 italic border-l-4 border-emerald-500/50 pl-5 py-2 bg-emerald-500/5 rounded-r-2xl">
+                                                "{selected.briefing.challenges}"
+                                            </p>
+                                        </div>
+                                        <div className="space-y-3">
+                                            <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
+                                                <Cpu size={12} className="text-amber-400" /> Technical_Solution
+                                            </div>
+                                            <p className="text-sm text-slate-300 leading-relaxed">
+                                                {selected.briefing.solution}
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div className="space-y-10">
-                                        <div className="space-y-4">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
-                                                <Cpu size={14} className="text-amber-500" /> Technical_Solution
-                                            </div>
-                                            <p className="text-sm text-slate-300 font-sans leading-relaxed">
-                                                {selectedProject.briefing.solution}
-                                            </p>
+                                    {/* Right col — live dashboard */}
+                                    <div className="space-y-4">
+                                        <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
+                                            <Activity size={12} className="text-indigo-400" /> LIVE_METRICS_FEED
+                                        </div>
+                                        <div className="p-5 bg-slate-900/60 rounded-2xl border border-white/5 shadow-inner">
+                                            <LiveDashboard project={selected} />
                                         </div>
 
-                                        <div className="space-y-4">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-3 tracking-widest">
-                                                <Activity size={14} className="text-indigo-500" /> LIVE_METRICS_FEED
-                                            </div>
-                                            <LiveDashboard project={selectedProject} />
+                                        {/* key metrics */}
+                                        <div className="grid grid-cols-3 gap-2">
+                                            {selected.briefing.metrics.map(m => (
+                                                <div key={m} className="p-2 rounded-xl bg-black/40 border border-white/5 text-center">
+                                                    <div className="text-[8px] font-mono text-indigo-300 font-bold">{m}</div>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="p-8 border-t border-white/10 bg-black/40 flex flex-col md:flex-row justify-between items-center gap-8">
-                                <div className="flex flex-wrap gap-3">
-                                    {selectedProject.tech.map(t => (
-                                        <span key={t} className="px-4 py-1.5 rounded-full bg-slate-800/50 text-[10px] font-mono text-indigo-300 border border-indigo-500/20 uppercase tracking-tighter">
+                            {/* footer */}
+                            <div className="p-6 border-t border-white/10 bg-black/30 flex flex-col md:flex-row justify-between items-center gap-6">
+                                <div className="flex flex-wrap gap-2">
+                                    {selected.tech.map(t => (
+                                        <span key={t} className="px-3 py-1 rounded-full bg-slate-800/60 text-[9px] font-mono text-indigo-300 border border-indigo-500/20 uppercase">
                                             {t}
                                         </span>
                                     ))}
                                 </div>
                                 <a
-                                    href={selectedProject.link}
+                                    href={selected.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full md:w-auto px-10 py-4 rounded-2xl bg-indigo-600 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-indigo-500 transition-all flex items-center justify-center gap-4 shadow-xl shadow-indigo-900/40 hover:scale-[1.02] active:scale-95 group/btn"
+                                    className="w-full md:w-auto px-8 py-3 rounded-xl bg-indigo-600 text-white text-[11px] font-black uppercase tracking-[0.25em] hover:bg-indigo-500 transition-all flex items-center justify-center gap-3 shadow-xl shadow-indigo-900/40 hover:scale-[1.02] active:scale-95"
                                 >
                                     TRANSFER_TO_GITHUB
-                                    <ExternalLink size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                                    <ExternalLink size={16} />
                                 </a>
                             </div>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
-
         </section>
-    );
-}
-
-function LiveDashboard({ project }) {
-    const [data, setData] = useState([]);
-    const [radarPoints, setRadarPoints] = useState([]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setData(prev => [...prev.slice(-15), Math.random() * 100]);
-            if (project.id === 'orbi') {
-                setRadarPoints(Array.from({ length: 4 }, () => ({
-                    angle: Math.random() * 360,
-                    radius: 20 + Math.random() * 60,
-                    id: Math.random()
-                })));
-            }
-        }, 800);
-        return () => clearInterval(interval);
-    }, [project.id]);
-
-    const renderVisual = () => {
-        switch (project.id) {
-            case 'apex':
-                return (
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center text-[8px] font-mono text-indigo-400 uppercase tracking-widest">
-                            <span className="flex items-center gap-2"><Cpu size={10} /> PINN_SURROGATE_MATRIX</span>
-                            <span className="text-emerald-500 animate-pulse">OPTIMIZED (10.11ms)</span>
-                        </div>
-                        <div className="grid grid-cols-5 gap-1.5 h-32 p-2 bg-black/40 rounded-xl border border-indigo-500/10">
-                            {[...Array(15)].map((_, i) => (
-                                <motion.div
-                                    key={i}
-                                    animate={{
-                                        opacity: [0.1, 0.6, 0.2],
-                                        scale: [0.95, 1.05, 0.95],
-                                        backgroundColor: i % 3 === 0 ? "rgba(79, 70, 229, 0.4)" : "rgba(79, 70, 229, 0.1)"
-                                    }}
-                                    transition={{ duration: 2, delay: i * 0.1, repeat: Infinity }}
-                                    className="rounded-lg relative overflow-hidden"
-                                >
-                                    <div className="absolute inset-0 flex items-center justify-center text-[6px] text-white/20 font-mono">
-                                        {Math.floor(Math.random() * 99)}
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
-                            <span>TRAJECTORY_NODES: 15/15</span>
-                            <span>LOSS_GRADIENT: 0.00012</span>
-                        </div>
-                    </div>
-                );
-            case 'orbi':
-                return (
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center text-[8px] font-mono text-emerald-400 uppercase tracking-widest">
-                            <span className="flex items-center gap-2"><Radar size={10} /> ORBITAL_PROXIMITY_RADAR</span>
-                            <span className="text-amber-500 animate-pulse">DEBRIS_SCAN_ACTIVE</span>
-                        </div>
-                        <div className="relative h-32 bg-black/40 rounded-xl border border-emerald-500/10 flex items-center justify-center overflow-hidden">
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                                className="absolute w-28 h-28 border border-emerald-500/20 rounded-full"
-                            >
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-1/2 bg-gradient-to-t from-transparent to-emerald-500/50" />
-                            </motion.div>
-                            <div className="absolute w-1 h-1 bg-emerald-500 rounded-full shadow-[0_0_10px_#10b981]" />
-                            {radarPoints.map((p) => (
-                                <motion.div
-                                    key={p.id}
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    exit={{ scale: 0, opacity: 0 }}
-                                    style={{
-                                        left: `calc(50% + ${Math.cos(p.angle * Math.PI / 180) * p.radius}px)`,
-                                        top: `calc(50% + ${Math.sin(p.angle * Math.PI / 180) * p.radius}px)`,
-                                    }}
-                                    className="absolute w-1.5 h-1.5 bg-red-500 rounded-full shadow-[0_0_5px_#ef4444]"
-                                />
-                            ))}
-                        </div>
-                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
-                            <span>ACCURACY: 95.8%</span>
-                            <span>LATENCY: 8.24ms</span>
-                        </div>
-                    </div>
-                );
-            case 'cmdx':
-                return (
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center text-[8px] font-mono text-blue-400 uppercase tracking-widest">
-                            <span className="flex items-center gap-2"><BarChart3 size={10} /> MONTE_CARLO_IV_V_SUITE</span>
-                            <span className="text-blue-500">PASS_THRESHOLD: 98%</span>
-                        </div>
-                        <div className="h-32 bg-black/40 rounded-xl border border-blue-500/10 p-3 flex items-end gap-1.5">
-                            {[92, 98, 95, 99, 97, 94, 98, 96, 99, 95].map((h, i) => (
-                                <div key={i} className="flex-1 relative group">
-                                    <motion.div
-                                        initial={{ height: 0 }}
-                                        animate={{ height: `${h}%` }}
-                                        className={`w-full rounded-t-lg border-t ${h >= 98 ? 'bg-blue-500/40 border-blue-400' : 'bg-blue-500/10 border-blue-500/30'}`}
-                                    />
-                                    {i === 9 && <div className="absolute -top-4 right-0 text-[6px] text-blue-400">σ-3</div>}
-                                </div>
-                            ))}
-                        </div>
-                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
-                            <span>DOCKING_SIMS: 1,000</span>
-                            <span>FAILED_TRIALS: 2</span>
-                        </div>
-                    </div>
-                );
-            case 'eco':
-                return (
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center text-[8px] font-mono text-emerald-400 uppercase tracking-widest">
-                            <span className="flex items-center gap-2"><Activity size={10} /> LIFECYCLE_ANOMALY_SHIELD</span>
-                            <span className="text-emerald-500">R²: 0.9952</span>
-                        </div>
-                        <div className="h-32 bg-black/40 rounded-xl border border-emerald-500/10 p-4 space-y-3">
-                            <div className="flex items-center justify-between">
-                                <span className="text-[7px] text-slate-500 uppercase">Input_Reliability</span>
-                                <div className="w-24 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                                    <motion.div animate={{ width: "99%" }} className="h-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
-                                </div>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <span className="text-[7px] text-slate-500 uppercase">Prediction_Variance</span>
-                                <div className="w-24 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                                    <motion.div animate={{ width: "1.5%" }} className="h-full bg-indigo-500" />
-                                </div>
-                            </div>
-                            <div className="pt-2 border-t border-white/5">
-                                <div className="flex justify-between items-center bg-emerald-500/5 p-2 rounded-lg">
-                                    <div className="text-[8px] font-mono text-emerald-400 animate-pulse">NO_ANOMALY_DETECTED</div>
-                                    <Shield size={10} className="text-emerald-500" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
-                            <span>MICROSERVICE_HEALTH: 100%</span>
-                            <span>LATENCY: 281ms (P90)</span>
-                        </div>
-                    </div>
-                );
-            default:
-                return (
-                    <div className="space-y-4">
-                        <div className="flex justify-between text-[8px] font-mono text-indigo-400">
-                            <span>SYSTEM_METRICS_MONITOR</span>
-                            <span>STABLE</span>
-                        </div>
-                        <div className="h-20 flex items-end gap-1 px-2">
-                            {data.map((v, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ height: 0 }}
-                                    animate={{ height: `${v}%` }}
-                                    className="flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500 rounded-t-sm"
-                                />
-                            ))}
-                        </div>
-                        <div className="text-center text-[8px] text-slate-600 font-mono tracking-widest">
-                            REAL_TIME_NODE_ANALYTICS // ID_{project.id.toUpperCase()}
-                        </div>
-                    </div>
-                );
-        }
-    };
-
-    return (
-        <div className="p-6 bg-slate-900/50 rounded-2xl border border-white/5 shadow-inner">
-            {renderVisual()}
-        </div>
-    );
-}
-
-function ChevronRight({ size, className }) {
-    return (
-        <svg
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-        >
-            <path d="m9 18 6-6-6-6" />
-        </svg>
     );
 }
