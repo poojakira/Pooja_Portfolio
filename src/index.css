@@ -214,7 +214,8 @@
 
 .biometric-scanner::after {
     content: "";
-    @apply absolute left-0 right-0 h-0.5 bg-indigo-500 shadow-[0_0_15px_rgba(99, 102, 241, 0.8)] z-10;
+    @apply absolute left-0 right-0 h-0.5 bg-indigo-500 z-10;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.8);
     animation: bio-scan 2s ease-in-out infinite;
 }
 

@@ -19,6 +19,8 @@ import ModelRegistry from "./components/ModelRegistry";
 import SystemMetrics from "./components/SystemMetrics";
 import NeuralBackground from "./components/NeuralBackground";
 import LiquidCursor from "./components/LiquidCursor";
+import SkillBadges from "./components/SkillBadges";
+import AILogicHUD from "./components/AILogicHUD";
 import { Terminal, Cpu, Shield, Wifi, Clock } from "lucide-react";
 
 export default function App() {
@@ -135,9 +137,11 @@ export default function App() {
               <div id="projects" className="holographic-card"><Projects /></div>
               <div id="experience" className="holographic-card"><Experience /></div>
               <div id="publications" className="holographic-card"><Publications /></div>
+              <div id="badges" className="holographic-card"><SkillBadges /></div>
             </div>
 
             <aside className="space-y-12">
+              <AILogicHUD />
               <TrainingMonitor />
               <SystemMetrics />
               <GitHubHeatmap />
