@@ -189,53 +189,146 @@ export default function Projects() {
 
 function LiveDashboard({ project }) {
     const [data, setData] = useState([]);
+    const [radarPoints, setRadarPoints] = useState([]);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setData(prev => [...prev.slice(-15), Math.random() * 100]);
-        }, 500);
+            if (project.id === 'orbi') {
+                setRadarPoints(Array.from({ length: 4 }, () => ({
+                    angle: Math.random() * 360,
+                    radius: 20 + Math.random() * 60,
+                    id: Math.random()
+                })));
+            }
+        }, 800);
         return () => clearInterval(interval);
-    }, []);
+    }, [project.id]);
 
     const renderVisual = () => {
         switch (project.id) {
             case 'apex':
                 return (
                     <div className="space-y-4">
-                        <div className="flex justify-between text-[8px] font-mono text-indigo-400">
-                            <span>SURROGATE_INFERENCE_ENGINE</span>
-                            <span>CPU_LOAD: 12%</span>
+                        <div className="flex justify-between items-center text-[8px] font-mono text-indigo-400 uppercase tracking-widest">
+                            <span className="flex items-center gap-2"><Cpu size={10} /> PINN_SURROGATE_MATRIX</span>
+                            <span className="text-emerald-500 animate-pulse">OPTIMIZED (10.11ms)</span>
                         </div>
-                        <div className="grid grid-cols-8 gap-1 h-12">
-                            {data.map((v, i) => (
-                                <div key={i} className="flex-1 bg-indigo-500/20 rounded-sm" style={{ height: `${v}%` }} />
+                        <div className="grid grid-cols-5 gap-1.5 h-32 p-2 bg-black/40 rounded-xl border border-indigo-500/10">
+                            {[...Array(15)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    animate={{
+                                        opacity: [0.1, 0.6, 0.2],
+                                        scale: [0.95, 1.05, 0.95],
+                                        backgroundColor: i % 3 === 0 ? "rgba(79, 70, 229, 0.4)" : "rgba(79, 70, 229, 0.1)"
+                                    }}
+                                    transition={{ duration: 2, delay: i * 0.1, repeat: Infinity }}
+                                    className="rounded-lg relative overflow-hidden"
+                                >
+                                    <div className="absolute inset-0 flex items-center justify-center text-[6px] text-white/20 font-mono">
+                                        {Math.floor(Math.random() * 99)}
+                                    </div>
+                                </motion.div>
                             ))}
                         </div>
-                        <div className="p-3 bg-black/60 rounded-lg border border-indigo-500/20">
-                            <div className="text-[7px] text-slate-500 uppercase mb-2">Tactical_Surrogate_Flow</div>
-                            <div className="h-10 flex items-center justify-center gap-2">
-                                <Activity size={12} className="text-emerald-500 animate-pulse" />
-                                <div className="text-[10px] font-mono text-emerald-400">LOGIT_SYNC: ACTIVE</div>
-                            </div>
+                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                            <span>TRAJECTORY_NODES: 15/15</span>
+                            <span>LOSS_GRADIENT: 0.00012</span>
                         </div>
                     </div>
                 );
             case 'orbi':
                 return (
                     <div className="space-y-4">
-                        <div className="flex justify-between text-[8px] font-mono text-emerald-400">
-                            <span>TELEMETRY_MLOPS_STREAM</span>
-                            <span>SYNC_RATE: 8ms</span>
+                        <div className="flex justify-between items-center text-[8px] font-mono text-emerald-400 uppercase tracking-widest">
+                            <span className="flex items-center gap-2"><Radar size={10} /> ORBITAL_PROXIMITY_RADAR</span>
+                            <span className="text-amber-500 animate-pulse">DEBRIS_SCAN_ACTIVE</span>
                         </div>
-                        <div className="h-24 bg-black/60 rounded-xl border border-emerald-500/20 p-2 overflow-hidden">
-                            <div className="flex flex-col gap-1">
-                                {data.slice(-5).map((v, i) => (
-                                    <div key={i} className="flex justify-between text-[7px] font-mono text-slate-500 border-b border-white/5 pb-1">
-                                        <span>PKT_{Math.floor(v * 1000)}</span>
-                                        <span className="text-emerald-400">VALID</span>
-                                    </div>
-                                ))}
+                        <div className="relative h-32 bg-black/40 rounded-xl border border-emerald-500/10 flex items-center justify-center overflow-hidden">
+                            <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                className="absolute w-28 h-28 border border-emerald-500/20 rounded-full"
+                            >
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-1/2 bg-gradient-to-t from-transparent to-emerald-500/50" />
+                            </motion.div>
+                            <div className="absolute w-1 h-1 bg-emerald-500 rounded-full shadow-[0_0_10px_#10b981]" />
+                            {radarPoints.map((p) => (
+                                <motion.div
+                                    key={p.id}
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0, opacity: 0 }}
+                                    style={{
+                                        left: `calc(50% + ${Math.cos(p.angle * Math.PI / 180) * p.radius}px)`,
+                                        top: `calc(50% + ${Math.sin(p.angle * Math.PI / 180) * p.radius}px)`,
+                                    }}
+                                    className="absolute w-1.5 h-1.5 bg-red-500 rounded-full shadow-[0_0_5px_#ef4444]"
+                                />
+                            ))}
+                        </div>
+                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                            <span>ACCURACY: 95.8%</span>
+                            <span>LATENCY: 8.24ms</span>
+                        </div>
+                    </div>
+                );
+            case 'cmdx':
+                return (
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center text-[8px] font-mono text-blue-400 uppercase tracking-widest">
+                            <span className="flex items-center gap-2"><BarChart3 size={10} /> MONTE_CARLO_IV_V_SUITE</span>
+                            <span className="text-blue-500">PASS_THRESHOLD: 98%</span>
+                        </div>
+                        <div className="h-32 bg-black/40 rounded-xl border border-blue-500/10 p-3 flex items-end gap-1.5">
+                            {[92, 98, 95, 99, 97, 94, 98, 96, 99, 95].map((h, i) => (
+                                <div key={i} className="flex-1 relative group">
+                                    <motion.div
+                                        initial={{ height: 0 }}
+                                        animate={{ height: `${h}%` }}
+                                        className={`w-full rounded-t-lg border-t ${h >= 98 ? 'bg-blue-500/40 border-blue-400' : 'bg-blue-500/10 border-blue-500/30'}`}
+                                    />
+                                    {i === 9 && <div className="absolute -top-4 right-0 text-[6px] text-blue-400">σ-3</div>}
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                            <span>DOCKING_SIMS: 1,000</span>
+                            <span>FAILED_TRIALS: 2</span>
+                        </div>
+                    </div>
+                );
+            case 'eco':
+                return (
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center text-[8px] font-mono text-emerald-400 uppercase tracking-widest">
+                            <span className="flex items-center gap-2"><Activity size={10} /> LIFECYCLE_ANOMALY_SHIELD</span>
+                            <span className="text-emerald-500">R²: 0.9952</span>
+                        </div>
+                        <div className="h-32 bg-black/40 rounded-xl border border-emerald-500/10 p-4 space-y-3">
+                            <div className="flex items-center justify-between">
+                                <span className="text-[7px] text-slate-500 uppercase">Input_Reliability</span>
+                                <div className="w-24 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                    <motion.div animate={{ width: "99%" }} className="h-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+                                </div>
                             </div>
+                            <div className="flex items-center justify-between">
+                                <span className="text-[7px] text-slate-500 uppercase">Prediction_Variance</span>
+                                <div className="w-24 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                    <motion.div animate={{ width: "1.5%" }} className="h-full bg-indigo-500" />
+                                </div>
+                            </div>
+                            <div className="pt-2 border-t border-white/5">
+                                <div className="flex justify-between items-center bg-emerald-500/5 p-2 rounded-lg">
+                                    <div className="text-[8px] font-mono text-emerald-400 animate-pulse">NO_ANOMALY_DETECTED</div>
+                                    <Shield size={10} className="text-emerald-500" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex justify-between text-[7px] font-mono text-slate-500">
+                            <span>MICROSERVICE_HEALTH: 100%</span>
+                            <span>LATENCY: 281ms (P90)</span>
                         </div>
                     </div>
                 );
