@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ExternalLink } from "lucide-react";
+import { CheckCircle2, ExternalLink, Terminal, Activity, Cpu, Shield } from "lucide-react";
 
 const BADGES = [
     {

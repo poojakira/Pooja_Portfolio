@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PROJECTS } from "../data";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Cpu, Activity, BarChart3, Binary, Zap, X, Shield, Terminal } from "lucide-react";
+import { ExternalLink, Cpu, Activity, BarChart3, Binary, Zap, X, Shield, Terminal, Radar } from "lucide-react";
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState(null);
