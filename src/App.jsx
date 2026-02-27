@@ -17,6 +17,8 @@ import GitHubHeatmap from "./components/GitHubHeatmap";
 import TerminalCLI from "./components/Terminal";
 import ModelRegistry from "./components/ModelRegistry";
 import SystemMetrics from "./components/SystemMetrics";
+import NeuralBackground from "./components/NeuralBackground";
+import LiquidCursor from "./components/LiquidCursor";
 import { Terminal, Cpu, Shield, Wifi, Clock } from "lucide-react";
 
 export default function App() {
@@ -55,7 +57,8 @@ export default function App() {
       </AnimatePresence>
 
       {/* Global Overlay Elements - Outside of the blur/opacity div */}
-
+      <NeuralBackground />
+      <LiquidCursor />
       <AIBot />
       <AudioPlayer ref={audioPlayerRef} />
       <StatusTicker />
@@ -128,10 +131,10 @@ export default function App() {
 
           <main className="grid gap-12 lg:grid-cols-[1fr_360px] relative">
             <div className="space-y-32">
-              <Hero />
-              <Projects />
-              <Experience />
-              <Publications />
+              <div className="holographic-card"><Hero /></div>
+              <div id="projects" className="holographic-card"><Projects /></div>
+              <div id="experience" className="holographic-card"><Experience /></div>
+              <div id="publications" className="holographic-card"><Publications /></div>
             </div>
 
             <aside className="space-y-12">

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Satellite, Shield, Zap, Database, User, Target, Share2, Download } from "lucide-react";
 import profilePic from "../assets/profile.jpg";
 import resumePDF from "../assets/Pooja_Kiran_RESUME.pdf";
 
 export default function Hero() {
+    const { scrollY } = useScroll();
+    const y1 = useTransform(scrollY, [0, 500], [0, 100]);
+    const y2 = useTransform(scrollY, [0, 500], [0, -100]);
+
     return (
         <section className="relative glass-card p-10 md:p-16 overflow-hidden min-h-[600px] flex flex-col md:flex-row items-center gap-12">
             {/* HUD Elements */}
@@ -25,7 +29,7 @@ export default function Hero() {
             </div>
 
             {/* Content Body */}
-            <div className="relative z-10 flex-1">
+            <motion.div className="relative z-10 flex-1" style={{ y: y1 }}>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -137,7 +141,7 @@ export default function Hero() {
                         ))}
                     </div>
                 </motion.div>
-            </div>
+            </motion.div>
 
             {/* Advanced Profile Frame */}
             <motion.div
@@ -145,6 +149,7 @@ export default function Hero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
                 className="relative shrink-0 hidden lg:block"
+                style={{ y: y2 }}
             >
                 <div className="relative w-80 h-[450px] group">
                     <div className="absolute -top-6 -right-6 w-24 h-24 border border-indigo-500/20 rounded-full animate-spin-slow" />
