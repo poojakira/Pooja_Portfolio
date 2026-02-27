@@ -1,72 +1,110 @@
 import React from "react";
 import { EXPERIENCE } from "../data";
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, ChevronRight } from "lucide-react";
+import { Briefcase, Calendar, ChevronRight, ArrowUpRight, Zap } from "lucide-react";
 
 export default function Experience() {
     return (
         <section id="experience" className="space-y-12">
-            <div className="space-y-1 px-2">
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500">Mission_Chronology</h2>
-                <h3 className="text-3xl font-bold tracking-tight text-white">Career Trajectory</h3>
+            {/* Section Header */}
+            <div className="flex items-end justify-between px-2">
+                <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                        <div className="h-px w-10 bg-gradient-to-r from-indigo-500 to-transparent" />
+                        <h2 className="section-label">Mission_Chronology</h2>
+                    </div>
+                    <h3 className="section-title">Career Trajectory</h3>
+                </div>
+                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">Active</span>
+                </div>
             </div>
 
-            <div className="relative pl-8 md:pl-0">
-                {/* Vertical Timeline Line */}
-                <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-slate-800 to-transparent md:-translate-x-px" />
+            {/* Timeline */}
+            <div className="relative">
+                {/* Vertical Line */}
+                <div className="absolute left-8 md:left-12 top-0 bottom-0 w-px">
+                    <div className="w-full h-full bg-gradient-to-b from-indigo-500/60 via-indigo-500/20 to-transparent" />
+                </div>
 
-                <div className="space-y-16">
+                <div className="space-y-8">
                     {EXPERIENCE.map((exp, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            className={`relative flex flex-col md:flex-row gap-8 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                            className="relative pl-20 md:pl-28 group"
                         >
-                            {/* Milestone Pulse */}
-                            <div className="absolute left-[-32px] md:left-1/2 top-2 w-4 h-4 rounded-full bg-slate-950 border-2 border-indigo-500 md:-translate-x-1/2 z-10">
-                                <span className="absolute inset-0 rounded-full bg-indigo-500 animate-ping opacity-20" />
-                            </div>
-
-                            <div className="md:w-1/2 space-y-4">
-                                <div className={`glass-card p-6 border-white/5 hover:border-indigo-500/20 transition-all group ${i % 2 === 0 ? 'md:ml-12' : 'md:mr-12'}`}>
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-                                            <Briefcase size={18} />
-                                        </div>
-                                        <div className="flex items-center gap-2 text-[9px] font-mono text-slate-500 uppercase font-bold">
-                                            <Calendar size={10} />
-                                            {exp.period}
-                                        </div>
-                                    </div>
-
-                                    <h4 className="text-xl font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">
-                                        {exp.role}
-                                    </h4>
-                                    <div className="text-xs font-black uppercase text-indigo-500/70 tracking-widest mb-6">
-                                        {exp.company}
-                                    </div>
-
-                                    <ul className="space-y-3">
-                                        {exp.description.map((item, idx) => (
-                                            <li key={idx} className="flex gap-3 text-sm text-slate-400 leading-relaxed font-sans">
-                                                <ChevronRight size={14} className="text-indigo-500 shrink-0 mt-1" />
-                                                <span>{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <div className="mt-8 flex flex-wrap gap-2">
-                                        {exp.tags.map(tag => (
-                                            <span key={tag} className="text-[9px] font-mono font-bold px-2 py-1 rounded bg-slate-800/50 text-slate-500 border border-white/5 uppercase">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
+                            {/* Timeline Node */}
+                            <div className="absolute left-[22px] md:left-[38px] top-8 z-10">
+                                <div className="w-5 h-5 rounded-full bg-slate-950 border-2 border-indigo-500 flex items-center justify-center group-hover:border-indigo-400 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-500">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 group-hover:bg-indigo-400" />
                                 </div>
                             </div>
-                            <div className="hidden md:block md:w-1/2" />
+
+                            {/* Card */}
+                            <div className="glow-card p-8 relative overflow-hidden">
+                                {/* Background decoration */}
+                                <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none" />
+                                <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-500/3 rounded-full blur-[60px] pointer-events-none" />
+
+                                {/* Header */}
+                                <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6 relative">
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 group-hover:bg-indigo-500/20 group-hover:scale-110 transition-all duration-500">
+                                            <Briefcase size={22} />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-xl font-black text-white mb-1 tracking-tight group-hover:text-indigo-300 transition-colors duration-500">
+                                                {exp.role}
+                                            </h4>
+                                            <div className="text-xs font-black uppercase text-indigo-500/70 tracking-[0.2em]">
+                                                {exp.company}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/60 border border-white/5 text-[10px] font-mono text-slate-400">
+                                        <Calendar size={12} className="text-indigo-400" />
+                                        {exp.period}
+                                    </div>
+                                </div>
+
+                                {/* Responsibilities */}
+                                <ul className="space-y-4 mb-8 relative">
+                                    {exp.description.map((item, idx) => (
+                                        <motion.li
+                                            key={idx}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: 0.1 + idx * 0.08 }}
+                                            className="flex gap-4 group/item"
+                                        >
+                                            <div className="mt-1.5 shrink-0">
+                                                <div className="w-6 h-6 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center group-hover/item:bg-indigo-500/20 transition-colors">
+                                                    <ChevronRight size={12} className="text-indigo-400" />
+                                                </div>
+                                            </div>
+                                            <p className="text-[13px] text-slate-400 leading-relaxed group-hover/item:text-slate-300 transition-colors">
+                                                {item}
+                                            </p>
+                                        </motion.li>
+                                    ))}
+                                </ul>
+
+                                {/* Tags */}
+                                <div className="flex flex-wrap gap-2 pt-6 border-t border-white/5">
+                                    {exp.tags.map(tag => (
+                                        <span key={tag} className="pill-indigo flex items-center gap-1.5">
+                                            <Zap size={8} />
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                         </motion.div>
                     ))}
                 </div>

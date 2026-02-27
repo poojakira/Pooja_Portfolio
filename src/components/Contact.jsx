@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CONTACT } from "../data";
-import { Mail, Linkedin, Github, MapPin, Send, MessageSquare, Sparkles, Loader2, Check } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Send, MessageSquare, Sparkles, Loader2, Check, ArrowUpRight, Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Contact() {
@@ -9,132 +9,139 @@ export default function Contact() {
 
     const handleLaunch = () => {
         setIsSubmitting(true);
-
-        // Simulating an advanced "handshake" process
         setTimeout(() => {
             setIsSubmitting(false);
             setIsSent(true);
-
-            // Actually launch the mail client after the animation
             window.location.href = `mailto:${CONTACT.email}?subject=Collaboration Inquiry: ML Systems & Security&body=Hi Pooja,%0A%0AI saw your advanced portfolio and I'm interested in collaborating on...`;
-
-            setTimeout(() => {
-                setIsSent(false);
-            }, 3000);
+            setTimeout(() => setIsSent(false), 3000);
         }, 1500);
     };
 
     const links = [
-        { icon: <Mail size={16} />, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, color: "indigo" },
-        { icon: <Linkedin size={16} />, label: "LinkedIn", value: "poojakiran", href: CONTACT.linkedin, color: "blue" },
-        { icon: <Github size={16} />, label: "GitHub", value: "poojakira", href: CONTACT.github, color: "slate" },
-        { icon: <MapPin size={16} />, label: "Location", value: CONTACT.location, href: null, color: "emerald" }
+        { icon: <Mail size={18} />, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, accent: "bg-indigo-500", borderAccent: "border-indigo-500/30" },
+        { icon: <Linkedin size={18} />, label: "LinkedIn", value: "poojakiran", href: CONTACT.linkedin, accent: "bg-blue-500", borderAccent: "border-blue-500/30" },
+        { icon: <Github size={18} />, label: "GitHub", value: "poojakira", href: CONTACT.github, accent: "bg-slate-500", borderAccent: "border-slate-500/30" },
+        { icon: <MapPin size={18} />, label: "Location", value: CONTACT.location, href: null, accent: "bg-emerald-500", borderAccent: "border-emerald-500/30" }
     ];
 
     return (
         <section id="contact" className="space-y-4">
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="glass-card p-6 border-t-2 border-t-indigo-500 overflow-hidden relative"
+                className="glow-card relative overflow-hidden"
             >
-                {/* Visual Flair */}
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                    <Sparkles size={40} className="text-indigo-400 rotate-12" />
-                </div>
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/60 to-transparent" />
 
-                <div className="flex items-center gap-2 mb-6">
-                    <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-                        <MessageSquare size={18} />
-                    </div>
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-slate-300">Contact Information</h3>
-                </div>
+                {/* Background decorations */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-[60px] pointer-events-none" />
 
-                <div className="space-y-5 relative z-10 font-mono">
-                    {links.map((link) => (
-                        <div key={link.label} className="group">
-                            <div className="text-[9px] text-slate-500 font-bold uppercase mb-1.5 flex items-center gap-1.5">
-                                <div className={`w-1 h-1 rounded-full bg-${link.color}-500/50`} />
-                                {link.label}
-                            </div>
-                            {link.href ? (
-                                <a
-                                    href={link.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-3 text-sm font-medium text-slate-400 hover:text-indigo-300 transition-all group-hover:translate-x-1"
-                                >
-                                    <div className="p-1.5 rounded-lg bg-slate-800/50 border border-white/5 group-hover:border-indigo-500/30 transition-colors">
-                                        {link.icon}
-                                    </div>
-                                    <span className="truncate">{link.value}</span>
-                                </a>
-                            ) : (
-                                <div className="flex items-center gap-3 text-sm font-medium text-slate-400 font-mono">
-                                    <div className="p-1.5 rounded-lg bg-slate-800/50 border border-white/5">
-                                        {link.icon}
-                                    </div>
-                                    {link.value}
-                                </div>
-                            )}
+                <div className="p-8">
+                    {/* Header */}
+                    <div className="flex items-center gap-3 mb-8">
+                        <div className="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                            <MessageSquare size={20} />
                         </div>
-                    ))}
-                </div>
+                        <div>
+                            <h3 className="text-lg font-black uppercase tracking-tight text-white">Contact Intel</h3>
+                            <p className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">Secure Channel Available</p>
+                        </div>
+                    </div>
 
-                <div className="mt-8 pt-6 border-t border-white/5 relative">
-                    <AnimatePresence mode="wait">
-                        {!isSent ? (
-                            <motion.button
-                                key="launch-btn"
-                                whileHover={{ scale: 1.02, translateY: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={handleLaunch}
-                                disabled={isSubmitting}
-                                className="w-full py-4 rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-800 text-white font-bold text-sm flex items-center justify-center gap-3 shadow-xl shadow-indigo-900/40 hover:shadow-indigo-500/30 transition-all border border-indigo-400/20 group relative overflow-hidden"
-                            >
-                                <motion.div
-                                    className="absolute inset-x-0 bottom-0 h-1 bg-white/20"
-                                    initial={{ scaleX: 0 }}
-                                    animate={isSubmitting ? { scaleX: 1 } : { scaleX: 0 }}
-                                    transition={{ duration: 1.5, ease: "easeInOut" }}
-                                />
-                                {isSubmitting ? (
-                                    <>
-                                        <Loader2 size={18} className="animate-spin" />
-                                        <span>INITIATING HANDSHAKE...</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                        <span>LAUNCH COLLABORATION</span>
-                                    </>
-                                )}
-                            </motion.button>
-                        ) : (
+                    {/* Contact Links */}
+                    <div className="space-y-3 relative z-10">
+                        {links.map((link, i) => (
                             <motion.div
-                                key="sent-msg"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                className="w-full py-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-sm flex items-center justify-center gap-3"
+                                key={link.label}
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.06 }}
                             >
-                                <Check size={18} />
-                                <span>SECURE SIGNAL SENT</span>
+                                {link.href ? (
+                                    <a
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`flex items-center gap-4 p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:${link.borderAccent} hover:bg-white/[0.05] transition-all group`}
+                                    >
+                                        <div className={`p-2.5 rounded-xl bg-white/5 text-slate-400 group-hover:text-white border border-white/5 group-hover:border-indigo-500/20 transition-all`}>
+                                            {link.icon}
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="text-[8px] font-black text-slate-600 uppercase tracking-[0.3em] mb-0.5">{link.label}</div>
+                                            <div className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors truncate">{link.value}</div>
+                                        </div>
+                                        <ArrowUpRight size={14} className="text-slate-700 group-hover:text-indigo-400 transition-colors" />
+                                    </a>
+                                ) : (
+                                    <div className="flex items-center gap-4 p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                                        <div className="p-2.5 rounded-xl bg-white/5 text-slate-400 border border-white/5">
+                                            {link.icon}
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="text-[8px] font-black text-slate-600 uppercase tracking-[0.3em] mb-0.5">{link.label}</div>
+                                            <div className="text-sm font-bold text-slate-300">{link.value}</div>
+                                        </div>
+                                    </div>
+                                )}
                             </motion.div>
-                        )}
-                    </AnimatePresence>
+                        ))}
+                    </div>
 
-                    <div className="mt-4 text-center">
-                        <span className="text-[10px] font-mono text-slate-600 uppercase tracking-tighter">
+                    {/* CTA Button */}
+                    <div className="mt-8 pt-6 border-t border-white/5 relative">
+                        <AnimatePresence mode="wait">
+                            {!isSent ? (
+                                <motion.button
+                                    key="launch-btn"
+                                    whileHover={{ scale: 1.02, translateY: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={handleLaunch}
+                                    disabled={isSubmitting}
+                                    className="btn-primary w-full py-4 justify-center relative overflow-hidden group"
+                                >
+                                    <motion.div
+                                        className="absolute inset-x-0 bottom-0 h-0.5 bg-white/20"
+                                        initial={{ scaleX: 0 }}
+                                        animate={isSubmitting ? { scaleX: 1 } : { scaleX: 0 }}
+                                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                                    />
+                                    {isSubmitting ? (
+                                        <>
+                                            <Loader2 size={16} className="animate-spin" />
+                                            <span>INITIATING HANDSHAKE...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                            <span>LAUNCH COLLABORATION</span>
+                                        </>
+                                    )}
+                                </motion.button>
+                            ) : (
+                                <motion.div
+                                    key="sent-msg"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="w-full py-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-sm flex items-center justify-center gap-3"
+                                >
+                                    <Check size={16} />
+                                    <span className="uppercase tracking-widest text-[11px] font-black">Secure Signal Sent</span>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        <div className="mt-4 flex items-center justify-center gap-1.5 text-[9px] font-mono text-slate-600 uppercase tracking-wider">
+                            <Lock size={8} />
                             AES-256 Encrypted Communication Path
-                        </span>
+                        </div>
                     </div>
                 </div>
-
-                {/* Cyberpunk Background Decoration */}
-                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute top-1/2 left-0 -translate-x-1/2 w-1 h-20 bg-gradient-to-b from-transparent via-indigo-500/50 to-transparent" />
             </motion.div>
         </section>
     );
