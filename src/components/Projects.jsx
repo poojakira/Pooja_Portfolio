@@ -140,15 +140,11 @@ export default function Projects() {
                                             </p>
                                         </div>
 
-                                        <div className="space-y-3">
-                                            <div className="text-[10px] font-mono text-slate-500 uppercase">Verification Metrics</div>
-                                            <div className="grid grid-cols-1 gap-2">
-                                                {selectedProject.briefing.metrics.map(m => (
-                                                    <div key={m} className="p-2 rounded bg-indigo-500/5 border border-indigo-500/10 text-[11px] font-mono text-indigo-300">
-                                                        {'>'} {m}
-                                                    </div>
-                                                ))}
+                                        <div className="space-y-2">
+                                            <div className="text-[10px] font-mono text-slate-500 uppercase flex items-center gap-2">
+                                                <Activity size={12} className="text-indigo-500" /> LIVE_METRICS_FEED
                                             </div>
+                                            <LiveDashboard project={selectedProject} />
                                         </div>
                                     </div>
                                 </div>
@@ -162,27 +158,108 @@ export default function Projects() {
                                         </span>
                                     ))}
                                 </div>
-                                <a
-                                    href={selectedProject.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="px-5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500 transition-all flex items-center gap-2"
-                                >
-                                    View Source <ExternalLink size={14} />
-                                </a>
+                                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                                    <a
+                                        href={selectedProject.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-8 py-3 rounded-xl bg-indigo-600 text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-indigo-500 transition-all flex items-center justify-center gap-3 shadow-xl shadow-indigo-950/50 group/btn"
+                                    >
+                                        TRANSFER_TO_GITHUB
+                                        <ExternalLink size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                                    </a>
+                                </div>
                             </div>
                         </motion.div>
                     </div>
                 )}
             </AnimatePresence>
 
-            <style jsx>{`
-                .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(79, 70, 229, 0.2); border-radius: 10px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(79, 70, 229, 0.4); }
-            `}</style>
         </section>
+    );
+}
+
+function LiveDashboard({ project }) {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setData(prev => [...prev.slice(-15), Math.random() * 100]);
+        }, 500);
+        return () => clearInterval(interval);
+    }, []);
+
+    const renderVisual = () => {
+        switch (project.id) {
+            case 'apex':
+                return (
+                    <div className="space-y-4">
+                        <div className="flex justify-between text-[8px] font-mono text-indigo-400">
+                            <span>SURROGATE_INFERENCE_ENGINE</span>
+                            <span>CPU_LOAD: 12%</span>
+                        </div>
+                        <div className="grid grid-cols-8 gap-1 h-12">
+                            {data.map((v, i) => (
+                                <div key={i} className="flex-1 bg-indigo-500/20 rounded-sm" style={{ height: `${v}%` }} />
+                            ))}
+                        </div>
+                        <div className="p-3 bg-black/60 rounded-lg border border-indigo-500/20">
+                            <div className="text-[7px] text-slate-500 uppercase mb-2">Tactical_Surrogate_Flow</div>
+                            <div className="h-10 flex items-center justify-center gap-2">
+                                <Activity size={12} className="text-emerald-500 animate-pulse" />
+                                <div className="text-[10px] font-mono text-emerald-400">LOGIT_SYNC: ACTIVE</div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            case 'orbi':
+                return (
+                    <div className="space-y-4">
+                        <div className="flex justify-between text-[8px] font-mono text-emerald-400">
+                            <span>TELEMETRY_MLOPS_STREAM</span>
+                            <span>SYNC_RATE: 8ms</span>
+                        </div>
+                        <div className="h-24 bg-black/60 rounded-xl border border-emerald-500/20 p-2 overflow-hidden">
+                            <div className="flex flex-col gap-1">
+                                {data.slice(-5).map((v, i) => (
+                                    <div key={i} className="flex justify-between text-[7px] font-mono text-slate-500 border-b border-white/5 pb-1">
+                                        <span>PKT_{Math.floor(v * 1000)}</span>
+                                        <span className="text-emerald-400">VALID</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            default:
+                return (
+                    <div className="space-y-4">
+                        <div className="flex justify-between text-[8px] font-mono text-indigo-400">
+                            <span>SYSTEM_METRICS_MONITOR</span>
+                            <span>STABLE</span>
+                        </div>
+                        <div className="h-20 flex items-end gap-1 px-2">
+                            {data.map((v, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ height: 0 }}
+                                    animate={{ height: `${v}%` }}
+                                    className="flex-1 bg-gradient-to-t from-indigo-500/20 to-indigo-500 rounded-t-sm"
+                                />
+                            ))}
+                        </div>
+                        <div className="text-center text-[8px] text-slate-600 font-mono tracking-widest">
+                            REAL_TIME_NODE_ANALYTICS // ID_{project.id.toUpperCase()}
+                        </div>
+                    </div>
+                );
+        }
+    };
+
+    return (
+        <div className="p-6 bg-slate-900/50 rounded-2xl border border-white/5 shadow-inner">
+            {renderVisual()}
+        </div>
     );
 }
 
