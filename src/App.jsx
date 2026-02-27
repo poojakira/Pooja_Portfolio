@@ -21,7 +21,8 @@ import NeuralBackground from "./components/NeuralBackground";
 import LiquidCursor from "./components/LiquidCursor";
 import SkillBadges from "./components/SkillBadges";
 import AILogicHUD from "./components/AILogicHUD";
-import { Terminal, Cpu, Shield, Wifi, Clock } from "lucide-react";
+import CircuitryBackground from "./components/CircuitryBackground";
+import { Terminal, Cpu, Shield, Wifi, Clock, Activity, Database } from "lucide-react";
 
 export default function App() {
   const [isBooted, setIsBooted] = useState(false);
@@ -70,6 +71,7 @@ export default function App() {
         <motion.div className="fixed top-0 left-0 right-0 h-1 bg-indigo-500 origin-left z-[100]" style={{ scaleX }} />
 
         {/* Background Visual Stack */}
+        <CircuitryBackground />
         <div className="noise-overlay" />
         <div className="vignette" />
         <div className="scanline" />
@@ -126,6 +128,14 @@ export default function App() {
                 <div className="flex items-center gap-2">
                   <Wifi size={12} className="text-emerald-400" />
                   <span>LINK: STABLE</span>
+                </div>
+                <div className="flex items-center gap-2 border-l border-white/10 pl-6">
+                  <Database size={12} className="text-amber-400" />
+                  <span>HBM: 2.4TB/s</span>
+                </div>
+                <div className="flex items-center gap-2 border-l border-white/10 pl-6">
+                  <Activity size={12} className="text-indigo-400" />
+                  <span>INF: {Math.floor(Math.random() * 50 + 100)} TLU/s</span>
                 </div>
               </div>
             </div>

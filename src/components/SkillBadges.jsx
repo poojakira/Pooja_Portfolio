@@ -24,6 +24,8 @@ const BADGES = [
 ];
 
 export default function SkillBadges() {
+    const [selectedBadge, setSelectedBadge] = React.useState(null);
+
     return (
         <section id="badges" className="py-20 border-t border-white/5">
             <div className="flex items-center gap-4 mb-12">
@@ -41,7 +43,8 @@ export default function SkillBadges() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        className="flex flex-col items-center group"
+                        className="flex flex-col items-center group cursor-pointer"
+                        onClick={() => setSelectedBadge(badge)}
                     >
                         {/* Badge Card */}
                         <div className="relative w-full aspect-square max-w-[240px] bg-white rounded-lg p-6 flex flex-col items-center justify-center text-center shadow-2xl transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-2">
@@ -86,6 +89,59 @@ export default function SkillBadges() {
                     </motion.div>
                 ))}
             </div>
+
+            {/* Credential Detail Modal */}
+            <AnimatePresence>
+                {selectedBadge && (
+                    <div className="fixed inset-0 z-[600] flex items-center justify-center p-6">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedBadge(null)}
+                            className="absolute inset-0 bg-[#030712]/90 backdrop-blur-xl"
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative w-full max-w-2xl glass-card p-10 holographic-card"
+                        >
+                            <div className="flex flex-col md:flex-row gap-10 items-center">
+                                <div className="w-48 h-48 bg-white rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-2xl shrink-0">
+                                    <h3 className="text-xs font-bold text-slate-800 mb-4 tracking-tight">{selectedBadge.title}</h3>
+                                    <CheckCircle2 className="text-[#4285F4] mb-2" size={32} fill="#4285F4" stroke="white" />
+                                    <span className="text-[6px] font-black uppercase tracking-widest text-slate-400">Verified_By_Google</span>
+                                </div>
+                                <div className="flex-1">
+                                    <div className="text-indigo-400 font-mono text-[9px] mb-2 uppercase tracking-[0.3em]">SECURE_CREDENTIAL_V3</div>
+                                    <h2 className="text-2xl font-black text-white mb-4 tracking-tight uppercase leading-tight">{selectedBadge.title}</h2>
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                                        This credential verifies professional competence in {selectedBadge.title} issued by {selectedBadge.issuer}.
+                                        Authenticated via decentralized certificate chain PKB_CERT_03.
+                                    </p>
+                                    <div className="flex items-center gap-6">
+                                        <div className="space-y-1">
+                                            <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Issued_On</div>
+                                            <div className="text-xs font-bold text-slate-200">{selectedBadge.date}</div>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest">ID_Reference</div>
+                                            <div className="text-xs font-bold text-slate-200">GCP-AI-{Math.floor(Math.random() * 900000)}</div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => setSelectedBadge(null)}
+                                        className="mt-10 w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-[10px] uppercase tracking-[0.3em] rounded-xl transition-all shadow-xl shadow-indigo-950/50"
+                                    >
+                                        Close_Session
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
 
             {/* Background Decorative HUD */}
             <div className="mt-20 flex justify-center opacity-20">

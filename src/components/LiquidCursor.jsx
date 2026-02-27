@@ -66,6 +66,19 @@ export default function LiquidCursor() {
                     translateY: "-50%",
                 }}
             />
+
+            {/* Global Point Light - State of the art illumination */}
+            <motion.div
+                className="fixed top-0 left-0 w-[1000px] h-[1000px] rounded-full pointer-events-none z-[1] hidden md:block opacity-20"
+                style={{
+                    x: cursorX,
+                    y: cursorY,
+                    translateX: "-50%",
+                    translateY: "-50%",
+                    background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)",
+                    mixBlendMode: "screen",
+                }}
+            />
         </>
     );
 }
