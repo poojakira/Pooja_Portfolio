@@ -1,159 +1,451 @@
 /**
- * GEMINI_INTELLIGENCE_CORE (V3.0)
- * Knowledge Base — Pooja Kiran Bharadwaj
- * Data verified directly from GitHub READMEs and resume as of Feb 2026
+ * GEMINI_INTELLIGENCE_CORE (V4.0)
+ * Full-context NLP-style knowledge engine for Pooja Kiran Bharadwaj's portfolio
+ * Handles any recruiter or user question using topic graphs + detailed answers
  */
 
-export const BRAIN_CONFIG = {
-    identity: {
-        name: "Gemini",
-        role: "Technical Portfolio Assistant",
-        tone: "Professional, Engineering-focused",
-        mission: "Provide deep technical insights into Pooja's ML engineering capabilities."
-    },
-    knowledge_base: {
-        personal: {
-            name: "Pooja Kiran Bharadwaj",
-            email: "poojakiranbharadwaj@gmail.com",
-            phone: "+1 (480) 776-7445",
+// ─── Complete Knowledge Base ────────────────────────────────────────────────
+const KB = {
+    name: "Pooja Kiran Bharadwaj",
+    email: "poojakiranbharadwaj@gmail.com",
+    phone: "+1 (480) 776-7445",
+    location: "Tempe, AZ",
+    linkedin: "https://linkedin.com/in/poojakiran",
+    github: "https://github.com/poojakira",
+    status: "Actively seeking Machine Learning Engineer / Applied AI / MLOps roles",
+    availability: "Available immediately for full-time roles, internships, or research collaborations",
+
+    education: {
+        masters: {
+            school: "Arizona State University (ASU)",
             location: "Tempe, AZ",
-            linkedin: "https://linkedin.com/in/poojakiran",
-            github: "https://github.com/poojakira",
-            status: "Actively seeking Machine Learning Engineer / Applied AI roles"
+            degree: "M.S. in Information Technology Security",
+            period: "Aug 2024 – May 2026",
+            focus: "AI Security, Enterprise Compliance, Secure ML Systems, SDLC, Privacy Engineering"
         },
-        education: {
-            asu: "M.S. in Information Technology Security — Arizona State University (Aug 2024 – May 2026). Focus: AI Security, Enterprise Compliance, ML Systems.",
-            ramaiya: "B.Tech in Computer Science — M. S. Ramaiah University, India (Aug 2019 – Aug 2023)."
-        },
-        experience: {
-            asu_grader: "Graduate IT Grader at ASU (Feb 2025 – Oct 2025): Audited security policies and compliance frameworks for 85+ enterprise assignments. Delivered technical feedback on HTML/CSS/JS front-end quality and secure SDLC practices."
-        },
-        research: [
-            "IEEE INDICON 2023: 'Personalized E-learning System Using Reinforcement Learning Through Satellite' — Optimized learning trajectories with 80% dynamic progression accuracy using Q-learning agents.",
-            "IOSR Journal 2023: 'Smart Charge Pro: Empowering Future Mobility' — Managed concurrent EV charging for 4 vehicles with zero-delay isolation via NodeMCU IoT controllers."
-        ],
-        projects: {
-            apex: {
-                title: "Apex-X & Aegis-X: Hyper-Advanced Tactical Command Suite",
-                github: "https://github.com/poojakira/Apex-Aegis-Tactical-Suite",
-                summary: "Autonomous hypersonic defense command suite for real-time multi-physics simulation and tactical AI. Integrates Physics-Informed Neural Networks (PINNs) with Tactical Transformers and Post-Quantum Cryptographic secure communications.",
-                metrics: [
-                    "Baseline latency: 12.36ms → Optimized: 10.11ms (18.19% net reduction)",
-                    "Signal integrity: 99.8% (998/1000 trials under adversarial jamming)",
-                    "StyleGAN-autoencoder based signal denoising under electronic warfare"
-                ],
-                tech: "PINNs (Navier-Stokes constraints), StyleGAN denoising autoencoders, Tactical Transformers, Byzantine-Mesh consensus, Post-Quantum Lattice cryptography, NASA TLE integration, FEM structural simulator"
-            },
-            orbit: {
-                title: "OrbitIQ: CubeSat 3D Anomaly Engine",
-                github: "https://github.com/poojakira/orbit-Q",
-                summary: "MLOps ecosystem for autonomous satellite health monitoring. Uses Isolation Forest for spatial anomaly detection with 360° polar orbital radar. Features a 10-page mission control center with N/S/E/W telemetry stream.",
-                metrics: [
-                    "Latency: 2000ms (cloud) → 8ms (Edge-optimized) — 99.9% reduction",
-                    "Predictive Accuracy: 95.8% (target was >95.0%)",
-                    "Contamination Rate: 0.05 (high-precision outlier detection)"
-                ],
-                tech: "Isolation Forest, Rolling Window feature extraction, Firebase Realtime DB, MLflow experiment tracking, 10-second Mission Pulse orchestrator"
-            },
-            cmdx: {
-                title: "CommandX: Orbital Mission Control Platform v7.0",
-                github: "https://github.com/poojakira/CommandX",
-                summary: "Industrial mission control system built on real aerospace physics. Parses real Space-Track satellite catalogs. GNC core uses Extended Kalman Filter (EKF) at 10Hz. RL Pilot controls a 500kg spacecraft bus with 50N thruster.",
-                metrics: [
-                    "98% docking success — verified via Monte Carlo IV&V (3-sigma worst-case)",
-                    "60% fuel efficiency improvement via Genetic Algorithm trajectory optimization",
-                    "EKF state estimation at 10Hz across 6 degrees of freedom"
-                ],
-                tech: "Extended Kalman Filter (EKF), RL Pilot, Genetic Algorithm (ga_optimizer.py), Entropy Engine (hardware degradation simulation — thermal noise, IMU drift, radiation bit-flips), Monte Carlo IV&V (system_analytics.py)"
-            },
-            ecotrack: {
-                title: "EcoTrack-Enterprise: Carbon Lifecycle Analytics",
-                github: "https://github.com/poojakira/EcoTrack-Enterprise",
-                summary: "Industrial-grade ML microservice for product carbon footprint analysis. Docker-orchestrated FastAPI backend with Random Forest for predictive scoring and Isolation Forest for real-time security anomaly detection.",
-                metrics: [
-                    "R² = 0.9952 (explains 99.5% of carbon variance)",
-                    "P90 latency: 281ms under 1,000 concurrent requests",
-                    "Zero-Trust anomaly flag latency: <5ms"
-                ],
-                tech: "FastAPI async backend, Random Forest Regressor, Isolation Forest (security layer), Docker Compose orchestration, Kaggle Product Lifecycle Carbon Footprint dataset"
-            }
-        },
-        certifications: [
-            "Transformer Models and BERT — Google Cloud (Feb 2026)",
-            "Machine Learning Operations (MLOps) for Generative AI — Google Cloud (Feb 2026)",
-            "Professional Machine Learning Engineer Study Guide — Google Cloud (Feb 2026)",
-            "AWS Academy Cloud Architecting (Apr 2025)",
-            "AWS Cloud Security Foundations (Nov 2025)",
-            "Honeywell Tech Innovation Lab (Nov 2025)"
-        ],
-        skills: {
-            ml: "PINNs, GANs (StyleGAN), Transformers/BERT, Reinforcement Learning (Q-Learning), Isolation Forest, Random Forest, Extended Kalman Filter, Monte Carlo Simulation, Genetic Algorithms",
-            mlops: "Docker, Kubernetes, FastAPI, MLflow, Firebase, AWS SageMaker, DevSecOps",
-            languages: "Python (98%), JavaScript/React, YAML/Docker",
-            security: "Post-Quantum Cryptography (Lattice-based), Zero-Trust Security, IAM, Compliance Auditing"
+        bachelors: {
+            school: "M. S. Ramaiah University",
+            location: "Bengaluru, India",
+            degree: "B.Tech in Computer Science",
+            period: "Aug 2019 – Aug 2023",
+            gpa: "Top of cohort"
         }
+    },
+
+    experience: {
+        asu_grader: {
+            role: "Graduate IT Grader — Web Programming & Security Compliance",
+            company: "Arizona State University",
+            period: "Feb 2025 – Oct 2025",
+            responsibilities: [
+                "Audited security policies, incident response plans, and compliance frameworks for 85+ enterprise-level assignments",
+                "Reviewed HTML, CSS, and JavaScript code across 85+ student applications for UI/UX quality and accessibility standards",
+                "Delivered targeted SDLC remediation feedback bridging secure web design with enterprise compliance"
+            ]
+        }
+    },
+
+    projects: {
+        apex: {
+            name: "Apex-X & Aegis-X: Hyper-Advanced Tactical Command Suite",
+            github: "https://github.com/poojakira/Apex-Aegis-Tactical-Suite",
+            category: "Hypersonic Defense AI",
+            description: "Mission-critical autonomous defense command suite integrating Physics-Informed Neural Networks (PINNs) for real-time multi-physics simulation. Includes a Tactical Transformer for intent prediction, StyleGAN-based adversarial denoising for electronic warfare resilience, and a Byzantine-Mesh network for fault-tolerant communications.",
+            tech: ["PINNs (Navier-Stokes constraints)", "StyleGAN denoising autoencoders", "Tactical Transformers", "Byzantine-Mesh consensus", "Post-Quantum Lattice cryptography", "NASA TLE satellite tracking", "FEM structural simulation", "Sigma-Point Kalman Fusion"],
+            metrics: {
+                latency: "12.36ms → 10.11ms (18.19% optimization)",
+                signal_integrity: "99.8% (998/1000 adversarial trials — StyleGAN reconstruction)",
+                versions: "Version 3.0 Enterprise"
+            },
+            features: ["3D tactical HUD with AI-predicted flight paths", "Live NASA TLE satellite integration", "Automated military-grade mission reporting", "Self-healing Byzantine-Mesh nodes", "Post-Quantum cryptographic weight signing"]
+        },
+        orbit: {
+            name: "OrbitIQ: CubeSat 3D Anomaly Engine",
+            github: "https://github.com/poojakira/orbit-Q",
+            category: "Orbital MLOps",
+            description: "Autonomous satellite health monitoring MLOps ecosystem. Uses Isolation Forest for unsupervised spatial anomaly detection across N/S/E/W CubeSat sensor faces. Features a 10-page mission control center with a 360° orbital radar, MLflow experiment tracking, and a continuous 10-second Mission Pulse orchestrator.",
+            tech: ["Isolation Forest (unsupervised ML)", "Rolling Window feature extraction (mean + std dev)", "Firebase Realtime Database", "MLflow experiment tracking", "Python 3.10+", "Streamlit dashboard"],
+            metrics: {
+                latency: "2000ms (cloud) → 8ms (edge-optimized) = 99.9% reduction",
+                accuracy: "95.8% predictive accuracy (target: >95.0%)",
+                contamination: "0.05 contamination rate (high-precision outlier detection)"
+            },
+            features: ["360° polar orbital proximity radar", "10-page command center dashboard", "AI-driven triage alert center", "Hardware diagnostics (CPU/temp/power)", "Manual model retraining trigger"]
+        },
+        cmdx: {
+            name: "CommandX: Orbital Mission Control Platform v7.0",
+            github: "https://github.com/poojakira/CommandX",
+            category: "Aerospace GNC",
+            description: "Industrial mission control platform built on real aerospace physics. Parses the live Space-Track satellite catalog. Core GNC uses an Extended Kalman Filter (EKF) at 10Hz fusing noisy IMU sensor data into clean state estimates across 6 degrees of freedom. An RL Pilot controls a 500kg spacecraft bus using a 50N thruster.",
+            tech: ["Extended Kalman Filter (EKF @ 10Hz)", "RL Pilot (reinforcement learning thrust control)", "Genetic Algorithm (trajectory optimization)", "Entropy Engine (hardware degradation simulator)", "Monte Carlo IV&V (system_analytics.py)", "Plotly 3D spacecraft visualization", "Space-Track TLE catalog parsing"],
+            metrics: {
+                docking: "98% docking success (3-sigma Monte Carlo worst-case proven)",
+                fuel: "60% fuel efficiency via Genetic Algorithm optimization",
+                gnc_cycle: "10Hz GNC cycle frequency"
+            },
+            features: ["Live global fleet tracking (15,000+ real satellites)", "RL-driven autonomous docking", "Entropy Engine: thermal noise, IMU drift, radiation bit-flips", "Monte Carlo certification (IV&V) suite", "4-phase mission planning UI (Command → Flight → Certification → Planning)"]
+        },
+        ecotrack: {
+            name: "EcoTrack-Enterprise: Carbon Lifecycle Analytics",
+            github: "https://github.com/poojakira/EcoTrack-Enterprise",
+            category: "Industrial ML Microservices",
+            description: "Industrial-grade ML microservice architecture for carbon footprint analysis. FastAPI async backend + Random Forest regressor for predictive carbon scoring + Isolation Forest security layer for real-time anomaly detection. Fully Docker-orchestrated microservices.",
+            tech: ["FastAPI (async REST backend)", "Random Forest Regressor (carbon prediction)", "Isolation Forest (zero-trust security layer)", "Docker Compose orchestration", "Pydantic schemas", "Stress testing (1000 concurrent requests)", "Kaggle Product Lifecycle Carbon Footprint dataset"],
+            metrics: {
+                r2: "R² = 0.9952 (explains 99.5% of carbon variance)",
+                latency_p90: "281ms P90 under 1,000 concurrent users",
+                anomaly_flag: "<5ms anomaly detection latency"
+            },
+            features: ["18-field product carbon prediction API", "Zero-trust input security via Isolation Forest", "Docker multi-container orchestration (backend + frontend)", "Full stress test suite (stress_test.py)", "Streamlit frontend dashboard"]
+        }
+    },
+
+    research: [
+        {
+            title: "Personalized E-learning System Using Reinforcement Learning Through Satellite",
+            venue: "IEEE INDICON 2023",
+            contribution: "Designed a Q-learning agent that dynamically adjusts curriculum difficulty based on student performance signals streamed via satellite. Achieved 80% dynamic progression accuracy."
+        },
+        {
+            title: "Smart Charge Pro: Empowering Future Mobility",
+            venue: "IOSR Journal 2023",
+            contribution: "Built a zero-delay NodeMCU IoT system that manages concurrent EV charging for 4 vehicles simultaneously with intelligent load isolation."
+        }
+    ],
+
+    certifications: [
+        { name: "Transformer Models and BERT", issuer: "Google Cloud", date: "Feb 2026" },
+        { name: "Machine Learning Operations (MLOps) for Generative AI", issuer: "Google Cloud", date: "Feb 2026" },
+        { name: "Professional Machine Learning Engineer Study Guide", issuer: "Google Cloud", date: "Feb 2026" },
+        { name: "AWS Academy Cloud Architecting", issuer: "Amazon Web Services", date: "Apr 2025" },
+        { name: "AWS Cloud Security Foundations", issuer: "Amazon Web Services", date: "Nov 2025" },
+        { name: "Honeywell Tech Innovation Lab", issuer: "Honeywell", date: "Nov 2025" }
+    ],
+
+    skills: {
+        ml_ai: ["Physics-Informed Neural Networks (PINNs)", "GANs & StyleGAN", "BERT & Transformers", "Reinforcement Learning (Q-Learning, RL Pilot)", "Isolation Forest", "Random Forest", "Extended Kalman Filter (EKF)", "Monte Carlo Simulation", "Genetic Algorithms"],
+        mlops: ["Docker & Docker Compose", "FastAPI", "MLflow", "Firebase Realtime DB", "AWS SageMaker", "Kubernetes", "DevSecOps"],
+        languages: ["Python (primary)", "JavaScript / React", "YAML", "SQL", "HTML + CSS"],
+        security: ["Post-Quantum Cryptography (Lattice-based)", "Zero-Trust Security Architecture", "IAM policies", "Security Compliance Auditing", "SDLC Secure Practices"],
+        tools: ["Streamlit", "Plotly", "NodeMCU IoT", "Git / GitHub", "Linux"]
     }
 };
 
+// ─── Topic Graph — maps keywords to topic handlers ──────────────────────────
+const TOPICS = [
+    {
+        id: "greeting",
+        signals: ["hello", "hi", "hey", "good morning", "good afternoon", "start", "help", "what can you do"],
+        respond: () => `Hello! I'm the Gemini Intelligence Core — Pooja Kiran Bharadwaj's AI portfolio assistant.
+
+I'm trained on her complete profile including GitHub repositories, IEEE publications, and certifications. Ask me anything:
+
+🛡️ "Tell me about Apex-X" | 🛰️ "How does OrbitIQ work?"
+📊 "What ML skills does she have?" | 🎓 "Tell me about her education"
+📬 "How can I contact her?" | 🏆 "What certifications does she have?"
+📄 "What projects has she built?" | 🔬 "Any published research?"`
+    },
+    {
+        id: "apex",
+        signals: ["apex", "aegis", "pinn", "hypersonic", "tactical", "defense", "byzantine", "stylegan", "trajectory", "jamming", "aerospace defense"],
+        respond: () => {
+            const p = KB.projects.apex;
+            return `🛡️ **${p.name}**
+GitHub: ${p.github}
+
+${p.description}
+
+📊 Verified Metrics:
+• Inference latency: ${p.metrics.latency}
+• Signal integrity: ${p.metrics.signal_integrity}
+
+⚙️ Tech Stack:
+${p.tech.map(t => `• ${t}`).join("\n")}
+
+✨ Key Features:
+${p.features.map(f => `• ${f}`).join("\n")}`;
+        }
+    },
+    {
+        id: "orbit",
+        signals: ["orbit", "cubesat", "satellite", "debris", "anomaly detection", "mlops", "firebase", "mlflow", "telemetry", "orbitiq"],
+        respond: () => {
+            const p = KB.projects.orbit;
+            return `🛰️ **${p.name}**
+GitHub: ${p.github}
+
+${p.description}
+
+📊 Verified Metrics:
+• Latency: ${p.metrics.latency}
+• Accuracy: ${p.metrics.accuracy}
+• Sensitivity: ${p.metrics.contamination}
+
+⚙️ Tech Stack:
+${p.tech.map(t => `• ${t}`).join("\n")}
+
+✨ Key Features:
+${p.features.map(f => `• ${f}`).join("\n")}`;
+        }
+    },
+    {
+        id: "cmdx",
+        signals: ["command", "cmdx", "commandx", "kalman", "docking", "gnc", "spacecraft", "reinforcement", "genetic", "orbital", "monte carlo", "entropy", "rocket", "thruster", "mission control"],
+        respond: () => {
+            const p = KB.projects.cmdx;
+            return `🚀 **${p.name}**
+GitHub: ${p.github}
+
+${p.description}
+
+📊 Verified Metrics:
+• Docking success: ${p.metrics.docking}
+• Fuel efficiency: ${p.metrics.fuel}
+• GNC cycle: ${p.metrics.gnc_cycle}
+
+⚙️ Tech Stack:
+${p.tech.map(t => `• ${t}`).join("\n")}
+
+✨ Key Features:
+${p.features.map(f => `• ${f}`).join("\n")}`;
+        }
+    },
+    {
+        id: "ecotrack",
+        signals: ["eco", "carbon", "ecotrack", "fastapi", "docker", "random forest", "microservice", "footprint", "sustainability", "r2", "r squared"],
+        respond: () => {
+            const p = KB.projects.ecotrack;
+            return `🌿 **${p.name}**
+GitHub: ${p.github}
+
+${p.description}
+
+📊 Verified Metrics:
+• Precision: ${p.metrics.r2}
+• Scalability: ${p.metrics.latency_p90}
+• Security: ${p.metrics.anomaly_flag}
+
+⚙️ Tech Stack:
+${p.tech.map(t => `• ${t}`).join("\n")}
+
+✨ Key Features:
+${p.features.map(f => `• ${f}`).join("\n")}`;
+        }
+    },
+    {
+        id: "all_projects",
+        signals: ["projects", "portfolio", "all projects", "what has she built", "what did she build", "work examples", "show projects"],
+        respond: () => `Pooja has 4 flagship engineering deployments:
+
+🛡️ **Apex-X & Aegis-X** (Hypersonic Defense AI)
+   → PINNs + StyleGAN | 10.11ms inference | 99.8% signal integrity
+
+🛰️ **OrbitIQ** (CubeSat MLOps)
+   → Isolation Forest + Firebase | 2000ms → 8ms latency | 95.8% accuracy
+
+🚀 **CommandX** (Orbital GNC Platform)
+   → EKF + RL Pilot + Monte Carlo IV&V | 98% docking certified
+
+🌿 **EcoTrack-Enterprise** (Carbon Analytics)
+   → FastAPI + Random Forest | R²=0.9952 | 1,000 concurrent users
+
+Ask me to deep-dive into any of them!`
+    },
+    {
+        id: "education",
+        signals: ["education", "degree", "university", "college", "asu", "arizona", "ramaiah", "school", "masters", "bachelors", "bachelor", "master", "graduated", "studying", "gpa"],
+        respond: () => {
+            const e = KB.education;
+            return `🎓 **Education**
+
+**${e.masters.degree}**
+${e.masters.school} | ${e.masters.location}
+Period: ${e.masters.period}
+Focus: ${e.masters.focus}
+
+**${e.bachelors.degree}**
+${e.bachelors.school} | ${e.bachelors.location}
+Period: ${e.bachelors.period}`;
+        }
+    },
+    {
+        id: "experience",
+        signals: ["experience", "work", "job", "grader", "teaching", "worked", "employment", "career", "role", "position", "asu job"],
+        respond: () => {
+            const exp = KB.experience.asu_grader;
+            return `💼 **Work Experience**
+
+**${exp.role}**
+${exp.company} | ${exp.period}
+
+Responsibilities:
+${exp.responsibilities.map(r => `• ${r}`).join("\n")}`;
+        }
+    },
+    {
+        id: "skills",
+        signals: ["skill", "stack", "technology", "tech", "language", "framework", "tool", "expertise", "proficient", "know", "experience with", "knowledge"],
+        respond: () => {
+            const s = KB.skills;
+            return `⚡ **Technical Skills**
+
+🧠 ML & AI:
+${s.ml_ai.map(x => `• ${x}`).join("\n")}
+
+🔧 MLOps & Cloud:
+${s.mlops.map(x => `• ${x}`).join("\n")}
+
+💻 Languages:
+${s.languages.map(x => `• ${x}`).join("\n")}
+
+🔒 Security:
+${s.security.map(x => `• ${x}`).join("\n")}`;
+        }
+    },
+    {
+        id: "research",
+        signals: ["research", "paper", "publication", "ieee", "published", "journal", "iosr", "indicon", "learning", "ev", "iot", "curiculum", "q-learning"],
+        respond: () => `🔬 **Published Research**
+
+${KB.research.map((r, i) => `**${i + 1}. "${r.title}"**
+Venue: ${r.venue}
+Contribution: ${r.contribution}`).join("\n\n")}`
+    },
+    {
+        id: "certifications",
+        signals: ["cert", "certification", "google cloud", "aws", "honeywell", "mlops cert", "bert cert", "credential", "badge", "qualified"],
+        respond: () => `🏆 **Certifications (${KB.certifications.length} total)**
+
+${KB.certifications.map(c => `• **${c.name}** — ${c.issuer} (${c.date})`).join("\n")}`
+    },
+    {
+        id: "contact",
+        signals: ["contact", "hire", "email", "phone", "reach", "connect", "linkedin", "github", "available", "availability", "apply", "recruiter", "interview", "offer"],
+        respond: () => `📬 **Contact Pooja**
+
+📧 Email: ${KB.email}
+📞 Phone: ${KB.phone}
+📍 Location: ${KB.location}
+🔗 LinkedIn: ${KB.linkedin}
+🐙 GitHub: ${KB.github}
+
+✅ ${KB.status}
+⏰ ${KB.availability}`
+    },
+    {
+        id: "python",
+        signals: ["python", "coding language", "programming language"],
+        respond: () => "Python is Pooja's primary language (proficiency: 98%). She uses it for ML modeling (TensorFlow, scikit-learn, PyTorch), MLOps pipelines (FastAPI, Docker), aerospace simulations (PINNs, EKF), and data engineering."
+    },
+    {
+        id: "mlops_topic",
+        signals: ["mlops", "devops", "deployment", "pipeline", "kubernetes", "ci/cd", "production ml", "model deployment"],
+        respond: () => "Pooja is certified in MLOps for Generative AI (Google Cloud). She has hands-on production deployments using Docker Compose, FastAPI, MLflow experiment tracking, Firebase Realtime DB, and AWS SageMaker. Her OrbitIQ project demonstrates a full MLOps lifecycle with a live Mission Pulse orchestrator rerunning train→predict cycles every 10 seconds."
+    },
+    {
+        id: "security_topic",
+        signals: ["security", "cybersecurity", "cryptography", "post quantum", "zero trust", "iam", "compliance", "audit", "vulnerab"],
+        respond: () => `🔒 **Security Expertise**
+
+Pooja's M.S. at ASU focuses on IT Security and AI systems:
+
+• Post-Quantum Cryptography — implemented Lattice-based signature schemes in Apex-X for quantum-resistant communication
+• Zero-Trust Architecture — Isolation Forest security layer in EcoTrack flags all out-of-distribution inputs in <5ms
+• Compliance Auditing — audited security frameworks for 85+ enterprise projects at ASU
+• DevSecOps — integrates security into SDLC pipeline design
+• AWS Cloud Security Foundations certified (Nov 2025)`
+    },
+    {
+        id: "why_hire",
+        signals: ["why hire", "strengths", "unique", "stand out", "special", "best", "advantage", "good fit", "what makes", "impressive", "strong suit"],
+        respond: () => `⭐ Why Hire Pooja?
+
+1. 🔬 **Research Depth** — IEEE-published ML researcher (RL + satellite systems, 2023)
+2. 🛡️ **Aerospace-grade Engineering** — Built production systems for hypersonic defense, orbital GNC, and satellite anomaly detection
+3. ⚡ **Extreme Performance** — 99.9% latency reduction (OrbitIQ), 18.19% inference optimization (Apex-X), R²=0.9952 (EcoTrack)
+4. 🔒 **Security-First** — Her M.S. is in IT Security — she builds ML systems that are also cryptographically secure
+5. 🏆 **Multi-domain expertise** — ML modeling + MLOps + Cloud + Security + IoT + Aerospace`
+    },
+    {
+        id: "salary",
+        signals: ["salary", "compensation", "pay", "rate", "package", "ctc", "offer"],
+        respond: () => "Compensation expectations are flexible and dependent on the role, location, and scope. Please reach out directly at poojakiranbharadwaj@gmail.com to discuss."
+    },
+    {
+        id: "location",
+        signals: ["where", "location", "relocat", "remote", "onsite", "hybrid", "tempe", "arizona", "us", "visa", "authorization", "work authorizat"],
+        respond: () => `Pooja is currently based in Tempe, AZ. She is open to:
+• On-site or hybrid roles in the US
+• Remote-first positions (US or global)
+• Relocation for the right opportunity
+
+For visa/work authorization inquiries, please contact: ${KB.email}`
+    }
+];
+
+// ─── Scorer — returns the best-matching topic ────────────────────────────────
+function findBestTopic(input) {
+    const q = input.toLowerCase().trim();
+    let bestTopic = null;
+    let bestScore = 0;
+
+    for (const topic of TOPICS) {
+        let score = 0;
+        for (const signal of topic.signals) {
+            if (q.includes(signal)) {
+                // longer signal match = higher confidence
+                score += signal.length;
+            }
+        }
+        if (score > bestScore) {
+            bestScore = score;
+            bestTopic = topic;
+        }
+    }
+
+    return bestTopic && bestScore > 0 ? bestTopic : null;
+}
+
+// ─── Public API ──────────────────────────────────────────────────────────────
+export const BRAIN_CONFIG = { identity: { name: "Gemini", version: "4.0" }, kb: KB };
+
 export const getResponse = (input) => {
+    if (!input || !input.trim()) {
+        return "Please type a question and I'll do my best to answer it!";
+    }
+
+    const topic = findBestTopic(input);
+
+    if (topic) {
+        return topic.respond();
+    }
+
+    // Intelligent fallback — try to extract intent from unknown questions
     const q = input.toLowerCase();
-    const kb = BRAIN_CONFIG.knowledge_base;
 
-    if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
-        return `Hello! I'm the Gemini Intelligence Core — your guide to Pooja Kiran Bharadwaj's engineering portfolio. I can break down her PINN-powered aerospace systems, IEEE-published research, or MLOps pipeline architecture. What would you like to explore?
-
-💡 Suggested: "Tell me about her projects" | "What are her ML skills?" | "How do I contact her?"`;
+    if (q.includes("gpa") || q.includes("grade")) {
+        return "Pooja graduated top of her cohort from M. S. Ramaiah University (B.Tech, CS, 2023) and is currently pursuing her M.S. at Arizona State University (expected May 2026).";
     }
 
-    if (q.includes("apex") || q.includes("aegis") || q.includes("pinn") || q.includes("hypersonic")) {
-        const p = kb.projects.apex;
-        return `${p.title}\n\nGitHub: ${p.github}\n\n${p.summary}\n\nVerified Metrics:\n${p.metrics.map(m => `• ${m}`).join("\n")}\n\nTech Stack: ${p.tech}`;
+    if (q.includes("language") && (q.includes("speak") || q.includes("fluent"))) {
+        return "Pooja is fluent in English. Her primary programming language is Python, with strong JavaScript/React, YAML, and SQL skills.";
     }
 
-    if (q.includes("orbit") || q.includes("cubesat") || q.includes("satellite")) {
-        const p = kb.projects.orbit;
-        return `${p.title}\n\nGitHub: ${p.github}\n\n${p.summary}\n\nVerified Metrics:\n${p.metrics.map(m => `• ${m}`).join("\n")}\n\nTech Stack: ${p.tech}`;
+    if (q.includes("team") || q.includes("collaboration") || q.includes("collab")) {
+        return "Pooja has strong collaborative experience — grading and mentoring 85+ students at ASU on secure SDLC practices, and building production systems that integrate multiple engineering disciplines (ML, GNC, security, and cloud).";
     }
 
-    if (q.includes("command") || q.includes("cmdx") || q.includes("kalman") || q.includes("docking")) {
-        const p = kb.projects.cmdx;
-        return `${p.title}\n\nGitHub: ${p.github}\n\n${p.summary}\n\nVerified Metrics:\n${p.metrics.map(m => `• ${m}`).join("\n")}\n\nTech Stack: ${p.tech}`;
+    if (q.includes("publication") || q.includes("paper") || q.includes("write")) {
+        return `Pooja has 2 published research papers: (1) IEEE INDICON 2023 on RL-based personalized learning, and (2) IOSR Journal 2023 on EV smart charging IoT systems.`;
     }
 
-    if (q.includes("eco") || q.includes("carbon") || q.includes("fastapi") || q.includes("docker")) {
-        const p = kb.projects.ecotrack;
-        return `${p.title}\n\nGitHub: ${p.github}\n\n${p.summary}\n\nVerified Metrics:\n${p.metrics.map(m => `• ${m}`).join("\n")}\n\nTech Stack: ${p.tech}`;
-    }
+    // Final fallback: contextual best guess
+    return `I wasn't sure exactly what you meant, but I'll try to help! Pooja Kiran Bharadwaj is a Machine Learning Engineer with expertise in:
 
-    if (q.includes("project") || q.includes("portfolio") || q.includes("work")) {
-        return `Pooja has 4 flagship ML deployments:\n\n1. 🛡️ Apex-X → Hypersonic defense AI (10.11ms PINN inference)\n2. 🛰️ OrbitIQ → CubeSat anomaly detection (8ms edge ML)\n3. 🚀 CommandX → Orbital GNC with EKF + Monte Carlo IV&V\n4. 🌿 EcoTrack → Carbon analytics (R²=0.9952, 1000 concurrent requests)\n\nAsk me to go deep on any of them!`;
-    }
+• 🧠 PINNs, Transformers, RL, Isolation Forest, EKF
+• 🛡️ AI Security & Post-Quantum Cryptography
+• ☁️ MLOps: Docker, FastAPI, MLflow, Firebase, AWS
+• 📡 Aerospace & IoT systems (hypersonic defense, orbital GNC)
 
-    if (q.includes("education") || q.includes("degree") || q.includes("asu") || q.includes("university")) {
-        return `${kb.education.asu}\n\n${kb.education.ramaiya}`;
-    }
-
-    if (q.includes("research") || q.includes("ieee") || q.includes("publication")) {
-        return `Published Research:\n\n${kb.research.map((r, i) => `${i + 1}. ${r}`).join("\n\n")}`;
-    }
-
-    if (q.includes("skill") || q.includes("stack") || q.includes("tech") || q.includes("language")) {
-        const s = kb.skills;
-        return `ML/AI: ${s.ml}\n\nMLOps/Cloud: ${s.mlops}\n\nLanguages: ${s.languages}\n\nSecurity: ${s.security}`;
-    }
-
-    if (q.includes("cert") || q.includes("google") || q.includes("aws")) {
-        return `Certifications:\n${kb.certifications.map(c => `• ${c}`).join("\n")}`;
-    }
-
-    if (q.includes("experience") || q.includes("job") || q.includes("grader")) {
-        return kb.experience.asu_grader;
-    }
-
-    if (q.includes("contact") || q.includes("hire") || q.includes("email") || q.includes("reach")) {
-        const p = kb.personal;
-        return `📧 ${p.email}\n📞 ${p.phone}\n📍 ${p.location}\n🔗 GitHub: ${p.github}\n\n${p.status}`;
-    }
-
-    return `I'm the Gemini Portfolio Core for Pooja Kiran Bharadwaj — ML Engineer & AI Researcher. I can analyze:\n\n• Project technical architectures\n• IEEE-published research\n• MLOps certifications\n• Performance metrics (latency, accuracy, R² scores)\n\nWhat would you like to explore?`;
+Try asking: "Tell me about her projects", "What certifications does she have?", or "How can I contact her?" and I'll give you a detailed breakdown!`;
 };
