@@ -201,6 +201,15 @@
         @apply p-3 rounded-xl bg-black/40 border border-white/5;
     }
 
+    /* ─── Code Block ────────────────────────────────────── */
+    .code-block {
+        @apply bg-[#020617] rounded-2xl border border-white/5 font-mono text-[11px] overflow-hidden shadow-2xl;
+    }
+
+    .code-block pre {
+        @apply p-6 overflow-x-auto text-indigo-300 leading-relaxed;
+    }
+
     /* ─── Custom Scrollbar ──────────────────────────────── */
     .custom-scrollbar::-webkit-scrollbar {
         width: 4px;
