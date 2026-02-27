@@ -113,14 +113,14 @@ export default function SkillBadges() {
                                     <CheckCircle2 className="text-[#4285F4] mb-2" size={32} fill="#4285F4" stroke="white" />
                                     <span className="text-[6px] font-black uppercase tracking-widest text-slate-400">Verified_By_Google</span>
                                 </div>
-                                <div className="flex-1">
+                                <div className="flex-1 w-full">
                                     <div className="text-indigo-400 font-mono text-[9px] mb-2 uppercase tracking-[0.3em]">SECURE_CREDENTIAL_V3</div>
                                     <h2 className="text-2xl font-black text-white mb-4 tracking-tight uppercase leading-tight">{selectedBadge.title}</h2>
-                                    <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                                        This credential verifies professional competence in {selectedBadge.title} issued by {selectedBadge.issuer}.
-                                        Authenticated via decentralized certificate chain PKB_CERT_03.
-                                    </p>
-                                    <div className="flex items-center gap-6">
+
+                                    {/* Advanced Certification Dashboard */}
+                                    <AdvancedCertDashboard badge={selectedBadge} />
+
+                                    <div className="flex items-center gap-6 mt-8">
                                         <div className="space-y-1">
                                             <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Issued_On</div>
                                             <div className="text-xs font-bold text-slate-200">{selectedBadge.date}</div>
@@ -143,12 +143,96 @@ export default function SkillBadges() {
                 )}
             </AnimatePresence>
 
-            {/* Background Decorative HUD */}
-            <div className="mt-20 flex justify-center opacity-20">
-                <div className="text-[8px] font-mono text-indigo-400 animate-pulse">
-                    CREDENTIAL_VERIFICATION_SERVICE::ACTIVE // NODE_ID: PKB_CERT_03
+        </section>
+    );
+}
+
+function AdvancedCertDashboard({ badge }) {
+    const isBert = badge.title.toLowerCase().includes("bert");
+    const isOps = badge.title.toLowerCase().includes("mlops");
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            {/* Live Visualizer */}
+            <div className="p-5 bg-black/40 rounded-xl border border-indigo-500/20 shadow-inner overflow-hidden">
+                {isBert ? (
+                    <div className="space-y-3">
+                        <div className="flex justify-between text-[7px] font-mono text-indigo-400 uppercase">
+                            <span>Attention_Head_Matrix</span>
+                            <span>Scale: 0.82</span>
+                        </div>
+                        <div className="grid grid-cols-6 gap-1">
+                            {[...Array(18)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    animate={{
+                                        opacity: [0.1, 0.8, 0.4],
+                                        backgroundColor: ["rgba(99, 102, 241, 0.1)", "rgba(99, 102, 241, 0.4)", "rgba(99, 102, 241, 0.2)"]
+                                    }}
+                                    transition={{ duration: 2, delay: i * 0.1, repeat: Infinity }}
+                                    className="aspect-square rounded-sm"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ) : isOps ? (
+                    <div className="space-y-3">
+                        <div className="flex justify-between text-[7px] font-mono text-emerald-400 uppercase">
+                            <span>Pipeline_Stability_Index</span>
+                            <span>99.9% Uptime</span>
+                        </div>
+                        <div className="flex items-end gap-1 h-12">
+                            {[10, 40, 30, 80, 50, 90, 60, 40, 70].map((h, i) => (
+                                <motion.div
+                                    key={i}
+                                    animate={{ height: [`${h}%`, `${h + 10}%`, `${h}%`] }}
+                                    transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
+                                    className="flex-1 bg-emerald-500/30 rounded-t-sm"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="space-y-3 text-center py-4">
+                        <div className="text-[10px] font-mono text-amber-400 animate-pulse">DEPLOYMENT_ARCHITECTURE_VALIDATED</div>
+                        <div className="flex justify-center gap-4">
+                            <CheckCircle2 size={16} className="text-emerald-500" />
+                            <div className="h-px w-12 bg-white/10 mt-2" />
+                            <CheckCircle2 size={16} className="text-emerald-500" />
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Code Snippet Area */}
+            <div className="space-y-2">
+                <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                    Technical_Implementation_Snippet
+                </div>
+                <div className="bg-[#030712] p-4 rounded-xl border border-white/5 font-mono text-[10px] overflow-x-auto text-indigo-300">
+                    {isBert ? (
+                        <pre><code>{`tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForSequenceClassification.from_pretrained('bert-base')
+# Multi-head Attention weights mapped`}</code></pre>
+                    ) : isOps ? (
+                        <pre><code>{`# CI/CD MLOps Pipeline
+- step: Dockerize_Inference_Core
+- step: Deploy_to_H100_Cluster
+- step: Automated_Health_Sync`}</code></pre>
+                    ) : (
+                        <pre><code>{`config = AWS.Academy.MLConfig(
+    engine="SageMaker_V2",
+    instance="p4d.24xlarge",
+    optimized=True
+)`}</code></pre>
+                    )}
                 </div>
             </div>
-        </section>
+
+            <p className="text-slate-400 text-[10px] leading-relaxed italic border-l-2 border-indigo-500/50 pl-4 bg-white/5 py-3 rounded-r-lg">
+                "Verified competency in architecting advanced technical solutions using industry-standard ML frameworks."
+            </p>
+        </div>
     );
 }
