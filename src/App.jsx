@@ -212,11 +212,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Global Overlay Elements - Rendered last for highest stack priority */}
-
-      <AIBot />
-      <AudioPlayer ref={audioPlayerRef} />
-      <StatusTicker />
     </div>
   );
 }
