@@ -5,12 +5,17 @@ import { getResponse } from "./brain";
 
 const AIBot = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [plainMode, setPlainMode] = useState(() => localStorage.getItem("gemini_plain_mode") === "true");
     const [messages, setMessages] = useState([
         { role: "assistant", content: "Protocol initialized. I am Gemini, Pooja's technical assistant. How can I help you analyze the mission profile?" }
     ]);
     const [input, setInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef(null);
+
+    useEffect(() => {
+        localStorage.setItem("gemini_plain_mode", plainMode);
+    }, [plainMode]);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -21,6 +26,22 @@ const AIBot = () => {
     const handleSend = async () => {
         if (!input.trim()) return;
 
+        const cleanInput = input.trim().toLowerCase();
+
+        // Handle Plain Mode Commands
+        if (cleanInput === "plain mode on" || cleanInput === "no formatting" || cleanInput === "clean text") {
+            setPlainMode(true);
+            setMessages(prev => [...prev, { role: "user", content: input }, { role: "assistant", content: "Plain text mode enabled. Bold, italics, and emojis will be removed from future responses." }]);
+            setInput("");
+            return;
+        }
+        if (cleanInput === "plain mode off" || cleanInput === "standard mode") {
+            setPlainMode(false);
+            setMessages(prev => [...prev, { role: "user", content: input }, { role: "assistant", content: "Standard mode restored. Formatting and emojis enabled." }]);
+            setInput("");
+            return;
+        }
+
         const userMessage = { role: "user", content: input };
         setMessages(prev => [...prev, userMessage]);
         setInput("");
@@ -28,7 +49,7 @@ const AIBot = () => {
 
         // Simulate AI Thinking
         setTimeout(() => {
-            const aiResponse = { role: "assistant", content: getResponse(input) };
+            const aiResponse = { role: "assistant", content: getResponse(input, { plainMode }) };
             setMessages(prev => [...prev, aiResponse]);
             setIsTyping(false);
         }, 1200);
@@ -55,12 +76,21 @@ const AIBot = () => {
                                     <div className="text-[9px] text-slate-500 font-bold uppercase">Technical Assistant Online</div>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                className="p-2 hover:bg-white/5 rounded-lg text-slate-500 hover:text-white transition-colors"
-                            >
-                                <X size={18} />
-                            </button>
+                            <div className="flex items-center gap-1">
+                                <button
+                                    onClick={() => setPlainMode(!plainMode)}
+                                    title={plainMode ? "Switch to Standard Mode" : "Switch to Plain Mode"}
+                                    className={`p-2 rounded-lg transition-all ${plainMode ? "bg-indigo-500/20 text-indigo-400" : "text-slate-500 hover:text-white"}`}
+                                >
+                                    <Sparkles size={16} className={plainMode ? "opacity-30" : "opacity-100"} />
+                                </button>
+                                <button
+                                    onClick={() => setIsOpen(false)}
+                                    className="p-2 hover:bg-white/5 rounded-lg text-slate-500 hover:text-white transition-colors"
+                                >
+                                    <X size={18} />
+                                </button>
+                            </div>
                         </div>
 
                         {/* Chat Messages */}
