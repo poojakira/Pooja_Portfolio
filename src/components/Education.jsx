@@ -13,7 +13,7 @@ export default function Education() {
             ? "Core focus: Deep Learning for Security, AI-Driven Threat Detection, Network Defense, Risk Governance, and Enterprise Compliance."
             : "Specialization in Intelligent Systems, Cloud Computing, and IoT. Published 2 papers (IEEE INDICON + IOSR Journal).",
         highlights: i === 0
-            ? ["AI Security Research", "SDLC Mentorship", "GPA: 3.8+"]
+            ? ["AI Security Research", "SDLC Mentorship", "GPA: 3.85"]
             : ["IEEE Published", "Top of Cohort", "2 Research Papers"]
     }));
 
