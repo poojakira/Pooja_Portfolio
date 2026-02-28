@@ -10,7 +10,7 @@ export const CONTACT = {
 export const PROJECTS = [
     {
         id: "apex",
-        title: "Apex-X & Aegis-X: Tactical Defense HUD",
+        title: "Apex-X & Aegis-X: Tactical Command Suite",
         category: "Hypersonic AI",
         tech: ["PINNs", "Lattice Cryptography", "StyleGAN", "Transformers"],
         metric: "10.11ms Inference Latency (18.2% Optimization)",
@@ -24,7 +24,7 @@ export const PROJECTS = [
             "Tactical Transformer trained on 100k+ hypersonic engagement scenarios",
             "Byzantine-Mesh with SHA3-512 lattice signatures & 10Hz self-healing logic",
             "NASA TLE integration for live satellite tracking + FEM structural simulation",
-            "Baseline 12.36ms → Optimized 10.11ms (18.2% net reduction), 99.8% signal integrity"
+            "Baseline 12.36ms → Optimized 10.11ms (18.2% net reduction), 99.8% signal integrity across 1,000 trials"
         ],
         briefing: {
             architecture: "PINN Surrogate Model → Tactical Transformer (Intent) → Post-Quantum Secure (Lattice) Byzantine-Mesh Sync",
@@ -38,7 +38,7 @@ export const PROJECTS = [
         title: "OrbitIQ: Satellite Health MLOps",
         category: "Orbital Monitoring",
         tech: ["Isolation Forest", "Firebase", "MLflow", "Streamlit"],
-        metric: "250x Performance Gain (2000ms → 8ms)",
+        metric: "99.9% Latency Reduction (2000ms → 8ms)",
         desc: "Autonomous satellite health and telemetry ecosystem. 10-page command center visualizing N/S/E/W sensor data across CubeSat clusters with edge-optimized anomaly detection and a 360° orbital proximity radar.",
         link: "https://github.com/poojakira/orbit-Q",
         complexity: 96,
@@ -130,21 +130,21 @@ export const CERTIFICATIONS = [
         name: "AWS Academy Cloud Architecting",
         issuer: "Amazon Web Services",
         id: "AWS-ARCH-2025",
-        date: "Apr 2025",
+        date: "2025",
         color: "indigo"
     },
     {
         name: "AWS Cloud Security Foundations",
         issuer: "Amazon Web Services",
         id: "AWS-SEC-2024",
-        date: "Nov 2024",
+        date: "2025",
         color: "emerald"
     },
     {
         name: "Honeywell Tech Innovation Lab",
         issuer: "Honeywell",
         id: "HON-TIL-2025",
-        date: "Nov 2025",
+        date: "2025",
         color: "amber"
     }
 ];

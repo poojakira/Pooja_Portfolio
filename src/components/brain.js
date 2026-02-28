@@ -38,9 +38,9 @@ const KB = {
             company: "Arizona State University",
             period: "Feb 2025 – Oct 2025",
             responsibilities: [
-                "Audited security policies, incident response plans, and compliance frameworks for 85+ enterprise-level assignments",
+                "Audited security policies, incident response plans, and compliance frameworks for 85+ enterprise assignments",
                 "Reviewed HTML, CSS, and JavaScript code across 85+ student applications for UI/UX quality and accessibility standards",
-                "Delivered targeted SDLC remediation feedback bridging secure web design with enterprise compliance"
+                "Delivered targeted SDLC remediation feedback bridging secure web design with enterprise compliance for 85+ students"
             ]
         }
     },
@@ -53,8 +53,8 @@ const KB = {
             description: "Mission-critical autonomous defense command suite integrating Physics-Informed Neural Networks (PINNs) for real-time multi-physics simulation. Includes a Tactical Transformer for intent prediction, StyleGAN-based adversarial denoising for electronic warfare resilience, and a Byzantine-Mesh network for fault-tolerant communications.",
             tech: ["PINNs (Navier-Stokes constraints)", "StyleGAN denoising autoencoders", "Tactical Transformers", "Byzantine-Mesh consensus", "Post-Quantum Lattice cryptography", "NASA TLE satellite tracking", "FEM structural simulation", "Sigma-Point Kalman Fusion"],
             metrics: {
-                latency: "12.36ms → 10.11ms (18.19% optimization)",
-                signal_integrity: "99.8% (998/1000 adversarial trials — StyleGAN reconstruction)",
+                latency: "12.36ms → 10.11ms (18.2% optimization)",
+                signal_integrity: "99.8% (998/1000 trials — StyleGAN reconstruction)",
                 versions: "Version 3.0 Enterprise"
             },
             features: ["3D tactical HUD with AI-predicted flight paths", "Live NASA TLE satellite integration", "Automated military-grade mission reporting", "Self-healing Byzantine-Mesh nodes", "Post-Quantum cryptographic weight signing"]
@@ -117,9 +117,9 @@ const KB = {
         { name: "Transformer Models and BERT", issuer: "Google Cloud", date: "Feb 2026" },
         { name: "Machine Learning Operations (MLOps) for Generative AI", issuer: "Google Cloud", date: "Feb 2026" },
         { name: "Professional Machine Learning Engineer Study Guide", issuer: "Google Cloud", date: "Feb 2026" },
-        { name: "AWS Academy Cloud Architecting", issuer: "Amazon Web Services", date: "Apr 2025" },
-        { name: "AWS Cloud Security Foundations", issuer: "Amazon Web Services", date: "Nov 2025" },
-        { name: "Honeywell Tech Innovation Lab", issuer: "Honeywell", date: "Nov 2025" }
+        { name: "AWS Academy Cloud Architecting", issuer: "Amazon Web Services", date: "2025" },
+        { name: "AWS Cloud Security Foundations", issuer: "Amazon Web Services", date: "2025" },
+        { name: "Honeywell Tech Innovation Lab", issuer: "Honeywell", date: "2025" }
     ],
 
     skills: {

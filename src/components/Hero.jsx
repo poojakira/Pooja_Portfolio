@@ -116,9 +116,9 @@ export default function Hero() {
 
                     {/* Subtitle */}
                     <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-12 font-medium">
-                        Architecting high-performance <span className="text-white font-bold">ML solutions</span> for{" "}
-                        <span className="text-indigo-300">intelligence-driven</span> platforms and{" "}
-                        <span className="text-emerald-400/80">security-first</span> cloud infrastructures.
+                        Specializing in high-performance <span className="text-white font-bold">surrogate modeling</span>,
+                        <span className="text-indigo-300"> MLOps</span>, and <span className="text-emerald-400/80">tactical AI</span> for
+                        mission-critical platforms.
                     </p>
 
                     {/* CTA Buttons */}
