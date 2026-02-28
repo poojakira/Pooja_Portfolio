@@ -33,8 +33,8 @@
 
 % Section formatting — bold uppercase with rule
 \titleformat{\section}{
-  \vspace{-6pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-8pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
 
 % ATS parsable
 \pdfgentounicode=1
@@ -45,24 +45,24 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+  \vspace{-3pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & \small #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-8pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & \small #2 \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-8pt}
 }
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.12in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.2in]}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-6pt}}
 
 %-------------------------------------------
 \begin{document}
@@ -78,6 +78,14 @@
     \faGithub\ \href{https://github.com/poojakira}{github.com/poojakira} \quad $|$ \quad
     \faGlobe\ \href{https://pooja-portfolio-eta.vercel.app/}{pooja-portfolio-eta.vercel.app}
 \end{center}
+
+%-----------SUMMARY----------
+\section{Summary}
+ \begin{itemize}[leftmargin=0.12in, label={}]
+    \small{\item{
+     Aspiring \textbf{Machine Learning Engineer} specializing in high-performance surrogate modeling, MLOps, and tactical AI. Expert in architecting PINNs, Transformers, and GANs to optimize inference latency in mission-critical systems. Proficient in scaling MLOps pipelines with MLflow and Kubernetes for aerospace and carbon analytics.
+    }}
+ \end{itemize}
 
 %-----------EDUCATION — First (current student advantage)----------
 \section{Education}
@@ -95,10 +103,8 @@
  \begin{itemize}[leftmargin=0.12in, label={}]
     \small{\item{
      \textbf{Languages:}{ Python, SQL, JavaScript, HTML/CSS} \\
-     \textbf{AI/ML:}{ PyTorch, TensorFlow, PINNs, GANs (StyleGAN), Transformers (BERT), RL (Q-Learning, MDP), LLM Fine-Tuning, Kalman Filters (EKF), Monte Carlo, Genetic Algorithms} \\
-     \textbf{MLOps \& Data:}{ MLflow, Isolation/Random Forests, Drift Detection, Model Monitoring, Tokenization \& Embeddings} \\
-     \textbf{Cloud \& Security:}{ AWS (SageMaker, EC2, S3), GCP (Vertex AI), Zero-Trust Architecture, Post-Quantum Cryptography, DevSecOps, IAM} \\
-     \textbf{Frameworks \& Tools:}{ React, Node.js, FastAPI, Streamlit, Vite, Docker, Kubernetes, CI/CD, Firebase, Git, NodeMCU IoT}
+     \textbf{AI \& MLOps:}{ PyTorch, TensorFlow, PINNs, GANs, Transformers (BERT), RL, MLflow, Kubernetes, SageMaker, Vertex AI, Drift Detection, Model Monitoring, Tokenization, Kalman Filters} \\
+     \textbf{Tools \& Security:}{ React, FastAPI, Docker, CI/CD, Zero-Trust, DevSecOps, IAM, Firebase, Git}
     }}
  \end{itemize}
 
@@ -109,9 +115,9 @@
       {Arizona State University}{Tempe, AZ}
       {Graduate IT Grader — Web Programming \& Security Compliance}{Feb 2025 -- Oct 2025}
       \resumeItemListStart
-        \resumeItem{Enforced data governance and risk management across \textbf{85+ enterprise assignments} by auditing security policies, incident response plans, and compliance frameworks.}
-        \resumeItem{Improved front-end quality and UI/UX accessibility across \textbf{85+ student applications} through rigorous code reviews of React, JavaScript, and CSS implementations.}
-        \resumeItem{Elevated secure SDLC practices for \textbf{85+ students} by delivering targeted technical remediation bridging web development with enterprise security compliance.}
+        \resumeItem{Enforced data governance and risk management across \textbf{85+ enterprise-level submissions} by auditing security policies, incident response plans, and compliance frameworks.}
+        \resumeItem{Improved front-end quality and UI/UX accessibility across \textbf{React-based student applications} through rigorous code reviews of JavaScript and CSS implementations.}
+        \resumeItem{Elevated secure SDLC practices for \textbf{80+ students} by delivering targeted technical remediation bridging web development with enterprise security compliance.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -120,16 +126,16 @@
     \resumeSubHeadingListStart
 
       \resumeProjectHeading
-          {\textbf{Apex-X \& Aegis-X: Tactical Command Suite} $|$ \emph{PINNs, GANs, Transformers, PyTorch}}{Jan 2026}
+          {\textbf{Apex-X \& Aegis-X: Tactical Defense HUD} $|$ \emph{PINNs, GANs, Transformers, PyTorch}}{Jan 2026}
           \resumeItemListStart
-            \resumeItem{Engineered a PINN surrogate engine with GAN-based signal denoising, \textbf{reducing benchmarked inference latency by 18.2\%} (12.36ms $\rightarrow$ 10.11ms) with 99.8\% data integrity across 1,000 trials.}
-            \resumeItem{Designed a tactical transformer trained on \textbf{100k+ simulated engagement scenarios}, achieving \textbf{$<$5ms surrogate-model inference} with multi-modal attention synchronization.}
+            \resumeItem{Engineered a PINN surrogate engine with GAN-based signal denoising, \textbf{optimizing benchmarked inference latency by 18.2\%} (12.36ms $\rightarrow$ 10.11ms) with 99.8\% data integrity.}
+            \resumeItem{Designed a tactical transformer trained on \textbf{100k+ simulated engagement scenarios}, achieving \textbf{sub-5ms surrogate-model inference} with multi-modal attention synchronization.}
           \resumeItemListEnd
 
       \resumeProjectHeading
           {\textbf{OrbitIQ: CubeSat Anomaly Detection MLOps} $|$ \emph{MLOps, Kubernetes, MLflow, Telemetry}}{Aug 2025}
           \resumeItemListStart
-            \resumeItem{Architected an Isolation Forest MLOps pipeline with Firebase telemetry streaming, \textbf{reducing benchmarked inference latency by 99.9\%} (2000ms cloud-polling $\rightarrow$ \texttildelow8ms edge-optimized).}
+            \resumeItem{Architected an Isolation Forest MLOps pipeline with Firebase telemetry streaming, enabling a \textbf{$250\times$ improvement} in telemetry response time (2000ms cloud-polling $\rightarrow$ \texttildelow8ms edge-optimized).}
             \resumeItem{Built an automated retraining orchestrator (10s mission pulse cycle) with MLflow lineage tracking, sustaining \textbf{95.8\% predictive accuracy} at 0.05 contamination threshold.}
           \resumeItemListEnd
 
@@ -168,7 +174,7 @@
 \section{Certifications}
  \begin{itemize}[leftmargin=0.12in, label={}]
     \small{\item{
-     AWS Academy Cloud Architecting (2025) \quad $\cdot$ \quad AWS Cloud Security Foundations (2024) \quad $\cdot$ \quad Honeywell Tech Innovation Lab (2025)
+     AWS Academy Cloud Architecting (Apr 2025) \quad $\cdot$ \quad AWS Cloud Security Foundations (Nov 2024) \quad $\cdot$ \quad Honeywell Tech Innovation Lab (Nov 2025)
     }}
  \end{itemize}
 
