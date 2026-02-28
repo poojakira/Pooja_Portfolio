@@ -38,7 +38,7 @@ export const PROJECTS = [
         title: "OrbitIQ: Satellite Health MLOps",
         category: "Orbital Monitoring",
         tech: ["Isolation Forest", "Firebase", "MLflow", "Streamlit"],
-        metric: "99.9% Latency Reduction (2000ms → 8ms)",
+        metric: "250x Performance Gain (2000ms → 8ms)",
         desc: "Autonomous satellite health and telemetry ecosystem. 10-page command center visualizing N/S/E/W sensor data across CubeSat clusters with edge-optimized anomaly detection and a 360° orbital proximity radar.",
         link: "https://github.com/poojakira/orbit-Q",
         complexity: 96,
@@ -136,8 +136,8 @@ export const CERTIFICATIONS = [
     {
         name: "AWS Cloud Security Foundations",
         issuer: "Amazon Web Services",
-        id: "AWS-SEC-2025",
-        date: "Nov 2025",
+        id: "AWS-SEC-2024",
+        date: "Nov 2024",
         color: "emerald"
     },
     {
@@ -157,7 +157,7 @@ export const EDUCATION = [
         period: "Aug 2024 – Expected May 2026"
     },
     {
-        school: "M. S. Ramaiah University",
+        school: "M. S. Ramaiah University of Applied Sciences",
         location: "India",
         degree: "B.Tech, Computer Science",
         period: "Aug 2019 – Aug 2023"
