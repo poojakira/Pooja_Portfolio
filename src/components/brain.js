@@ -407,9 +407,23 @@ function findBestTopic(input) {
 }
 
 // ─── Public API ──────────────────────────────────────────────────────────────
+// ─── Utilities ───────────────────────────────────────────────────────────────
+function stripFormatting(text) {
+    if (!text) return "";
+    return text
+        // Remove markdown bold/italics
+        .replace(/(\*\*|__)(.*?)\1/g, "$2")
+        .replace(/(\*|_)(.*?)\1/g, "$2")
+        // Remove common emojis using unicode range
+        .replace(/[\u{1F300}-\u{1F9FF}]|[\u{1F600}-\u{1F64F}]|[\u{1F680}-\u{1F6FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, "")
+        // Clean up any double spaces left by emoji removal
+        .replace(/\s\s+/g, " ")
+        .trim();
+}
+
 export const BRAIN_CONFIG = { identity: { name: "Gemini", version: "4.0" }, kb: KB };
 
-export const getResponse = (input) => {
+export const getResponse = (input, options = {}) => {
     if (!input || !input.trim()) {
         return "Please type a question and I'll do my best to answer it!";
     }
@@ -417,30 +431,35 @@ export const getResponse = (input) => {
     const topic = findBestTopic(input);
 
     if (topic) {
-        return topic.respond();
+        const text = topic.respond();
+        return options.plainMode ? stripFormatting(text) : text;
     }
 
     // Intelligent fallback — try to extract intent from unknown questions
     const q = input.toLowerCase();
 
     if (q.includes("gpa") || q.includes("grade")) {
-        return "Pooja graduated top of her cohort from M. S. Ramaiah University (B.Tech, CS, 2023) and is currently pursuing her M.S. at Arizona State University (expected May 2026).";
+        const text = "Pooja graduated top of her cohort from M. S. Ramaiah University (B.Tech, CS, 2023) and is currently pursuing her M.S. at Arizona State University (expected May 2026).";
+        return options.plainMode ? stripFormatting(text) : text;
     }
 
     if (q.includes("language") && (q.includes("speak") || q.includes("fluent"))) {
-        return "Pooja is fluent in English. Her primary programming language is Python, with strong JavaScript/React, YAML, and SQL skills.";
+        const text = "Pooja is fluent in English. Her primary programming language is Python, with strong JavaScript/React, YAML, and SQL skills.";
+        return options.plainMode ? stripFormatting(text) : text;
     }
 
     if (q.includes("team") || q.includes("collaboration") || q.includes("collab")) {
-        return "Pooja has strong collaborative experience — grading and mentoring 85+ students at ASU on secure SDLC practices, and building production systems that integrate multiple engineering disciplines (ML, GNC, security, and cloud).";
+        const text = "Pooja has strong collaborative experience — grading and mentoring 85+ students at ASU on secure SDLC practices, and building production systems that integrate multiple engineering disciplines (ML, GNC, security, and cloud).";
+        return options.plainMode ? stripFormatting(text) : text;
     }
 
     if (q.includes("publication") || q.includes("paper") || q.includes("write")) {
-        return `Pooja has 2 published research papers: (1) IEEE INDICON 2023 on RL-based personalized learning, and (2) IOSR Journal 2023 on EV smart charging IoT systems.`;
+        const text = `Pooja has 2 published research papers: (1) IEEE INDICON 2023 on RL-based personalized learning, and (2) IOSR Journal 2023 on EV smart charging IoT systems.`;
+        return options.plainMode ? stripFormatting(text) : text;
     }
 
     // Final fallback: contextual best guess
-    return `I wasn't sure exactly what you meant, but I'll try to help! Pooja Kiran Bharadwaj is a Machine Learning Engineer with expertise in:
+    const response = `I wasn't sure exactly what you meant, but I'll try to help! Pooja Kiran Bharadwaj is a Machine Learning Engineer with expertise in:
 
 • 🧠 PINNs, Transformers, RL, Isolation Forest, EKF
 • 🛡️ AI Security & Post-Quantum Cryptography
@@ -448,4 +467,6 @@ export const getResponse = (input) => {
 • 📡 Aerospace & IoT systems (hypersonic defense, orbital GNC)
 
 Try asking: "Tell me about her projects", "What certifications does she have?", or "How can I contact her?" and I'll give you a detailed breakdown!`;
+
+    return options.plainMode ? stripFormatting(response) : response;
 };
