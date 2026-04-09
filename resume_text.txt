@@ -1,0 +1,72 @@
+Pooja Kiran
+Phoenix, Arizona, US | +1 480-776-7745 | poojakiranbhardwaj@gmail.com
+linkedin.com/in/poojakiran | github.com/poojakira
+Summary
+ML / MLOps Engineer and IEEE-published researcher specializing in building production-minded ML systems for telemetry-heavy,
+safety-conscious environments. Proven track record of addressing operational constraints by architecting reliable anomaly detection,
+forecasting, and GPU-optimized ML infrastructures for applied aerospace and industrial systems.
+Education & Certiﬁcations
+Arizona State University (ASU)
+Phoenix, AZ
+Master of Science, Information Technology Security
+Expected May 2026
+– Certiﬁcations: AWS Academy Graduate - Cloud Security Foundations | Technology Innovation Lab (Honeywell Aerospace & ASU)
+M.S. Ramaiah University of Applied Sciences
+Bengaluru, India
+Bachelor of Technology, Computer Science
+Aug 2019 – Aug 2023
+Professional & Research Experience
+Arizona State University
+Tempe, AZ
+Independent Graduate Researcher
+Oct 2025 – Present
+– Evaluated MLOps stack stability and latency constraints by prototyping end-to-end satellite-telemetry ML pipelines in simulation
+(spanning ingestion, feature stores, and training), accelerating observability and reliability for applied aerospace models.
+– Mitigated Out-Of-Memory (OOM) failures in reinforcement learning and recommendation training loops by executing stress tests to
+characterize VRAM usage patterns, establishing guardrails that stabilized model training at scale.
+Arizona State University
+Tempe, AZ
+Graduate Teaching Assistant (IT Security & Web Programming)
+Mar 2025 – Aug 2025
+– Accelerated evaluation processes for 140+ students across two IT courses by engineering scripted checks and standardized
+deployment rubrics, reducing manual grading review time by 25%.
+– Bridged academic theory and enterprise security by mentoring students on real-world controls (e.g., access control, network
+isolation), enabling accurate mapping of system conﬁgurations to industry-standard compliance frameworks.
+M.S. Ramaiah University of Applied Sciences
+Bengaluru, India
+Independent Undergraduate Researcher
+Aug 2023 – Feb 2024
+– Advanced adaptive learning systems under satellite connectivity constraints by collaborating with university faculty on experiment
+design and analysis, culminating in co-authorship and publication of a paper at IEEE INDICON 2023.
+– Improved student engagement in personalized E-learning platforms by engineering a Q-learning agent within a custom math-quiz
+environment, adapting quiz diﬃculty dynamically based on real-time student performance metrics.
+Technical Projects
+CubeSat-Health-Monitor | Firebase, Python, Anomaly Analytics
+Arizona State University
+Satellite Health Analytics Pipeline
+Oct 2025 – Present
+– Sustained high-volume satellite telemetry processing by engineering a Firebase-backed pipeline with ensemble anomaly detection,
+achieving an inference latency of 15.72 microseconds and 63,622 events/s throughput.
+– Minimized operational noise in health assessments by tuning anomaly analytics, securing an F1 score of 0.928 (0.942 precision, 0.915
+recall) while restricting the false alarm rate strictly to 3–5%.
+PulseNet-RUL-Forecasting | Python, Time-Series Modeling
+Arizona State University
+NASA C-MAPSS Predictive Maintenance
+Nov 2025 – Feb 2026
+– Enhanced predictive maintenance accuracy on NASA C-MAPSS data by developing an end-to-end forecasting model, yielding a
+Remaining Useful Life (RUL) RMSE of 166.7—an approximate 10% improvement over the linear baseline.
+– Ensured high-reliability fault visibility in production environments by deploying telemetry-driven anomaly workﬂows backed by 52
+automated tests, handling 52,368 req/s with an anomaly F1 of 0.373 and a P95 latency of 3.94 ms.
+RTX-OOM-Guard | PyTorch, Docker, GPU Optimization
+Arizona State University
+GPU Memory Fragmentation Guard
+Oct 2025 – Present
+– Stabilized RTX-class deep learning workloads by developing a GPU memory defragmentation guard, eliminating Out-Of-Memory
+(OOM) crashes from 23 to 0 while maintaining training overhead under 2%.
+– Optimized accelerator resource eﬃciency by modeling and mitigating memory fragmentation, improving VRAM utilization from 94%
+to 87% and reducing the fragmentation ratio from 0.61 to 0.18.
+Technical Skills
+Languages & ML: Python, PyTorch, Time-Series Modeling, Anomaly Detection, Forecasting, ML Surrogates
+MLOps & Infrastructure: Docker, CI/CD, Reproducible Deployment, Telemetry Pipelines, AWS
+Data & Systems: PostgreSQL, Firebase, IoT Telemetry, Streamlit, Async Pipelines
+Domain Expertise: Aerospace Systems, Predictive Maintenance, ESG Analytics, Mission-Control Simulation

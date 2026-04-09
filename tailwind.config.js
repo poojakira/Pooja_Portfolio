@@ -4,8 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: "#4f46e5",
-        accent2: "#22c55e"
+        accent: "#f97316", // orange-500
+        accent2: "#e11d48", // rose-600
+        sunset: {
+          light: "#fdba74",
+          DEFAULT: "#ea580c",
+          dark: "#9a3412"
+        }
       },
       borderRadius: {
         xl: "1.25rem"

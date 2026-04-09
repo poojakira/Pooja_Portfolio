@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Terminal as TerminalIcon, ChevronRight, Activity, ShieldCheck } from "lucide-react";
-import resumePDF from "../assets/Pooja_Kiran_RESUME.pdf";
+import resumePDF from "../assets/Pooja_Kiran_MLOps_Engineer.pdf";
 
 const COMMANDS = {
     help: `╔══════════════════════════════════════════════════╗
-║  PKB_OS COMMAND REFERENCE v4.2                   ║
+║  PKB_OS COMMAND REFERENCE v5.0                   ║
 ╠══════════════════════════════════════════════════╣
 ║  whoami     — Identity & current role            ║
 ║  skills     — Full technical stack               ║
 ║  projects   — List all flagship projects         ║
-║  apex       — Apex-X tactical defense details    ║
-║  orbitiq    — OrbitIQ CubeSat MLOps details      ║
-║  commandx   — CommandX GNC platform details      ║
-║  ecotrack   — EcoTrack carbon analytics details  ║
-║  research   — Published papers (IEEE + IOSR)     ║
+║  cubesat    — CubeSat-Health-Monitor details     ║
+║  pulsenet   — PulseNet-RUL-Forecasting details   ║
+║  rtxoom     — RTX-OOM-Guard details              ║
+║  research   — Published papers (IEEE)            ║
 ║  certs      — Active certifications              ║
 ║  education  — Academic background                ║
 ║  contact    — Get in touch                       ║
@@ -24,109 +23,96 @@ const COMMANDS = {
 ╚══════════════════════════════════════════════════╝`,
 
     whoami: `┌─ IDENTITY ─────────────────────────────────────┐
-│  Name:   Pooja Kiran Bharadwaj                 │
-│  Role:   Machine Learning Engineer             │
-│  Focus:  Aerospace AI, MLOps, Security         │
+│  Name:   Pooja Kiran                           │
+│  Role:   ML / MLOps Engineer                   │
+│  Focus:  Telemetry, Anomaly Detection, GPU Opt │
 │  School: ASU — M.S. IT Security (2024-2026)    │
-│  Status: Actively seeking ML/AI roles          │
+│  Status: Actively seeking ML/MLOps roles       │
 └────────────────────────────────────────────────┘`,
 
     skills: `┌─ TECHNICAL STACK ──────────────────────────────┐
-│  🧠 ML/AI:  PINNs, GANs, Transformers, RL,    │
-│             EKF, Isolation Forest, Random Forest│
-│  ☁️ MLOps:  Docker, FastAPI, MLflow, Firebase,  │
-│             AWS SageMaker, Kubernetes           │
-│  💻 Lang:   Python, JavaScript/React, SQL      │
-│  🔒 Sec:    Post-Quantum Crypto, Zero-Trust,   │
-│             IAM, SDLC, DevSecOps               │
+│  🧠 ML:     Python, PyTorch, Time-Series,     │
+│             Anomaly Detection, Forecasting     │
+│  ☁️ MLOps:  Docker, CI/CD, AWS, Firebase,      │
+│             Reproducible Deployment            │
+│  💾 Data:   PostgreSQL, Firebase, IoT,         │
+│             Streamlit, Async Pipelines         │
+│  🚀 Domain: Aerospace, Predictive Maintenance, │
+│             ESG Analytics, Mission-Control     │
 └────────────────────────────────────────────────┘`,
 
     projects: `┌─ FLAGSHIP DEPLOYMENTS ─────────────────────────┐
-│  🛡️  Apex-X       → Hypersonic Defense AI      │
-│  🛰️  OrbitIQ      → CubeSat MLOps Engine       │
-│  🚀  CommandX     → Orbital GNC Platform       │
-│  🌿  EcoTrack     → Carbon Analytics Service   │
+│  🛰️  cubesat    → Satellite Health Analytics   │
+│  🔧  pulsenet   → Predictive Maintenance (NASA)│
+│  ⚡  rtxoom     → GPU Memory Optimization      │
 │                                                │
 │  Type a project name for deep-dive details.    │
 └────────────────────────────────────────────────┘`,
 
-    apex: `🛡️ APEX-X & AEGIS-X: Tactical Command Suite
+    cubesat: `🛰️ CUBESAT-HEALTH-MONITOR
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Category:    Hypersonic Defense AI
-Inference:   12.36ms → 10.11ms (18.19% gain)
-Signal:      99.8% integrity (1000 trials)
-Tech:        PINNs, StyleGAN, Transformers,
-             Byzantine-Mesh, Lattice Crypto
-GitHub:      github.com/poojakira/Apex-Aegis-Tactical-Suite`,
+Category:    Satellite Health Analytics
+Inference:   15.72μs latency
+Throughput:  63,622 events/second
+F1 Score:    0.928 (precision: 0.942)
+False Alarm: 3–5% rate
+Tech:        Firebase, Python, Ensemble Detection
+GitHub:      github.com/poojakira/CubeSat-Health-Monitor`,
 
-    orbitiq: `🛰️ ORBITIQ: CubeSat 3D Anomaly Engine
+    pulsenet: `🔧 PULSENET-RUL-FORECASTING
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Category:    Orbital MLOps
-Latency:     2000ms → 8ms (99.9% reduction)
-Accuracy:    95.8% predictive accuracy
-Tech:        Isolation Forest, Firebase,
-             MLflow, Rolling Window Features
-GitHub:      github.com/poojakira/orbit-Q`,
+Category:    Predictive Maintenance (NASA C-MAPSS)
+RUL RMSE:    166.7 (~10% over baseline)
+Throughput:  52,368 req/s
+P95 Latency: 3.94ms
+Tests:       52 automated tests
+Tech:        Python, Time-Series Modeling
+GitHub:      github.com/poojakira/PulseNet-RUL-Forecasting`,
 
-    commandx: `🚀 COMMANDX: Orbital Mission Control v7.0
+    rtxoom: `⚡ RTX-OOM-GUARD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Category:    Aerospace GNC
-Docking:     98% success (Monte Carlo 3-sigma)
-Fuel:        60% efficiency (Genetic Algorithm)
-Tech:        EKF @ 10Hz, RL Pilot (500kg bus),
-             Entropy Engine, Space-Track catalog
-GitHub:      github.com/poojakira/CommandX`,
-
-    ecotrack: `🌿 ECOTRACK-ENTERPRISE: Carbon Analytics
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Category:    Industrial ML Microservices
-R² Score:    0.9952 (99.5% variance explained)
-P90 Latency: 281ms @ 1,000 concurrent users
-Anomaly:     <5ms detection (Isolation Forest)
-Tech:        FastAPI, Random Forest, Docker
-GitHub:      github.com/poojakira/EcoTrack-Enterprise`,
+Category:    GPU Memory Optimization
+OOM Crashes: 23 → 0 (eliminated)
+Overhead:    <2% training impact
+VRAM:        94% → 87% utilization
+Frag Ratio:  0.61 → 0.18
+Tech:        PyTorch, Docker, GPU Profiling
+GitHub:      github.com/poojakira/RTX-OOM-Guard`,
 
     research: `📄 PUBLISHED RESEARCH
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 1. "Personalized E-learning Using RL Through Satellite"
    Venue:  IEEE INDICON 2023
    Impact: 80% dynamic progression accuracy
+   Role:   Co-author with university faculty`,
 
-2. "Smart Charge Pro: Empowering Future Mobility"
-   Venue:  IOSR Journal 2023
-   Impact: Zero-delay isolation logic for 4 EVs`,
-
-    certs: `🏆 CERTIFICATIONS (6 Active)
+    certs: `🏆 CERTIFICATIONS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• Transformer Models & BERT — Google Cloud
-• MLOps for Generative AI — Google Cloud
-• ML Engineer Study Guide — Google Cloud
-• AWS Cloud Architecting — Amazon Web Services
-• AWS Cloud Security — Amazon Web Services
-• Honeywell Tech Innovation Lab — Honeywell`,
+• AWS Cloud Security Foundations — Amazon Web Services
+• Technology Innovation Lab — Honeywell Aerospace & ASU`,
 
     education: `🎓 ACADEMIC RECORD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 M.S. Information Technology Security
 Arizona State University | 2024–2026
-Focus: AI Security, Privacy Engineering
+Certs: AWS Cloud Security, Honeywell Innovation Lab
 
-B.Tech Computer Science & Engineering
+B.Tech Computer Science
 M.S. Ramaiah University | 2019–2023
-Distinction: Top of cohort, 2 publications`,
+Published at IEEE INDICON 2023`,
 
     contact: `📬 CONTACT INFORMATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📧 poojakiranbharadwaj@gmail.com
-📞 +1 (480) 776-7445
-📍 Tempe, AZ
+📧 poojakiranbhardwaj@gmail.com
+📞 +1 (480) 776-7745
+📍 Phoenix, Arizona, US
 🔗 linkedin.com/in/poojakiran
 🐙 github.com/poojakira
 
 ✅ Available for full-time, internships, or research.`,
 
     status: `┌─ SYSTEM DIAGNOSTICS ──────────────────────────┐
-│  OS:       PKB_OS v2026.4.2 [Production]      │
+│  OS:       PKB_OS v2026.5.0 [Production]      │
 │  Uptime:   99.98%                              │
 │  Encryption: AES-256 ACTIVE                    │
 │  GPU:      ${Math.floor(Math.random() * 30 + 50)}% utilization                     │
@@ -136,15 +122,15 @@ Distinction: Top of cohort, 2 publications`,
 └────────────────────────────────────────────────┘`,
 
     neofetch: `
-     ██████╗ ██╗  ██╗██████╗         Pooja Kiran Bharadwaj
+     ██████╗ ██╗  ██╗██████╗         Pooja Kiran
      ██╔══██╗██║ ██╔╝██╔══██╗        ─────────────────────
-     ██████╔╝█████╔╝ ██████╔╝        OS:     PKB_OS v2026.4.2
-     ██╔═══╝ ██╔═██╗ ██╔══██╗        Role:   ML Engineer
-     ██║     ██║  ╚██╗██████╔╝        Shell:  MISSION_CTRL v4
-     ╚═╝     ╚═╝   ╚═╝╚═════╝         GPU:    H100 (Simulated)
-                                       Projects: 4 Deployed
-                                       Papers:   2 Published
-                                       Certs:    6 Active
+     ██████╔╝█████╔╝ ██████╔╝        OS:     PKB_OS v2026.5.0
+     ██╔═══╝ ██╔═██╗ ██╔══██╗        Role:   ML / MLOps Engineer
+     ██║     ██║  ╚██╗██████╔╝        Shell:  MISSION_CTRL v5
+     ╚═╝     ╚═╝   ╚═╝╚═════╝         GPU:    RTX (Optimized)
+                                       Projects: 3 Deployed
+                                       Papers:   1 Published
+                                       Certs:    2 Active
 `
 };
 
@@ -227,7 +213,7 @@ export default function Terminal() {
             setTimeout(() => {
                 const a = document.createElement("a");
                 a.href = resumePDF;
-                a.download = "Pooja_Kiran_Resume.pdf";
+                a.download = "Pooja_Kiran_MLOps_Engineer.pdf";
                 a.click();
             }, 800);
         }
@@ -241,7 +227,7 @@ export default function Terminal() {
             {/* Terminal Header */}
             <div className="p-3 border-b border-white/5 bg-white/[0.03] flex justify-between items-center shrink-0">
                 <div className="flex items-center gap-3">
-                    <TerminalIcon size={14} className="text-emerald-500" />
+                    <TerminalIcon size={14} className="text-rose-500" />
                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
                         Mission_Terminal_v4.2
                     </span>
@@ -249,7 +235,7 @@ export default function Terminal() {
                 <div className="flex gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-rose-500/50" />
                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-rose-500/60" />
                 </div>
             </div>
 
@@ -261,16 +247,16 @@ export default function Terminal() {
                 {history.map((line, i) => (
                     <div
                         key={i}
-                        className={`text-[11px] leading-relaxed whitespace-pre-wrap ${line.type === "user" ? "text-indigo-400 font-bold" :
+                        className={`text-[11px] leading-relaxed whitespace-pre-wrap ${line.type === "user" ? "text-orange-400 font-bold" :
                                 line.type === "error" ? "text-rose-400" :
-                                    "text-emerald-500/80"
+                                    "text-rose-500/80"
                             }`}
                     >
                         {line.text}
                     </div>
                 ))}
-                <div className="flex items-center gap-2 text-[11px] text-indigo-400 pt-1">
-                    <span className="text-emerald-500/70 shrink-0">pkb@mission-ctrl:~$</span>
+                <div className="flex items-center gap-2 text-[11px] text-orange-400 pt-1">
+                    <span className="text-rose-500/70 shrink-0">pkb@mission-ctrl:~$</span>
                     <input
                         ref={inputRef}
                         type="text"
@@ -278,7 +264,7 @@ export default function Terminal() {
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
                         onKeyPress={handleCommand}
-                        className="flex-1 bg-transparent border-none outline-none text-indigo-400 placeholder:text-indigo-900/40 caret-indigo-400"
+                        className="flex-1 bg-transparent border-none outline-none text-orange-400 placeholder:text-orange-900/40 caret-orange-400"
                         placeholder="Type a command..."
                         spellCheck={false}
                     />
@@ -289,13 +275,13 @@ export default function Terminal() {
             <div className="p-2.5 border-t border-white/5 bg-black/30 flex justify-between items-center px-4 shrink-0">
                 <div className="flex items-center gap-4 text-[8px] text-slate-600 uppercase tracking-wider">
                     <div className="flex items-center gap-1">
-                        <Activity size={9} className="text-indigo-500/60" /> CPU: 0.12%
+                        <Activity size={9} className="text-orange-500/60" /> CPU: 0.12%
                     </div>
                     <div className="flex items-center gap-1">
-                        <ShieldCheck size={9} className="text-emerald-500/60" /> SSH: SECURE
+                        <ShieldCheck size={9} className="text-rose-500/60" /> SSH: SECURE
                     </div>
                     <div className="flex items-center gap-1">
-                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="w-1 h-1 rounded-full bg-rose-500 animate-pulse" />
                         {cmdHistory.length} cmds
                     </div>
                 </div>

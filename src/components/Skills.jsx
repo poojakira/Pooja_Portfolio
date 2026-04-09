@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BrainCircuit, Database, Layers, Sparkles, Code2, Cloud, Shield, BookOpen, Globe, ChevronDown, ChevronUp, Zap, Radar, ScanLine } from "lucide-react";
 
 const CATEGORY_CONFIG = {
-    "ML / Deep Learning": { icon: <BrainCircuit size={14} />, color: "indigo", hex: "#6366f1" },
+    "ML / Deep Learning": { icon: <BrainCircuit size={14} />, color: "orange", hex: "#f97316" },
     "NLP & Transformers": { icon: <Globe size={14} />, color: "violet", hex: "#8b5cf6" },
     "Frameworks & Tools": { icon: <Layers size={14} />, color: "cyan", hex: "#06b6d4" },
     "Cloud & MLOps": { icon: <Cloud size={14} />, color: "blue", hex: "#3b82f6" },
-    "Security": { icon: <Shield size={14} />, color: "emerald", hex: "#10b981" },
+    "Security": { icon: <Shield size={14} />, color: "rose", hex: "#10b981" },
     "Languages": { icon: <Code2 size={14} />, color: "amber", hex: "#f59e0b" },
     "Research": { icon: <BookOpen size={14} />, color: "rose", hex: "#f43f5e" }
 };
@@ -120,7 +120,7 @@ function CategoryRadar({ grouped }) {
                                 transition={{ delay: 0.8 + i * 0.1 }}
                                 cx={p.x} cy={p.y}
                                 fill={config.hex}
-                                stroke="#030712" strokeWidth="1.5"
+                                stroke="#0f0406" strokeWidth="1.5"
                             />
                             <circle cx={p.x} cy={p.y} r="8" fill={config.hex} opacity="0.1">
                                 <animate attributeName="r" values="6;12;6" dur="3s" repeatCount="indefinite" />
@@ -131,8 +131,8 @@ function CategoryRadar({ grouped }) {
                 })}
 
                 {/* Center ping */}
-                <circle cx={center} cy={center} r="2" fill="#6366f1" />
-                <circle cx={center} cy={center} r="6" fill="none" stroke="#6366f1" strokeWidth="0.5" opacity="0.3">
+                <circle cx={center} cy={center} r="2" fill="#f97316" />
+                <circle cx={center} cy={center} r="6" fill="none" stroke="#f97316" strokeWidth="0.5" opacity="0.3">
                     <animate attributeName="r" values="4;14;4" dur="2s" repeatCount="indefinite" />
                     <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite" />
                 </circle>
@@ -208,8 +208,8 @@ export default function Skills() {
     return (
         <section id="skills" className="glow-card relative overflow-hidden">
             {/* Background effects */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/5 blur-[80px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-500/5 blur-[60px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/5 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-rose-500/5 blur-[60px] rounded-full pointer-events-none" />
             <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
 
             <div className="p-8">
@@ -217,7 +217,7 @@ export default function Skills() {
                 <div className="flex items-center justify-between mb-6">
                     <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                            <div className="h-px w-6 bg-gradient-to-r from-indigo-500 to-transparent" />
+                            <div className="h-px w-6 bg-gradient-to-r from-orange-500 to-transparent" />
                             <h2 className="section-label">Expertise_Matrix</h2>
                         </div>
                         <h3 className="text-xl font-black tracking-tight gradient-text">Technical Proficiency</h3>
@@ -225,7 +225,7 @@ export default function Skills() {
                     <motion.div
                         animate={{ rotate: [0, 360] }}
                         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/15"
+                        className="p-2 rounded-xl bg-orange-500/10 text-orange-400 border border-orange-500/15"
                     >
                         <Sparkles size={16} />
                     </motion.div>
@@ -238,14 +238,14 @@ export default function Skills() {
 
                 {/* Animated Stats */}
                 <div className="grid grid-cols-3 gap-2 mb-6">
-                    <div className="metric-cell text-center py-3 group hover:border-indigo-500/20 transition-colors cursor-default">
-                        <div className="text-xl font-black text-indigo-400 font-mono">
+                    <div className="metric-cell text-center py-3 group hover:border-orange-500/20 transition-colors cursor-default">
+                        <div className="text-xl font-black text-orange-400 font-mono">
                             <AnimCounter target={totalSkills} />
                         </div>
                         <div className="text-[7px] font-black text-slate-600 uppercase tracking-widest">Skills</div>
                     </div>
-                    <div className="metric-cell text-center py-3 group hover:border-emerald-500/20 transition-colors cursor-default">
-                        <div className="text-xl font-black text-emerald-400 font-mono">
+                    <div className="metric-cell text-center py-3 group hover:border-rose-500/20 transition-colors cursor-default">
+                        <div className="text-xl font-black text-rose-400 font-mono">
                             <AnimCounter target={categories.length} duration={0.8} />
                         </div>
                         <div className="text-[7px] font-black text-slate-600 uppercase tracking-widest">Domains</div>
@@ -282,7 +282,7 @@ export default function Skills() {
                                 <button
                                     onClick={() => setExpandedCat(isExpanded ? null : cat)}
                                     className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-300 text-left group ${isExpanded
-                                        ? "bg-white/[0.05] border border-indigo-500/25 shadow-[0_0_20px_rgba(99,102,241,0.08)]"
+                                        ? "bg-white/[0.05] border border-orange-500/25 shadow-[0_0_20px_rgba(99,102,241,0.08)]"
                                         : "bg-white/[0.01] border border-white/5 hover:border-white/10 hover:bg-white/[0.03]"
                                         }`}
                                 >
@@ -372,8 +372,8 @@ export default function Skills() {
                         Resume • GitHub • Certifications
                     </span>
                     <div className="flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-[8px] font-mono text-emerald-500/60 uppercase tracking-wider">
+                        <span className="w-1 h-1 rounded-full bg-rose-500 animate-pulse" />
+                        <span className="text-[8px] font-mono text-rose-500/60 uppercase tracking-wider">
                             Live Scan
                         </span>
                     </div>

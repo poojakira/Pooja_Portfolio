@@ -1,130 +1,74 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ExternalLink, X, Shield, Cpu, Activity, Zap, TrendingUp, Lock, Eye, Fingerprint, Layers, BrainCircuit, Database, BarChart3, GitBranch } from "lucide-react";
+import { CheckCircle2, ExternalLink, X, Shield, Cpu, Activity, Zap, TrendingUp, Lock, Eye, Fingerprint, Layers, BrainCircuit, Database, BarChart3, GitBranch, Server, Cloud } from "lucide-react";
 
 const BADGES = [
     {
-        title: "Transformer Models and BERT Model",
-        date: "Earned Feb 26, 2026 EST",
-        issuer: "Google Cloud",
-        credId: "GCP-BERT-2026-A91X",
+        title: "AWS Cloud Security Foundations",
+        date: "Earned 2025",
+        issuer: "Amazon Web Services",
+        credId: "AWS-SEC-2025-FOUNDATIONS",
         skills: [
-            { name: "Multi-Head Attention", level: 95 },
-            { name: "Tokenization & Embeddings", level: 90 },
-            { name: "Fine-Tuning BERT", level: 92 },
-            { name: "Transformer Architecture", level: 88 },
-            { name: "Sequence Modeling", level: 85 },
-            { name: "Transfer Learning", level: 93 }
+            { name: "Cloud Security IAM", level: 96 },
+            { name: "VPC Networking", level: 92 },
+            { name: "Incident Response", level: 88 },
+            { name: "Shared Responsibility", level: 95 },
+            { name: "Compliance Frameworks", level: 90 },
+            { name: "Data Protection", level: 94 }
         ],
-        code: `from transformers import BertConfig, BertModel
-import torch
-
-config = BertConfig.from_pretrained(
-    'bert-base-uncased',
-    output_attentions=True,
-    hidden_dropout_prob=0.1,
-    num_attention_heads=12,
-    num_hidden_layers=12
-)
-
-model = BertModel(config)
-inputs = tokenizer("PKB ML Security", return_tensors="pt")
-outputs = model(**inputs, output_attentions=True)
-
-# Extract attention patterns across all layers
-attention_weights = outputs.attentions  # (12, batch, 12, seq, seq)
-print(f"Attention shape: {attention_weights[0].shape}")`,
+        code: `{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "kms:Decrypt"
+      ],
+      "Resource": "arn:aws:s3:::telemetry-secure/*",
+      "Condition": {
+        "Bool": { "aws:MultiFactorAuthPresent": "true" }
+      }
+    }
+  ]
+}`,
         metrics: [
-            { label: "Parameters Trained", value: "110M", icon: "cpu" },
-            { label: "Attention Heads", value: "12×12", icon: "layers" },
-            { label: "Accuracy Score", value: "96.2%", icon: "trending" },
-            { label: "Latency", value: "8.1ms", icon: "zap" }
+            { label: "Security Score", value: "A+", icon: "shield" },
+            { label: "IAM Policies", value: "Verified", icon: "lock" },
+            { label: "Cloud Compliance", value: "100%", icon: "trending" },
+            { label: "MFA Enforcement", value: "Active", icon: "zap" }
         ],
-        description: "Mastery of encoder-only transformer architectures with production-ready fine-tuning for NLP tasks including sentiment analysis, NER, and semantic search."
+        description: "Mastery of AWS cloud security fundamentals including identity and access management (IAM), shared responsibility model, and infrastructure protection for mission-critical ML workloads."
     },
     {
-        title: "Machine Learning Operations (MLOps) for Generative AI",
-        date: "Earned Feb 26, 2026 EST",
-        issuer: "Google Cloud",
-        credId: "GCP-MLOPS-2026-B47K",
+        title: "Technology Innovation Lab",
+        date: "Certified 2025",
+        issuer: "Honeywell Aerospace & ASU",
+        credId: "HON-TIL-ASU-2025",
         skills: [
-            { name: "CI/CD for ML Pipelines", level: 94 },
-            { name: "Model Versioning", level: 91 },
-            { name: "A/B & Canary Deploy", level: 88 },
-            { name: "GPU Orchestration", level: 86 },
-            { name: "Feature Stores", level: 83 },
-            { name: "Model Monitoring", level: 90 }
+            { name: "Aerospace Systems", level: 94 },
+            { name: "Mission Simulation", level: 90 },
+            { name: "Telemetry Analysis", level: 96 },
+            { name: "Industrial AI", level: 88 },
+            { name: "Edge Computing", level: 85 },
+            { name: "Predictive Maintain", level: 92 }
         ],
-        code: `# MLOps Deployment Pipeline [Vertex AI]
-pipeline:
-  name: GenAI_Inference_Sync_v4
-  trigger: on_push(branch: "main")
-  stages:
-    - build:
-        image: poojakira/inference-core:latest
-        hardware: NVIDIA_H100_80GB
-        cache: layer_registry_v2
-    - test:
-        suite: LoadTest_Stress_V4
-        target_latency: 12ms
-        concurrent_users: 10000
-    - deploy:
-        strategy: Blue_Green
-        canary_weight: 10%
-        auto_rollback: true
-    - monitor:
-        drift_detector: KL_Divergence
-        alert_threshold: 0.05`,
+        code: `def check_telemetry_integrity(packet):
+    """Honeywell-ASU Innovation Lab: Health Monitor"""
+    threshold = 0.985
+    anomaly_score = model.analyze(packet.telemetry)
+    
+    if anomaly_score > threshold:
+        trigger_safety_protocol('MISSION_ABORT')
+        return "CRITICAL_ANOMALY"
+    return "SYSTEM_STABLE"`,
         metrics: [
-            { label: "Pipeline Uptime", value: "99.98%", icon: "trending" },
-            { label: "Deploy Frequency", value: "12/day", icon: "git" },
-            { label: "Rollback Time", value: "<30s", icon: "zap" },
-            { label: "GPU Cluster", value: "H100×4", icon: "cpu" }
+            { label: "Mission Context", value: "Aerospace", icon: "cpu" },
+            { label: "Innov. Grade", value: "Honor", icon: "trending" },
+            { label: "Lab Projects", value: "Applied", icon: "layers" },
+            { label: "System Sync", value: "Ready", icon: "zap" }
         ],
-        description: "End-to-end MLOps lifecycle management for generative AI workloads including automated training, versioned deployment, and continuous monitoring at enterprise scale."
-    },
-    {
-        title: "Professional Machine Learning Engineer Study Guide",
-        date: "Earned Feb 26, 2026 EST",
-        issuer: "Google Cloud",
-        credId: "GCP-MLE-2026-C82R",
-        skills: [
-            { name: "ML System Design", level: 92 },
-            { name: "Data Engineering", level: 87 },
-            { name: "Model Optimization", level: 90 },
-            { name: "Cloud Architecture", level: 88 },
-            { name: "Security & IAM", level: 93 },
-            { name: "Cost Management", level: 85 }
-        ],
-        code: `class ML_Infrastructure:
-    """Enterprise ML Architecture — GCP Certified"""
-    provider = "Vertex AI + SageMaker"
-    instance = "ml.p4d.24xlarge"
-    security = "IAM_Role_V3 + VPC_SC"
-
-    def deploy_optimized(self, model_uri, config):
-        return self.engine.launch(
-            model=model_uri,
-            tensor_parallel=True,
-            quantization="int8_dynamic",
-            encryption="AES-256-GCM",
-            auto_scaling={"min": 2, "max": 16},
-            budget_alert=0.85
-        )
-
-    def monitor(self):
-        return DriftDetector(
-            method="KS_Test",
-            window="7d",
-            alert=self.ops_team
-        )`,
-        metrics: [
-            { label: "Inference P90", value: "4.2ms", icon: "zap" },
-            { label: "Cost Saved", value: "42%", icon: "trending" },
-            { label: "Models Active", value: "8", icon: "database" },
-            { label: "Security Score", value: "A+", icon: "shield" }
-        ],
-        description: "Comprehensive machine learning engineering covering system design, cloud-native optimization, security hardening, and cost-efficient deployment across GCP and multi-cloud environments."
+        description: "Advanced collaborative training on aerospace technology innovation, focusing on applied AI for mission control, telemetry processing, and safety-critical system design in partnership with Honeywell Aerospace."
     }
 ];
 
@@ -193,7 +137,7 @@ function SkillRadar({ skills, isVisible }) {
                             animate={isVisible ? { r: 3 } : {}}
                             transition={{ delay: 0.8 + i * 0.1 }}
                             cx={p.x} cy={p.y}
-                            fill="#6366f1" stroke="#030712" strokeWidth="1.5"
+                            fill="#f97316" stroke="#0f0406" strokeWidth="1.5"
                         />
                         <text
                             x={lp.x} y={lp.y}
@@ -236,14 +180,14 @@ function VerificationSequence({ isActive }) {
                     initial={{ opacity: 0, x: -10 }}
                     animate={i <= step ? { opacity: 1, x: 0 } : { opacity: 0.2, x: 0 }}
                     transition={{ duration: 0.3, delay: i * 0.05 }}
-                    className={`flex items-center gap-2 text-[10px] font-mono ${i < step ? "text-emerald-400" :
-                            i === step ? "text-indigo-400" : "text-slate-700"
+                    className={`flex items-center gap-2 text-[10px] font-mono ${i < step ? "text-rose-400" :
+                            i === step ? "text-orange-400" : "text-slate-700"
                         }`}
                 >
-                    <div className={`p-1 rounded ${i < step ? "bg-emerald-500/20" :
-                            i === step ? "bg-indigo-500/20" : "bg-slate-800/50"
+                    <div className={`p-1 rounded ${i < step ? "bg-rose-500/20" :
+                            i === step ? "bg-orange-500/20" : "bg-slate-800/50"
                         }`}>
-                        {i < step ? <CheckCircle2 size={10} className="text-emerald-400" /> : s.icon}
+                        {i < step ? <CheckCircle2 size={10} className="text-rose-400" /> : s.icon}
                     </div>
                     <span>{s.label}</span>
                     {i === step && i < steps.length - 1 && (
@@ -264,7 +208,8 @@ function MetricIcon({ type }) {
         zap: <Zap size={12} />,
         git: <GitBranch size={12} />,
         database: <Database size={12} />,
-        shield: <Shield size={12} />
+        shield: <Shield size={12} />,
+        lock: <Lock size={12} />
     };
     return icons[type] || <Activity size={12} />;
 }
@@ -288,14 +233,14 @@ export default function SkillBadges() {
         <section id="badges" className="py-20 border-t border-white/5">
             {/* Header */}
             <div className="flex items-center gap-4 mb-12">
-                <div className="h-px w-12 bg-gradient-to-r from-indigo-500 to-transparent" />
+                <div className="h-px w-12 bg-gradient-to-r from-orange-500 to-transparent" />
                 <h2 className="section-label">
                     Certified_Credentials
                 </h2>
             </div>
 
             {/* Badge Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {BADGES.map((badge, i) => (
                     <motion.div
                         key={badge.title}
@@ -314,19 +259,23 @@ export default function SkillBadges() {
                             style={{ perspective: "800px" }}
                         >
                             {/* Hover glow */}
-                            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-indigo-500/20 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl pointer-events-none" />
+                            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-orange-500/20 via-transparent to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl pointer-events-none" />
 
                             <div className="absolute inset-0 border-[6px] border-slate-50 rounded-2xl pointer-events-none" />
 
-                            {/* Google Cloud Logo */}
-                            <div className="flex items-center gap-1.5 mb-5">
-                                <div className="flex gap-0.5">
-                                    <div className="w-1.5 h-3.5 bg-[#4285F4] rounded-full" />
-                                    <div className="w-1.5 h-3.5 bg-[#EA4335] rounded-full" />
-                                    <div className="w-1.5 h-3.5 bg-[#FBBC05] rounded-full" />
-                                    <div className="w-1.5 h-3.5 bg-[#34A853] rounded-full" />
-                                </div>
-                                <span className="text-[11px] font-bold text-slate-600">Google Cloud</span>
+                            {/* Issuer Logo Container */}
+                            <div className="flex items-center gap-1.5 mb-5 uppercase tracking-[0.1em] font-black text-[9px]">
+                                {badge.issuer.includes("AWS") ? (
+                                    <div className="flex items-center gap-1.5 text-amber-600">
+                                        <Cloud size={14} fill="currentColor" />
+                                        <span>AWS Certified</span>
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center gap-1.5 text-rose-600">
+                                        <Server size={14} fill="currentColor" />
+                                        <span>Innovation Lab</span>
+                                    </div>
+                                )}
                             </div>
 
                             <h3 className="text-sm font-bold text-slate-800 leading-tight mb-5 px-2">
@@ -335,7 +284,7 @@ export default function SkillBadges() {
 
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-10 h-px bg-slate-200" />
-                                <CheckCircle2 className="text-[#4285F4]" size={22} fill="#4285F4" stroke="white" />
+                                <CheckCircle2 className={badge.issuer.includes("AWS") ? "text-amber-500" : "text-rose-500"} size={22} fill="currentColor" stroke="white" />
                                 <div className="w-10 h-px bg-slate-200" />
                             </div>
 
@@ -373,7 +322,7 @@ export default function SkillBadges() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={closeBadge}
-                            className="absolute inset-0 bg-[#030712]/95 backdrop-blur-2xl"
+                            className="absolute inset-0 bg-[#0f0406]/95 backdrop-blur-2xl"
                         />
 
                         {/* Modal */}
@@ -385,7 +334,7 @@ export default function SkillBadges() {
                             className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto custom-scrollbar glow-card"
                         >
                             {/* Top accent */}
-                            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/60 to-transparent" />
+                            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
 
                             {/* Close button */}
                             <button
@@ -406,22 +355,29 @@ export default function SkillBadges() {
                                         className="w-44 h-44 bg-white rounded-2xl p-4 flex flex-col items-center justify-center text-center shadow-2xl shrink-0 relative"
                                         style={{ transformStyle: "preserve-3d" }}
                                     >
-                                        <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-indigo-500/20 to-emerald-500/10 blur-xl pointer-events-none" />
-                                        <div className="flex gap-0.5 mb-2">
-                                            <div className="w-1 h-2.5 bg-[#4285F4] rounded-full" />
-                                            <div className="w-1 h-2.5 bg-[#EA4335] rounded-full" />
-                                            <div className="w-1 h-2.5 bg-[#FBBC05] rounded-full" />
-                                            <div className="w-1 h-2.5 bg-[#34A853] rounded-full" />
+                                        <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-orange-500/20 to-rose-500/10 blur-xl pointer-events-none" />
+                                        <div className="flex items-center gap-1.5 mb-2 uppercase tracking-[0.1em] font-black text-[7px]">
+                                            {selectedBadge.issuer.includes("AWS") ? (
+                                                <div className="flex items-center gap-1 text-amber-600">
+                                                    <Cloud size={10} fill="currentColor" />
+                                                    <span>AWS</span>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-1 text-rose-600">
+                                                    <Server size={10} fill="currentColor" />
+                                                    <span>TIL Lab</span>
+                                                </div>
+                                            )}
                                         </div>
-                                        <h3 className="text-[10px] font-bold text-slate-800 mb-3 leading-tight">{selectedBadge.title}</h3>
-                                        <CheckCircle2 size={24} fill="#4285F4" stroke="white" />
+                                        <h3 className="text-[10px] font-bold text-slate-800 mb-3 leading-tight uppercase tracking-tight">{selectedBadge.title}</h3>
+                                        <CheckCircle2 size={24} className={selectedBadge.issuer.includes("AWS") ? "text-amber-500" : "text-rose-500"} fill="currentColor" stroke="white" />
                                         <span className="text-[6px] font-black uppercase tracking-widest text-slate-400 mt-2">Verified</span>
                                     </motion.div>
 
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <span className="pill-indigo"><Eye size={8} /> Live Analysis</span>
-                                            <span className="pill-emerald"><Shield size={8} /> Verified</span>
+                                            <span className="pill-orange"><Eye size={8} /> Live Analysis</span>
+                                            <span className="pill-rose"><Shield size={8} /> Verified</span>
                                         </div>
                                         <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight mb-3">
                                             {selectedBadge.title}
@@ -430,7 +386,7 @@ export default function SkillBadges() {
                                             {selectedBadge.description}
                                         </p>
                                         <div className="flex flex-wrap gap-4 text-[10px] font-mono text-slate-500">
-                                            <span>ID: <strong className="text-indigo-400">{selectedBadge.credId}</strong></span>
+                                            <span>ID: <strong className="text-orange-400">{selectedBadge.credId}</strong></span>
                                             <span>Issued: <strong className="text-slate-300">{selectedBadge.date}</strong></span>
                                             <span>Issuer: <strong className="text-slate-300">{selectedBadge.issuer}</strong></span>
                                         </div>
@@ -442,7 +398,7 @@ export default function SkillBadges() {
 
                                     {/* Skill Radar */}
                                     <div className="metric-cell p-6 md:col-span-1">
-                                        <div className="text-[8px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-4 flex items-center gap-2">
+                                        <div className="text-[8px] font-black uppercase tracking-[0.3em] text-orange-400 mb-4 flex items-center gap-2">
                                             <BarChart3 size={10} /> Competency Radar
                                         </div>
                                         <SkillRadar skills={selectedBadge.skills} isVisible={!!selectedBadge} />
@@ -458,9 +414,9 @@ export default function SkillBadges() {
                                                     initial={{ opacity: 0, y: 15 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ delay: 0.3 + i * 0.1 }}
-                                                    className="metric-cell p-4 text-center group/m hover:border-indigo-500/20 transition-colors"
+                                                    className="metric-cell p-4 text-center group/m hover:border-orange-500/20 transition-colors"
                                                 >
-                                                    <div className="flex justify-center mb-2 text-indigo-500/50 group-hover/m:text-indigo-400 transition-colors">
+                                                    <div className="flex justify-center mb-2 text-orange-500/50 group-hover/m:text-orange-400 transition-colors">
                                                         <MetricIcon type={m.icon} />
                                                     </div>
                                                     <div className="text-lg font-black text-white font-mono">{m.value}</div>
@@ -477,7 +433,7 @@ export default function SkillBadges() {
                                                     <div key={s.name}>
                                                         <div className="flex justify-between text-[9px] mb-1">
                                                             <span className="text-slate-400 font-bold">{s.name}</span>
-                                                            <span className="text-indigo-400 font-mono font-bold">{s.level}%</span>
+                                                            <span className="text-orange-400 font-mono font-bold">{s.level}%</span>
                                                         </div>
                                                         <div className="progress-bar">
                                                             <motion.div
@@ -500,17 +456,17 @@ export default function SkillBadges() {
                                     <div className="md:col-span-2">
                                         <div className="flex items-center justify-between mb-2 px-1">
                                             <div className="text-[9px] font-mono text-slate-500 uppercase flex items-center gap-2 tracking-widest">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                                                Implementation Source
+                                                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                                                Technical Verification Snippet
                                             </div>
                                             <div className="flex gap-1.5">
                                                 <div className="w-2.5 h-2.5 rounded-full bg-rose-500/30" />
                                                 <div className="w-2.5 h-2.5 rounded-full bg-amber-500/30" />
-                                                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/40" />
+                                                <div className="w-2.5 h-2.5 rounded-full bg-rose-500/40" />
                                             </div>
                                         </div>
                                         <div className="code-block relative group/code">
-                                            <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500/40 group-hover/code:bg-indigo-500 transition-colors rounded-l-xl" />
+                                            <div className="absolute top-0 left-0 w-1 h-full bg-orange-500/40 group-hover/code:bg-orange-500 transition-colors rounded-l-xl" />
                                             <pre className="pl-4">
                                                 <code>{selectedBadge.code}</code>
                                             </pre>
@@ -519,13 +475,13 @@ export default function SkillBadges() {
 
                                     {/* Verification Sequence */}
                                     <div className="metric-cell p-5">
-                                        <div className="text-[8px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-4 flex items-center gap-2">
+                                        <div className="text-[8px] font-black uppercase tracking-[0.3em] text-rose-400 mb-4 flex items-center gap-2">
                                             <Fingerprint size={10} /> Credential Verification
                                         </div>
                                         <VerificationSequence isActive={verifying} />
 
                                         <div className="mt-5 pt-4 border-t border-white/5">
-                                            <div className="flex items-center gap-2 text-[9px] font-mono text-emerald-400">
+                                            <div className="flex items-center gap-2 text-[9px] font-mono text-rose-400">
                                                 <Lock size={10} />
                                                 <span>SHA-256 hash verified</span>
                                             </div>
@@ -541,13 +497,13 @@ export default function SkillBadges() {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1.2 }}
-                                    className="mt-8 flex items-start gap-4 p-5 rounded-2xl bg-indigo-500/5 border border-indigo-500/15"
+                                    className="mt-8 flex items-start gap-4 p-5 rounded-2xl bg-orange-500/5 border border-orange-500/15"
                                 >
-                                    <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400 shrink-0">
+                                    <div className="p-2 bg-orange-500/20 rounded-lg text-orange-400 shrink-0">
                                         <Shield size={16} />
                                     </div>
-                                    <p className="text-[11px] text-slate-400 leading-relaxed">
-                                        "This credential validates production-grade expertise in designing, building, and deploying {selectedBadge.title.toLowerCase().includes('bert') ? 'transformer-based NLP systems' : selectedBadge.title.toLowerCase().includes('mlops') ? 'end-to-end ML pipelines for generative AI' : 'enterprise-scale machine learning solutions'} using Google Cloud's industry-standard infrastructure."
+                                    <p className="text-[11px] text-slate-400 leading-relaxed uppercase tracking-tight font-bold">
+                                        "Credential authenticated via secure handshake. This validates applied expertise in {selectedBadge.title.toLowerCase()} for industrial-grade systems."
                                     </p>
                                 </motion.div>
 

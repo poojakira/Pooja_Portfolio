@@ -61,7 +61,7 @@ export default function NeuralBackground() {
             }
 
             draw() {
-                ctx.fillStyle = "rgba(99, 102, 241, 0.4)";
+                ctx.fillStyle = "rgba(249, 115, 22, 0.4)";
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -88,7 +88,7 @@ export default function NeuralBackground() {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < connectionDistance) {
-                        ctx.strokeStyle = `rgba(99, 102, 241, ${1 - distance / connectionDistance})`;
+                        ctx.strokeStyle = `rgba(249, 115, 22, ${1 - distance / connectionDistance})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);

@@ -63,16 +63,16 @@ const AIBot = () => {
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                        className="w-80 md:w-96 h-[500px] glass-card flex flex-col overflow-hidden border-indigo-500/30 bg-slate-950/90 shadow-2xl mb-4"
+                        className="w-80 md:w-96 h-[500px] glass-card flex flex-col overflow-hidden border-orange-500/30 bg-slate-950/90 shadow-2xl mb-4"
                     >
                         {/* Header */}
-                        <div className="p-4 border-b border-white/5 bg-indigo-500/10 flex justify-between items-center">
+                        <div className="p-4 border-b border-white/5 bg-orange-500/10 flex justify-between items-center">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400">
+                                <div className="p-2 rounded-lg bg-orange-500/20 text-orange-400">
                                     <Bot size={18} />
                                 </div>
                                 <div>
-                                    <div className="text-[10px] font-black uppercase tracking-widest text-indigo-400">Gemini_System</div>
+                                    <div className="text-[10px] font-black uppercase tracking-widest text-orange-400">Gemini_System</div>
                                     <div className="text-[9px] text-slate-500 font-bold uppercase">Technical Assistant Online</div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@ const AIBot = () => {
                                 <button
                                     onClick={() => setPlainMode(!plainMode)}
                                     title={plainMode ? "Switch to Standard Mode" : "Switch to Plain Mode"}
-                                    className={`p-2 rounded-lg transition-all ${plainMode ? "bg-indigo-500/20 text-indigo-400" : "text-slate-500 hover:text-white"}`}
+                                    className={`p-2 rounded-lg transition-all ${plainMode ? "bg-orange-500/20 text-orange-400" : "text-slate-500 hover:text-white"}`}
                                 >
                                     <Sparkles size={16} className={plainMode ? "opacity-30" : "opacity-100"} />
                                 </button>
@@ -101,12 +101,12 @@ const AIBot = () => {
                             {messages.map((msg, i) => (
                                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                                     <div className={`flex gap-3 max-w-[85%] ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
-                                        <div className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${msg.role === "user" ? "bg-slate-800 text-slate-400" : "bg-indigo-500/20 text-indigo-400"
+                                        <div className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${msg.role === "user" ? "bg-slate-800 text-slate-400" : "bg-orange-500/20 text-orange-400"
                                             }`}>
                                             {msg.role === "user" ? <User size={14} /> : <Sparkles size={14} />}
                                         </div>
                                         <div className={`p-3 rounded-2xl text-[13px] leading-relaxed ${msg.role === "user"
-                                            ? "bg-indigo-600 text-white rounded-tr-none"
+                                            ? "bg-orange-600 text-white rounded-tr-none"
                                             : "bg-white/5 text-slate-300 border border-white/5 rounded-tl-none"
                                             }`}>
                                             {msg.content}
@@ -128,7 +128,7 @@ const AIBot = () => {
                                         <button
                                             key={q}
                                             onClick={() => { setInput(q); }}
-                                            className="text-left px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-[11px] text-slate-400 hover:text-white hover:border-indigo-500/30 hover:bg-indigo-500/5 transition-all w-fit"
+                                            className="text-left px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-[11px] text-slate-400 hover:text-white hover:border-orange-500/30 hover:bg-orange-500/5 transition-all w-fit"
                                         >
                                             {q}
                                         </button>
@@ -139,13 +139,13 @@ const AIBot = () => {
                             {isTyping && (
                                 <div className="flex justify-start">
                                     <div className="flex gap-3">
-                                        <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                                        <div className="w-8 h-8 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center">
                                             <Sparkles size={14} className="animate-pulse" />
                                         </div>
                                         <div className="bg-white/5 p-3 rounded-2xl border border-white/5 flex gap-1 items-center">
-                                            <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                                            <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                                            <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce" />
+                                            <div className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                                            <div className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                                            <div className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-bounce" />
                                         </div>
                                     </div>
                                 </div>
@@ -161,12 +161,12 @@ const AIBot = () => {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                                     placeholder="Ask Gemini about ML missions..."
-                                    className="w-full bg-slate-900/50 border border-white/5 rounded-xl py-3 pl-4 pr-12 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                                    className="w-full bg-slate-900/50 border border-white/5 rounded-xl py-3 pl-4 pr-12 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-orange-500/50 transition-colors"
                                 />
                                 <button
                                     onClick={handleSend}
                                     disabled={!input.trim()}
-                                    className="absolute right-2 top-1.5 p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors disabled:opacity-50 disabled:grayscale"
+                                    className="absolute right-2 top-1.5 p-2 bg-orange-600 text-white rounded-lg hover:bg-orange-500 transition-colors disabled:opacity-50 disabled:grayscale"
                                 >
                                     <Send size={16} />
                                 </button>
@@ -181,8 +181,8 @@ const AIBot = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
                 className={`w-14 h-14 rounded-2xl flex items-center justify-center border shadow-2xl transition-all duration-500 ${isOpen
-                    ? "bg-indigo-600 border-indigo-400/50 text-white shadow-indigo-500/40"
-                    : "bg-slate-950 border-white/10 text-indigo-400 hover:text-white"
+                    ? "bg-orange-600 border-orange-400/50 text-white shadow-orange-500/40"
+                    : "bg-slate-950 border-white/10 text-orange-400 hover:text-white"
                     }`}
             >
                 {isOpen ? <X size={24} /> : <MessageSquare size={24} />}

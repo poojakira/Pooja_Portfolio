@@ -24,6 +24,8 @@ import AILogicHUD from "./components/AILogicHUD";
 import CircuitryBackground from "./components/CircuitryBackground";
 import { Terminal, Cpu, Shield, Wifi, Clock, Activity, Database } from "lucide-react";
 
+import robotBg from "./assets/robot_sunset_sky_background.png";
+
 export default function App() {
   const [isBooted, setIsBooted] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -48,7 +50,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen selection:bg-indigo-500/30 font-sans bg-[#030712]">
+    <div className="relative min-h-screen selection:bg-orange-500/30 font-sans bg-black">
       {/* Boot Screen handles the initialization and Browser Audio Unlock */}
       <AnimatePresence>
         {!isBooted && (
@@ -59,6 +61,10 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      <div className="fixed inset-0 -z-20 pointer-events-none">
+          <img src={robotBg} alt="Sunset Background" className="w-full h-full object-cover opacity-60" />
+      </div>
+
       {/* Global Overlay Elements - Outside of the blur/opacity div */}
       <NeuralBackground />
       <LiquidCursor />
@@ -68,17 +74,16 @@ export default function App() {
 
       <div className={`transition-all duration-1000 ${isBooted ? 'opacity-100 blur-0' : 'opacity-0 blur-xl pointer-events-none'}`}>
         {/* Global Progress HUD */}
-        <motion.div className="fixed top-0 left-0 right-0 h-1 bg-indigo-500 origin-left z-[100]" style={{ scaleX }} />
+        <motion.div className="fixed top-0 left-0 right-0 h-1 bg-orange-500 origin-left z-[100]" style={{ scaleX }} />
 
         {/* Background Visual Stack */}
         <CircuitryBackground />
         <div className="noise-overlay" />
         <div className="vignette" />
         <div className="scanline" />
-        <div className="fixed inset-0 -z-10 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-[100vh] bg-gradient-to-b from-indigo-950/20 via-[#030712] to-black" />
-          <div className="absolute top-[20%] right-[10%] w-[50%] h-[50%] bg-indigo-600/5 rounded-full blur-[150px] animate-pulse-slow" />
-          <div className="absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-t from-indigo-900/10 to-transparent" />
+        <div className="fixed inset-0 -z-10 pointer-events-none mix-blend-overlay">
+          <div className="absolute top-0 left-0 w-full h-[100vh] bg-gradient-to-b from-orange-400/10 via-transparent to-black" />
+          <div className="absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-t from-black to-transparent object-cover" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 py-8">
@@ -87,19 +92,19 @@ export default function App() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="flex items-center gap-6">
                 <motion.div initial={{ rotate: 180, scale: 0 }} animate={{ rotate: 0, scale: 1 }} className="relative group">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-900 flex items-center justify-center p-3 shadow-2xl group-hover:shadow-indigo-500/50 transition-all duration-700">
+                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-900 flex items-center justify-center p-3 shadow-2xl group-hover:shadow-orange-500/50 transition-all duration-700">
                     <Cpu className="text-white w-full h-full" />
                   </div>
                   <div className="absolute -top-1 -right-1 flex h-4 w-4">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-[#030712]" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-4 w-4 bg-rose-500 border-2 border-[#0f0406]" />
                   </div>
                 </motion.div>
 
                 <div>
-                  <h1 className="text-2xl font-black text-white tracking-tight">POOJA KIRAN BHARADWAJ</h1>
-                  <div className="flex items-center gap-3 font-mono text-[9px] font-bold text-indigo-400 tracking-[0.2em] uppercase">
-                    <span>Machine Learning Engineer</span>
+                  <h1 className="text-2xl font-black text-white tracking-tight">POOJA KIRAN</h1>
+                  <div className="flex items-center gap-3 font-mono text-[9px] font-bold text-orange-400 tracking-[0.2em] uppercase">
+                    <span>ML / MLOps Engineer</span>
                     <span className="text-slate-800">|</span>
                     <span>SYSTEM_READY</span>
                   </div>
@@ -123,12 +128,12 @@ export default function App() {
               {/* Global HUD Widgets — LIVE */}
               <div className="hidden xl:flex items-center gap-6 font-mono text-[9px] text-slate-500">
                 <div className="flex items-center gap-2">
-                  <Clock size={12} className="text-indigo-400" />
+                  <Clock size={12} className="text-orange-400" />
                   <span>UTC: {time}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Wifi size={12} className="text-emerald-400 animate-pulse" />
-                  <span className="text-emerald-500">LINK: STABLE</span>
+                  <Wifi size={12} className="text-rose-400 animate-pulse" />
+                  <span className="text-rose-500">LINK: STABLE</span>
                 </div>
                 <div className="flex items-center gap-2 border-l border-white/10 pl-6">
                   <Database size={12} className="text-amber-400" />
@@ -142,7 +147,7 @@ export default function App() {
                   </motion.span>
                 </div>
                 <div className="flex items-center gap-2 border-l border-white/10 pl-6">
-                  <Activity size={12} className="text-indigo-400" />
+                  <Activity size={12} className="text-orange-400" />
                   <motion.span
                     key={`inf-${Math.floor(Date.now() / 2000)}`}
                     initial={{ opacity: 0.5 }}
@@ -178,24 +183,24 @@ export default function App() {
               <Contact />
 
               {/* Global System Widget */}
-              <div className="glass-card p-6 border-l-4 border-indigo-500">
+              <div className="glass-card p-6 border-l-4 border-orange-500">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-[10px] font-black uppercase text-slate-500">Node_Architecture</span>
-                  <div className="p-1 rounded bg-indigo-500/10 text-indigo-400 animate-pulse">
+                  <div className="p-1 rounded bg-orange-500/10 text-orange-400 animate-pulse">
                     <Shield size={12} />
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex justify-between text-[9px] font-mono mb-1">
                     <span className="text-slate-500">ENCRYPTION:</span>
-                    <span className="text-emerald-400">ACTIVE</span>
+                    <span className="text-rose-400">ACTIVE</span>
                   </div>
                   <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: "94%" }}
                       transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-                      className="h-full bg-indigo-500/60 shadow-[0_0_10px_rgba(79,70,229,0.5)]"
+                      className="h-full bg-orange-500/60 shadow-[0_0_10px_rgba(79,70,229,0.5)]"
                     />
                   </div>
                 </div>
@@ -206,7 +211,7 @@ export default function App() {
           <footer className="mt-40 pt-10 border-t border-white/5 pb-20">
             <div className="flex flex-col md:flex-row justify-between items-center gap-10">
               <div className="flex items-center gap-4 text-[10px] font-mono text-slate-600">
-                <span className="text-indigo-500 font-black">PKB_OS</span>
+                <span className="text-orange-500 font-black">PKB_OS</span>
                 <span>VERSION_2026.4.2</span>
                 <div className="flex gap-1">
                   {[...Array(4)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-slate-800" />)}
@@ -214,14 +219,14 @@ export default function App() {
               </div>
 
               <div className="flex gap-8 text-[9px] font-bold text-slate-500 uppercase tracking-widest">
-                <a href="#" className="hover:text-indigo-400 transition-colors">Documentation</a>
-                <a href="#" className="hover:text-emerald-400 transition-colors">Infrastructure</a>
+                <a href="#" className="hover:text-orange-400 transition-colors">Documentation</a>
+                <a href="#" className="hover:text-rose-400 transition-colors">Infrastructure</a>
                 <a href="#" className="hover:text-amber-400 transition-colors">Access_Control</a>
               </div>
 
               <div className="flex items-center gap-3 text-slate-700">
                 <Terminal size={14} />
-                <span className="text-[9px] font-mono uppercase">Status: ML_Engineer_Online</span>
+                <span className="text-[9px] font-mono uppercase">Status: MLOps_Engineer_Online</span>
               </div>
             </div>
           </footer>
