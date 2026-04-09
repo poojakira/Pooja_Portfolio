@@ -104,7 +104,7 @@ export default function App() {
                 <div>
                   <h1 className="text-2xl font-black text-white tracking-tight">POOJA KIRAN</h1>
                   <div className="flex items-center gap-3 font-mono text-[9px] font-bold text-orange-400 tracking-[0.2em] uppercase">
-                    <span>ML / MLOps Engineer</span>
+                    <span>Machine Learning Engineer</span>
                     <span className="text-slate-800">|</span>
                     <span>SYSTEM_READY</span>
                   </div>

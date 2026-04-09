@@ -9,7 +9,7 @@ export default function Hero() {
     const y1 = useTransform(scrollY, [0, 600], [0, 80]);
     const y2 = useTransform(scrollY, [0, 600], [0, -80]);
     const [typeText, setTypeText] = useState("");
-    const fullText = "ML / MLOps Engineer";
+    const fullText = "Machine Learning Engineer";
 
     useEffect(() => {
         let i = 0;
@@ -91,9 +91,6 @@ export default function Hero() {
 
                     {/* Main Heading */}
                     <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.88]">
-                        <span className="gradient-text block mb-2">
-                            Pioneering
-                        </span>
                         <span className="relative">
                             <span className="gradient-text-orange">
                                 {typeText}
