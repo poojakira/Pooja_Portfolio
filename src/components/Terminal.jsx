@@ -24,7 +24,7 @@ const COMMANDS = {
 
     whoami: `┌─ IDENTITY ─────────────────────────────────────┐
 │  Name:   Pooja Kiran                           │
-│  Role:   Machine Learning Engineer             │
+│  Role:   Graduate MLOps Engineer               │
 │  Focus:  Telemetry, Anomaly Detection, GPU Opt │
 │  School: ASU — M.S. IT Security (2024-2026)    │
 │  Status: Actively seeking ML/MLOps roles       │
@@ -125,7 +125,7 @@ Published at IEEE INDICON 2023`,
      ██████╗ ██╗  ██╗██████╗         Pooja Kiran
      ██╔══██╗██║ ██╔╝██╔══██╗        ─────────────────────
      ██████╔╝█████╔╝ ██████╔╝        OS:     PKB_OS v2026.5.0
-     ██╔═══╝ ██╔═██╗ ██╔══██╗        Role:   Machine Learning Engineer
+     ██╔═══╝ ██╔═██╗ ██╔══██╗        Role:   Graduate MLOps Engineer
      ██║     ██║  ╚██╗██████╔╝        Shell:  MISSION_CTRL v5
      ╚═╝     ╚═╝   ╚═╝╚═════╝         GPU:    RTX (Optimized)
                                        Projects: 3 Deployed

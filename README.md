@@ -1,4 +1,4 @@
-# Pooja Kiran Bharadwaj // ML Engineering Portfolio 👔
+# Pooja Kiran Bharadwaj // MLOps Engineering Portfolio 👔
 
 A high-fidelity, interactive dashboard showcasing professional expertise in **Applied Machine Learning**, **Cloud Infrastructure**, and **Mission-Critical Systems**. Designed specifically for technical recruiters and hiring managers.
 
@@ -43,7 +43,7 @@ This project is optimized for world-class deployment platforms:
 2.  **GitHub Pages**: Add the `homepage` and `deploy` scripts to `package.json` for seamless hosting.
 
 ## 💼 Recruitment Mission
-This portfolio is mission-ready for your transitions into **Machine Learning Engineering** and **Applied AI** roles. It emphasizes results, technical precision, and professional aesthetics.
+This portfolio is mission-ready for your transitions into **MLOps Engineering** and **Applied AI** roles. It emphasizes results, technical precision, and professional aesthetics.
 
 ---
 **Pooja Kiran Bharadwaj** // [poojakiranbharadwaj@gmail.com](mailto:poojakiranbharadwaj@gmail.com)

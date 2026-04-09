@@ -9,7 +9,7 @@ export default function Hero() {
     const y1 = useTransform(scrollY, [0, 600], [0, 80]);
     const y2 = useTransform(scrollY, [0, 600], [0, -80]);
     const [typeText, setTypeText] = useState("");
-    const fullText = "Machine Learning Engineer";
+    const fullText = "Graduate MLOps Engineer";
 
     useEffect(() => {
         let i = 0;
