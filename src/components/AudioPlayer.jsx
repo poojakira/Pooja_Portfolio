@@ -126,18 +126,18 @@ const AudioPlayer = forwardRef((props, ref) => {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 50 }}
-                        className="glass-card flex items-center gap-4 pl-5 pr-2 py-2 bg-indigo-500/10 border-indigo-500/30 backdrop-blur-3xl shadow-2xl"
+                        className="glass-card flex items-center gap-4 pl-5 pr-2 py-2 bg-orange-500/10 border-orange-500/30 backdrop-blur-3xl shadow-2xl"
                     >
                         <div className="flex items-center gap-3">
-                            <Headphones size={16} className="text-indigo-400 animate-pulse" />
+                            <Headphones size={16} className="text-orange-400 animate-pulse" />
                             <div className="flex flex-col text-left">
                                 <span className="text-[10px] font-black uppercase tracking-widest text-white">Audio Sync Ready</span>
-                                <span className="text-[9px] text-indigo-300/70 font-bold uppercase">Procedural Synthesis Online</span>
+                                <span className="text-[9px] text-orange-300/70 font-bold uppercase">Procedural Synthesis Online</span>
                             </div>
                         </div>
                         <button
                             onClick={attemptPlay}
-                            className="bg-indigo-600 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-white flex items-center gap-2 shadow-lg"
+                            className="bg-orange-600 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-white flex items-center gap-2 shadow-lg"
                         >
                             <Play size={12} fill="currentColor" />
                             Turn On
@@ -151,7 +151,7 @@ const AudioPlayer = forwardRef((props, ref) => {
                 whileTap={{ scale: 0.9 }}
                 onClick={togglePlay}
                 className={`group w-14 h-14 rounded-2xl flex flex-col items-center justify-center transition-all duration-500 border shadow-2xl ${isPlaying
-                        ? "bg-indigo-600 border-indigo-400/50 text-white shadow-indigo-500/40"
+                        ? "bg-orange-600 border-orange-400/50 text-white shadow-orange-500/40"
                         : "bg-slate-950 border-white/10 text-slate-500 hover:text-white"
                     }`}
             >

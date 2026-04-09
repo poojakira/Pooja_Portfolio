@@ -47,18 +47,18 @@ export default function LiquidCursor() {
     return (
         <>
             <motion.div
-                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-indigo-500/50 pointer-events-none z-[9999] hidden md:block"
+                className="fixed top-0 left-0 w-8 h-8 rounded-full border border-orange-500/50 pointer-events-none z-[9999] hidden md:block"
                 style={{
                     translateX: cursorXSpring,
                     translateY: cursorYSpring,
                     x: "-50%",
                     y: "-50%",
                     scale: isPointer ? 1.5 : 1,
-                    backgroundColor: isPointer ? "rgba(79, 70, 229, 0.1)" : "transparent",
+                    backgroundColor: isPointer ? "rgba(234, 88, 12, 0.1)" : "transparent",
                 }}
             />
             <motion.div
-                className="fixed top-0 left-0 w-2 h-2 bg-indigo-500 rounded-full pointer-events-none z-[9999] hidden md:block"
+                className="fixed top-0 left-0 w-2 h-2 bg-orange-500 rounded-full pointer-events-none z-[9999] hidden md:block"
                 style={{
                     x: cursorX,
                     y: cursorY,
@@ -75,7 +75,7 @@ export default function LiquidCursor() {
                     y: cursorY,
                     translateX: "-50%",
                     translateY: "-50%",
-                    background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%)",
                     mixBlendMode: "screen",
                 }}
             />

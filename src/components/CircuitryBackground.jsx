@@ -16,17 +16,17 @@ export default function CircuitryBackground() {
                     {/* Data Lines */}
                     <path
                         d="M 0 100 L 200 100 M 100 0 L 100 200"
-                        stroke="rgba(99, 102, 241, 0.2)"
+                        stroke="rgba(249, 115, 22, 0.2)"
                         strokeWidth="0.5"
                         fill="none"
                     />
                     {/* Junction Dots */}
-                    <circle cx="100" cy="100" r="1.5" fill="rgba(99, 102, 241, 0.4)" />
+                    <circle cx="100" cy="100" r="1.5" fill="rgba(249, 115, 22, 0.4)" />
 
                     {/* Pulsing Data Packets */}
                     <motion.circle
                         r="1"
-                        fill="#6366f1"
+                        fill="#f97316"
                         animate={{
                             cx: [0, 200],
                             opacity: [0, 1, 0]
@@ -39,7 +39,7 @@ export default function CircuitryBackground() {
                     />
                     <motion.circle
                         r="1"
-                        fill="#6366f1"
+                        fill="#f97316"
                         animate={{
                             cy: [0, 200],
                             opacity: [0, 1, 0]

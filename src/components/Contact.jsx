@@ -18,10 +18,10 @@ export default function Contact() {
     };
 
     const links = [
-        { icon: <Mail size={18} />, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, accent: "bg-indigo-500", borderAccent: "border-indigo-500/30" },
+        { icon: <Mail size={18} />, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, accent: "bg-orange-500", borderAccent: "border-orange-500/30" },
         { icon: <Linkedin size={18} />, label: "LinkedIn", value: "poojakiran", href: CONTACT.linkedin, accent: "bg-blue-500", borderAccent: "border-blue-500/30" },
         { icon: <Github size={18} />, label: "GitHub", value: "poojakira", href: CONTACT.github, accent: "bg-slate-500", borderAccent: "border-slate-500/30" },
-        { icon: <MapPin size={18} />, label: "Location", value: CONTACT.location, href: null, accent: "bg-emerald-500", borderAccent: "border-emerald-500/30" }
+        { icon: <MapPin size={18} />, label: "Location", value: CONTACT.location, href: null, accent: "bg-rose-500", borderAccent: "border-rose-500/30" }
     ];
 
     return (
@@ -33,16 +33,16 @@ export default function Contact() {
                 className="glow-card relative overflow-hidden"
             >
                 {/* Top accent line */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/60 to-transparent" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
 
                 {/* Background decorations */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-[60px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/5 rounded-full blur-[80px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-rose-500/5 rounded-full blur-[60px] pointer-events-none" />
 
                 <div className="p-8">
                     {/* Header */}
                     <div className="flex items-center gap-3 mb-8">
-                        <div className="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                        <div className="p-3 rounded-2xl bg-orange-500/10 text-orange-400 border border-orange-500/20">
                             <MessageSquare size={20} />
                         </div>
                         <div>
@@ -68,14 +68,14 @@ export default function Contact() {
                                         rel="noopener noreferrer"
                                         className={`flex items-center gap-4 p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:${link.borderAccent} hover:bg-white/[0.05] transition-all group`}
                                     >
-                                        <div className={`p-2.5 rounded-xl bg-white/5 text-slate-400 group-hover:text-white border border-white/5 group-hover:border-indigo-500/20 transition-all`}>
+                                        <div className={`p-2.5 rounded-xl bg-white/5 text-slate-400 group-hover:text-white border border-white/5 group-hover:border-orange-500/20 transition-all`}>
                                             {link.icon}
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="text-[8px] font-black text-slate-600 uppercase tracking-[0.3em] mb-0.5">{link.label}</div>
                                             <div className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors truncate">{link.value}</div>
                                         </div>
-                                        <ArrowUpRight size={14} className="text-slate-700 group-hover:text-indigo-400 transition-colors" />
+                                        <ArrowUpRight size={14} className="text-slate-700 group-hover:text-orange-400 transition-colors" />
                                     </a>
                                 ) : (
                                     <div className="flex items-center gap-4 p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
@@ -128,7 +128,7 @@ export default function Contact() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -10 }}
-                                    className="w-full py-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-sm flex items-center justify-center gap-3"
+                                    className="w-full py-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 font-bold text-sm flex items-center justify-center gap-3"
                                 >
                                     <Check size={16} />
                                     <span className="uppercase tracking-widest text-[11px] font-black">Secure Signal Sent</span>

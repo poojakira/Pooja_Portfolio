@@ -7,22 +7,19 @@ export default function Education() {
     const degrees = EDUCATION.map((edu, i) => ({
         ...edu,
         status: i === 0 ? "ENROLLED" : "GRADUATED",
-        statusColor: i === 0 ? "indigo" : "emerald",
+        statusColor: i === 0 ? "orange" : "rose",
         icon: i === 0 ? <GraduationCap size={26} /> : <Library size={26} />,
         details: i === 0
-            ? "Core focus: Deep Learning for Security, AI-Driven Threat Detection, Network Defense, Risk Governance, and Enterprise Compliance."
-            : "Specialization in Intelligent Systems, Cloud Computing, and IoT. Published 2 papers (IEEE INDICON + IOSR Journal).",
+            ? "Core focus: ML Systems Security, AI-Driven Threat Detection, Telemetry Pipeline Design, and Enterprise Compliance. Certifications: AWS Cloud Security Foundations, Technology Innovation Lab (Honeywell Aerospace & ASU)."
+            : "Specialization in Computer Science with focus on Intelligent Systems, IoT, and Reinforcement Learning. Co-authored and published at IEEE INDICON 2023.",
         highlights: i === 0
-            ? ["AI Security Research", "SDLC Mentorship", "GPA: 3.85"]
-            : ["IEEE Published", "Top of Cohort", "2 Research Papers"]
+            ? ["AWS Certified", "Honeywell Innovation Lab", "ML Security"]
+            : ["IEEE Published", "Q-Learning Research", "IoT Systems"]
     }));
 
     const certifications = [
-        { name: "Transformer Models & BERT", issuer: "Google Cloud", color: "blue" },
-        { name: "MLOps for Generative AI", issuer: "Google Cloud", color: "indigo" },
-        { name: "AWS Cloud Architecting", issuer: "Amazon Web Services", color: "amber" },
-        { name: "AWS Cloud Security", issuer: "Amazon Web Services", color: "amber" },
-        { name: "Honeywell Tech Innovation Lab", issuer: "Honeywell", color: "emerald" }
+        { name: "AWS Cloud Security Foundations", issuer: "Amazon Web Services", color: "amber" },
+        { name: "Technology Innovation Lab", issuer: "Honeywell Aerospace & ASU", color: "rose" }
     ];
 
     return (
@@ -30,7 +27,7 @@ export default function Education() {
             <div className="flex items-end justify-between px-2">
                 <div className="space-y-2">
                     <div className="flex items-center gap-3">
-                        <div className="h-px w-10 bg-gradient-to-r from-indigo-500 to-transparent" />
+                        <div className="h-px w-10 bg-gradient-to-r from-orange-500 to-transparent" />
                         <h2 className="section-label">Academic_Roots</h2>
                     </div>
                     <h3 className="text-2xl font-black tracking-tight gradient-text">Education & Synthesis</h3>
@@ -60,7 +57,7 @@ export default function Education() {
                                 {/* Top row */}
                                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                                     <div>
-                                        <h4 className="text-xl font-black text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+                                        <h4 className="text-xl font-black text-white tracking-tight group-hover:text-orange-300 transition-colors">
                                             {edu.school}
                                         </h4>
                                         <div className="flex items-center gap-2 mt-1 text-[11px] text-slate-500">
@@ -79,7 +76,7 @@ export default function Education() {
                                 </div>
 
                                 {/* Degree */}
-                                <p className="text-sm font-bold text-indigo-400/90 uppercase tracking-wide">
+                                <p className="text-sm font-bold text-orange-400/90 uppercase tracking-wide">
                                     {edu.degree}
                                 </p>
 
@@ -91,7 +88,7 @@ export default function Education() {
                                 {/* Highlight badges */}
                                 <div className="flex flex-wrap gap-2 pt-2">
                                     {edu.highlights.map(h => (
-                                        <span key={h} className="pill-indigo">
+                                        <span key={h} className="pill-orange">
                                             {h}
                                         </span>
                                     ))}
@@ -128,7 +125,7 @@ export default function Education() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.05 }}
-                                className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-indigo-500/20 hover:bg-white/[0.04] transition-all group/cert cursor-default"
+                                className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-orange-500/20 hover:bg-white/[0.04] transition-all group/cert cursor-default"
                             >
                                 <div className={`w-2 h-2 rounded-full bg-${cert.color}-500 shadow-[0_0_8px_rgba(99,102,241,0.3)] group-hover/cert:shadow-[0_0_12px_rgba(99,102,241,0.6)] transition-shadow`} />
                                 <div className="flex-1 min-w-0">

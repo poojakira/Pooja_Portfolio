@@ -12,13 +12,13 @@ export default function StatusTicker() {
     ];
 
     return (
-        <div className="fixed bottom-0 left-0 w-full bg-indigo-600/10 backdrop-blur-md border-t border-indigo-500/20 py-1 overflow-hidden z-[90]">
+        <div className="fixed bottom-0 left-0 w-full bg-orange-600/10 backdrop-blur-md border-t border-orange-500/20 py-1 overflow-hidden z-[90]">
             <div className="flex whitespace-nowrap animate-ticker">
                 {[...Array(20)].map((_, i) => (
                     <div key={i} className="flex gap-8 px-4 items-center">
                         {alerts.map((alert, idx) => (
                             <React.Fragment key={idx}>
-                                <span className="text-[8px] font-mono font-black text-indigo-400/60 uppercase tracking-widest">
+                                <span className="text-[8px] font-mono font-black text-orange-400/60 uppercase tracking-widest">
                                     {alert}
                                 </span>
                                 <div className="w-1 h-1 rounded-full bg-slate-800" />
@@ -27,7 +27,7 @@ export default function StatusTicker() {
                     </div>
                 ))}
             </div>
-            <style jsx>{`
+            <style>{`
         .animate-ticker {
           display: flex;
           width: fit-content;

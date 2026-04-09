@@ -29,13 +29,13 @@ export default function SystemMetrics() {
     const getTemperatureColor = (t) => {
         if (t > 75) return "text-rose-400";
         if (t > 65) return "text-amber-400";
-        return "text-emerald-400";
+        return "text-rose-400";
     };
 
     const getGPUColor = (g) => {
         if (g > 80) return "from-rose-600 to-rose-400";
         if (g > 60) return "from-amber-600 to-amber-400";
-        return "from-indigo-600 to-indigo-400";
+        return "from-orange-600 to-orange-400";
     };
 
     return (
@@ -52,8 +52,8 @@ export default function SystemMetrics() {
                         <p className="text-[8px] text-slate-500 uppercase tracking-[0.3em] mt-0.5">Hardware Telemetry</p>
                     </div>
                 </div>
-                <div className="text-[8px] font-mono text-emerald-500 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="text-[8px] font-mono text-rose-500 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
                     {stats.uptime}%
                 </div>
             </div>
@@ -62,7 +62,7 @@ export default function SystemMetrics() {
             <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="metric-cell">
                     <div className="flex items-center gap-1.5 text-[7px] font-mono text-slate-500 uppercase mb-2">
-                        <Cpu size={9} className="text-indigo-400" /> GPU Load
+                        <Cpu size={9} className="text-orange-400" /> GPU Load
                     </div>
                     <div className="text-2xl font-black tracking-tighter font-mono text-white">{stats.gpu.toFixed(0)}%</div>
                     <div className="progress-bar mt-2">
@@ -92,7 +92,7 @@ export default function SystemMetrics() {
             <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="metric-cell text-center">
                     <div className="text-[7px] font-black text-slate-600 uppercase tracking-widest mb-1">Throughput</div>
-                    <div className="text-xl font-mono font-black text-indigo-400">
+                    <div className="text-xl font-mono font-black text-orange-400">
                         {stats.tps}<span className="text-[9px] text-slate-500 ml-1">TX/s</span>
                     </div>
                 </div>
@@ -108,14 +108,14 @@ export default function SystemMetrics() {
             <div className="metric-cell mb-4">
                 <div className="flex items-center justify-between mb-1">
                     <span className="text-[7px] font-mono text-slate-500 uppercase flex items-center gap-1">
-                        <HardDrive size={9} className="text-emerald-400" /> HBM Bandwidth
+                        <HardDrive size={9} className="text-rose-400" /> HBM Bandwidth
                     </span>
-                    <span className="text-[9px] font-mono font-bold text-emerald-400">{stats.bandwidth.toFixed(1)} TB/s</span>
+                    <span className="text-[9px] font-mono font-bold text-rose-400">{stats.bandwidth.toFixed(1)} TB/s</span>
                 </div>
                 <div className="progress-bar">
                     <motion.div
                         animate={{ width: `${(stats.bandwidth / 3.5) * 100}%` }}
-                        className="h-full rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.3)]"
+                        className="h-full rounded-full bg-gradient-to-r from-rose-600 to-rose-400 shadow-[0_0_8px_rgba(52,211,153,0.3)]"
                     />
                 </div>
             </div>

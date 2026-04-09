@@ -66,10 +66,10 @@ export default function GitHubHeatmap() {
     }, [data]);
 
     const getLevel = (commits) => {
-        if (commits > 8) return "bg-indigo-400 shadow-[0_0_6px_rgba(99,102,241,0.5)]";
-        if (commits > 5) return "bg-indigo-500/80";
-        if (commits > 2) return "bg-indigo-600/60";
-        if (commits > 0) return "bg-indigo-700/40";
+        if (commits > 8) return "bg-orange-400 shadow-[0_0_6px_rgba(99,102,241,0.5)]";
+        if (commits > 5) return "bg-orange-500/80";
+        if (commits > 2) return "bg-orange-600/60";
+        if (commits > 0) return "bg-orange-700/40";
         return "bg-slate-800/40";
     };
 
@@ -81,11 +81,11 @@ export default function GitHubHeatmap() {
 
     return (
         <section className="glow-card p-8 relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-24 h-24 bg-indigo-500/5 rounded-full blur-[60px] pointer-events-none" />
+            <div className="absolute top-0 left-0 w-24 h-24 bg-orange-500/5 rounded-full blur-[60px] pointer-events-none" />
 
             <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                    <div className="p-2.5 rounded-xl bg-orange-500/10 text-orange-400 border border-orange-500/20">
                         <GitBranch size={18} />
                     </div>
                     <div>
@@ -93,20 +93,20 @@ export default function GitHubHeatmap() {
                         <p className="text-[8px] text-slate-500 uppercase tracking-[0.3em] mt-0.5">52-Week Contribution Map</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[8px] font-black text-emerald-400 uppercase tracking-wider">Live</span>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
+                    <span className="text-[8px] font-black text-rose-400 uppercase tracking-wider">Live</span>
                 </div>
             </div>
 
             {/* Live Stats Row */}
             <div className="grid grid-cols-3 gap-2 mb-5">
                 <div className="metric-cell text-center py-2">
-                    <div className="text-lg font-black text-indigo-400 font-mono">{totalCommits}</div>
+                    <div className="text-lg font-black text-orange-400 font-mono">{totalCommits}</div>
                     <div className="text-[6px] font-black text-slate-600 uppercase tracking-widest">Commits</div>
                 </div>
                 <div className="metric-cell text-center py-2">
-                    <div className="text-lg font-black text-emerald-400 font-mono">{activeDays}</div>
+                    <div className="text-lg font-black text-rose-400 font-mono">{activeDays}</div>
                     <div className="text-[6px] font-black text-slate-600 uppercase tracking-widest">Active Days</div>
                 </div>
                 <div className="metric-cell text-center py-2">
@@ -129,7 +129,7 @@ export default function GitHubHeatmap() {
                                     onMouseEnter={(e) => handleMouseEnter(day, e)}
                                     onMouseLeave={() => setHoveredCell(null)}
                                     className={`w-2.5 h-2.5 rounded-[2px] ${getLevel(day.commits)} 
-                                        hover:ring-2 ring-indigo-400/60 hover:scale-150 
+                                        hover:ring-2 ring-orange-400/60 hover:scale-150 
                                         transition-all duration-200 cursor-pointer`}
                                 />
                             ))}
@@ -147,21 +147,21 @@ export default function GitHubHeatmap() {
                             className="fixed z-[500] pointer-events-none"
                             style={{ left: tooltipPos.x - 40, top: tooltipPos.y - 90 }}
                         >
-                            <div className="bg-slate-900/95 backdrop-blur-xl border border-indigo-500/20 rounded-xl p-3 shadow-2xl min-w-[180px]">
+                            <div className="bg-slate-900/95 backdrop-blur-xl border border-orange-500/20 rounded-xl p-3 shadow-2xl min-w-[180px]">
                                 <div className="text-[9px] font-mono text-slate-400 mb-1">{hoveredCell.dayName} • {hoveredCell.date}</div>
                                 <div className="text-sm font-black text-white mb-1">
                                     {hoveredCell.commits > 0
-                                        ? <span className="flex items-center gap-1"><GitCommit size={12} className="text-indigo-400" /> {hoveredCell.commits} commits</span>
+                                        ? <span className="flex items-center gap-1"><GitCommit size={12} className="text-orange-400" /> {hoveredCell.commits} commits</span>
                                         : <span className="text-slate-600">No contributions</span>
                                     }
                                 </div>
                                 {hoveredCell.commits > 0 && (
                                     <>
                                         <div className="text-[9px] font-mono text-slate-500 flex items-center gap-2">
-                                            <span className="text-emerald-400 flex items-center gap-0.5"><Plus size={8} />{hoveredCell.lines}</span>
+                                            <span className="text-rose-400 flex items-center gap-0.5"><Plus size={8} />{hoveredCell.lines}</span>
                                             <span className="text-rose-400 flex items-center gap-0.5"><Minus size={8} />{Math.floor(hoveredCell.lines * 0.3)}</span>
                                         </div>
-                                        <div className="text-[8px] font-mono text-indigo-400/70 mt-1 truncate">{hoveredCell.message}</div>
+                                        <div className="text-[8px] font-mono text-orange-400/70 mt-1 truncate">{hoveredCell.message}</div>
                                     </>
                                 )}
                             </div>
@@ -176,10 +176,10 @@ export default function GitHubHeatmap() {
                     <span>Less</span>
                     <div className="flex gap-1">
                         <div className="w-2.5 h-2.5 rounded-[2px] bg-slate-800/40" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-indigo-700/40" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-indigo-600/60" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-indigo-500/80" />
-                        <div className="w-2.5 h-2.5 rounded-[2px] bg-indigo-400 shadow-[0_0_6px_rgba(99,102,241,0.5)]" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-orange-700/40" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-orange-600/60" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-orange-500/80" />
+                        <div className="w-2.5 h-2.5 rounded-[2px] bg-orange-400 shadow-[0_0_6px_rgba(99,102,241,0.5)]" />
                     </div>
                     <span>More</span>
                 </div>

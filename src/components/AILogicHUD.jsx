@@ -34,14 +34,14 @@ export default function AILogicHUD() {
     }, []);
 
     return (
-        <div className="glass-card p-6 border-l-4 border-indigo-500 overflow-hidden relative">
+        <div className="glass-card p-6 border-l-4 border-orange-500 overflow-hidden relative">
             <div className="absolute top-0 right-0 p-2 opacity-10">
-                <Brain size={48} className="text-indigo-400" />
+                <Brain size={48} className="text-orange-400" />
             </div>
 
             <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-2">
-                    <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+                    <div className="p-1.5 rounded-lg bg-orange-500/10 text-orange-400">
                         <Cpu size={14} />
                     </div>
                     <span className="text-[10px] font-black uppercase text-slate-500 tracking-widest">
@@ -54,7 +54,7 @@ export default function AILogicHUD() {
                             key={i}
                             animate={{ opacity: [0.3, 1, 0.3] }}
                             transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
-                            className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                            className="w-1.5 h-1.5 rounded-full bg-rose-500"
                         />
                     ))}
                 </div>
@@ -73,7 +73,7 @@ export default function AILogicHUD() {
                                 initial={{ opacity: 0, scale: 0.8, x: -10 }}
                                 animate={{ opacity: 1, scale: 1, x: 0 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
-                                className="text-[9px] px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20"
+                                className="text-[9px] px-2 py-0.5 rounded bg-orange-500/10 text-orange-300 border border-orange-500/20"
                             >
                                 {token.text}
                             </motion.span>
@@ -82,7 +82,7 @@ export default function AILogicHUD() {
                     <motion.span
                         animate={{ opacity: [0, 1] }}
                         transition={{ repeat: Infinity, duration: 0.5 }}
-                        className="w-1.5 h-3 bg-indigo-400 mt-0.5"
+                        className="w-1.5 h-3 bg-orange-400 mt-0.5"
                     />
                 </div>
             </div>
@@ -93,26 +93,26 @@ export default function AILogicHUD() {
                     <div>
                         <div className="flex justify-between text-[8px] font-mono mb-1">
                             <span className="text-slate-500 uppercase">Attention_Map</span>
-                            <span className="text-indigo-400">0.98</span>
+                            <span className="text-orange-400">0.98</span>
                         </div>
                         <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
                             <motion.div
                                 animate={{ width: ["30%", "85%", "60%"] }}
                                 transition={{ duration: 2, repeat: Infinity }}
-                                className="h-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]"
+                                className="h-full bg-orange-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]"
                             />
                         </div>
                     </div>
                     <div>
                         <div className="flex justify-between text-[8px] font-mono mb-1">
                             <span className="text-slate-500 uppercase">Latency</span>
-                            <span className="text-emerald-400">{inferenceStats.latency}ms</span>
+                            <span className="text-rose-400">{inferenceStats.latency}ms</span>
                         </div>
                         <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
                             <motion.div
                                 animate={{ width: ["10%", "40%", "20%"] }}
                                 transition={{ duration: 1.5, repeat: Infinity }}
-                                className="h-full bg-emerald-500 shadow-[0_0_8px_rgba(52,211,153,0.5)]"
+                                className="h-full bg-rose-500 shadow-[0_0_8px_rgba(52,211,153,0.5)]"
                             />
                         </div>
                     </div>
@@ -120,14 +120,14 @@ export default function AILogicHUD() {
 
                 <div className="flex flex-col justify-between border-l border-white/5 pl-4">
                     <div className="flex items-center gap-3">
-                        <Activity size={14} className="text-indigo-400" />
+                        <Activity size={14} className="text-orange-400" />
                         <div>
                             <div className="text-[7px] text-slate-600 uppercase">Throughput</div>
                             <div className="text-xs font-black text-white">{inferenceStats.tps} <span className="text-[8px] text-slate-500">T/s</span></div>
                         </div>
                     </div>
                     <div className="flex items-center gap-3">
-                        <Layers size={14} className="text-emerald-400" />
+                        <Layers size={14} className="text-rose-400" />
                         <div>
                             <div className="text-[7px] text-slate-600 uppercase">Active_Nodes</div>
                             <div className="text-xs font-black text-white">{inferenceStats.activeLayers} <span className="text-[8px] text-slate-500">Layers</span></div>
@@ -141,7 +141,7 @@ export default function AILogicHUD() {
                     <Zap size={10} className="text-amber-400 animate-pulse" />
                     <span className="text-[8px] font-mono text-slate-500">CUDA_CORE: [H100_OPTIMIZED]</span>
                 </div>
-                <div className="text-[8px] font-mono text-indigo-400/50">
+                <div className="text-[8px] font-mono text-orange-400/50">
                     MEM: {inferenceStats.memory}
                 </div>
             </div>

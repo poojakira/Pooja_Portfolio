@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Satellite, Shield, Zap, Database, User, Target, Download, Sparkles, ArrowRight, Activity } from "lucide-react";
+import { Satellite, Shield, Zap, Database, User, Target, Download, Sparkles, ArrowRight, Activity, Cpu, MemoryStick } from "lucide-react";
 import profilePic from "../assets/profile.jpg";
-import resumePDF from "../assets/Pooja_Kiran_RESUME.pdf";
+import resumePDF from "../assets/Pooja_Kiran_MLOps_Engineer.pdf";
 
 export default function Hero() {
     const { scrollY } = useScroll();
     const y1 = useTransform(scrollY, [0, 600], [0, 80]);
     const y2 = useTransform(scrollY, [0, 600], [0, -80]);
     const [typeText, setTypeText] = useState("");
-    const fullText = "Machine Learning Engineer";
+    const fullText = "ML / MLOps Engineer";
 
     useEffect(() => {
         let i = 0;
@@ -25,23 +25,23 @@ export default function Hero() {
         {
             icon: <Satellite size={20} />,
             label: "DOMAIN",
-            value: "Aerospace & Defense AI",
-            color: "indigo",
-            detail: "PINNs • GANs • EKF • Trajectory Optimization"
+            value: "Aerospace & Telemetry",
+            color: "orange",
+            detail: "Satellite Health • CubeSat Monitoring • Telemetry Pipelines"
         },
         {
-            icon: <Shield size={20} />,
-            label: "SECURITY",
-            value: "Enterprise-Grade",
-            color: "emerald",
-            detail: "Post-Quantum Crypto • Zero-Trust • DevSecOps"
+            icon: <Cpu size={20} />,
+            label: "MLOPS",
+            value: "Production ML Systems",
+            color: "rose",
+            detail: "Docker • CI/CD • AWS • Firebase • Reproducible Deployment"
         },
         {
             icon: <Database size={20} />,
-            label: "INFRASTRUCTURE",
-            value: "Cloud + Edge MLOps",
+            label: "SPECIALIZATION",
+            value: "Predictive Maintenance",
             color: "amber",
-            detail: "Docker • FastAPI • Firebase • MLflow • AWS"
+            detail: "Time-Series • Anomaly Detection • GPU Optimization"
         }
     ];
 
@@ -51,12 +51,12 @@ export default function Hero() {
             <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
 
             {/* Ambient glow blobs */}
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-600/8 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute top-1/2 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none animate-float-slow" />
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-600/8 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-rose-500/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/2 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-[80px] pointer-events-none animate-float-slow" />
 
             {/* Top accent line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
 
             {/* HUD Element */}
             <div className="absolute top-6 left-8 flex items-center gap-3 opacity-40">
@@ -65,7 +65,7 @@ export default function Hero() {
                         initial={{ x: "-100%" }}
                         animate={{ x: "100%" }}
                         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                        className="w-full h-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent"
+                        className="w-full h-full bg-gradient-to-r from-transparent via-orange-500 to-transparent"
                     />
                 </div>
                 <span className="text-[8px] font-mono text-slate-600 uppercase tracking-[0.3em]">
@@ -81,12 +81,12 @@ export default function Hero() {
                     transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
                 >
                     {/* Status Badge */}
-                    <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-black mb-10 shadow-[0_0_30px_rgba(79,70,229,0.1)] uppercase tracking-[0.2em]">
+                    <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-black mb-10 shadow-[0_0_30px_rgba(79,70,229,0.1)] uppercase tracking-[0.2em]">
                         <div className="relative flex h-2.5 w-2.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500" />
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500" />
                         </div>
-                        System Core: Deployed & Optimized
+                        IEEE Published · Production ML Systems
                     </div>
 
                     {/* Main Heading */}
@@ -95,13 +95,13 @@ export default function Hero() {
                             Pioneering
                         </span>
                         <span className="relative">
-                            <span className="gradient-text-indigo">
+                            <span className="gradient-text-orange">
                                 {typeText}
                             </span>
                             <motion.span
                                 animate={{ opacity: [1, 0] }}
                                 transition={{ duration: 0.6, repeat: Infinity }}
-                                className="text-indigo-400"
+                                className="text-orange-400"
                             >
                                 |
                             </motion.span>
@@ -109,23 +109,23 @@ export default function Hero() {
                                 initial={{ width: 0 }}
                                 animate={{ width: "100%" }}
                                 transition={{ duration: 2, delay: 1.5 }}
-                                className="absolute -bottom-2 left-0 h-1 bg-indigo-500/30 blur-sm rounded-full"
+                                className="absolute -bottom-2 left-0 h-1 bg-orange-500/30 blur-sm rounded-full"
                             />
                         </span>
                     </h1>
 
                     {/* Subtitle */}
                     <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-12 font-medium">
-                        Specializing in high-performance <span className="text-white font-bold">surrogate modeling</span>,
-                        <span className="text-indigo-300"> MLOps</span>, and <span className="text-emerald-400/80">tactical AI</span> for
-                        mission-critical platforms.
+                        Building <span className="text-white font-bold">production-minded ML systems</span> for
+                        <span className="text-orange-300"> telemetry-heavy</span>, <span className="text-rose-400/80">safety-conscious</span> environments.
+                        Specializing in anomaly detection, forecasting, and GPU-optimized ML infrastructure.
                     </p>
 
                     {/* CTA Buttons */}
                     <div className="flex flex-wrap gap-4 mb-14">
                         <motion.a
                             href={resumePDF}
-                            download="Pooja_Kiran_Resume.pdf"
+                            download="Pooja_Kiran_MLOps_Engineer.pdf"
                             whileHover={{ scale: 1.03, y: -2 }}
                             whileTap={{ scale: 0.97 }}
                             className="btn-primary"
@@ -187,19 +187,19 @@ export default function Hero() {
             >
                 <div className="relative w-80 h-[450px] group">
                     {/* Orbital decorations */}
-                    <div className="absolute -top-8 -right-8 w-28 h-28 border border-indigo-500/15 rounded-full animate-spin-slow" />
-                    <div className="absolute -bottom-10 -left-10 w-36 h-36 border border-emerald-500/8 rounded-full animate-reverse-spin" />
-                    <div className="absolute top-1/2 -right-4 w-8 h-8 border border-indigo-500/10 rounded-full animate-float" />
+                    <div className="absolute -top-8 -right-8 w-28 h-28 border border-orange-500/15 rounded-full animate-spin-slow" />
+                    <div className="absolute -bottom-10 -left-10 w-36 h-36 border border-rose-500/8 rounded-full animate-reverse-spin" />
+                    <div className="absolute top-1/2 -right-4 w-8 h-8 border border-orange-500/10 rounded-full animate-float" />
 
                     {/* Glow frame */}
                     <div className="absolute inset-0 z-10 pointer-events-none rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(79,70,229,0.12)] overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[3000ms]" />
+                        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[3000ms]" />
                     </div>
 
                     {/* Photo container */}
                     <div className="relative w-full h-full rounded-3xl overflow-hidden bg-slate-900/50 backdrop-blur-sm border border-white/5 p-4 flex flex-col">
                         <div className="relative flex-1 rounded-2xl overflow-hidden bg-black mb-4 biometric-scanner">
-                            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-950/40 via-transparent to-indigo-500/5 z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-orange-950/40 via-transparent to-orange-500/5 z-10" />
                             <img
                                 src={profilePic}
                                 alt="Pooja Kiran Bharadwaj"
@@ -216,9 +216,9 @@ export default function Hero() {
 
                         <div className="space-y-3 font-mono">
                             <div className="flex justify-between items-center text-[9px]">
-                                <span className="text-indigo-400 font-black tracking-wider">DNA_AUTH</span>
-                                <span className="text-emerald-400 font-black tracking-wider flex items-center gap-1">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                <span className="text-orange-400 font-black tracking-wider">DNA_AUTH</span>
+                                <span className="text-rose-400 font-black tracking-wider flex items-center gap-1">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
                                     VERIFIED
                                 </span>
                             </div>
