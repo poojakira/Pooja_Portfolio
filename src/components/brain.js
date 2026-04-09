@@ -12,9 +12,9 @@ const KB = {
     location: "Phoenix, Arizona, US",
     linkedin: "https://linkedin.com/in/poojakiran",
     github: "https://github.com/poojakira",
-    status: "Actively seeking ML / MLOps Engineer roles",
+    status: "Actively seeking Machine Learning Engineer roles",
     availability: "Available immediately for full-time roles, internships, or research collaborations",
-    summary: "ML / MLOps Engineer and IEEE-published researcher specializing in building production-minded ML systems for telemetry-heavy, safety-conscious environments. Proven track record of addressing operational constraints by architecting reliable anomaly detection, forecasting, and GPU-optimized ML infrastructures for applied aerospace and industrial systems.",
+    summary: "Machine Learning Engineer and IEEE-published researcher specializing in building production-minded ML systems for telemetry-heavy, safety-conscious environments. Proven track record of addressing operational constraints by architecting reliable anomaly detection, forecasting, and GPU-optimized ML infrastructures for applied aerospace and industrial systems.",
 
     education: {
         masters: {
@@ -422,7 +422,7 @@ export const getResponse = (input, options = {}) => {
     }
 
     // Final fallback
-    const response = `I wasn't sure exactly what you meant, but I'll try to help! Pooja Kiran is an ML / MLOps Engineer with expertise in:
+    const response = `I wasn't sure exactly what you meant, but I'll try to help! Pooja Kiran is a Machine Learning Engineer with expertise in:
 
 • 🧠 Python, PyTorch, Time-Series Modeling, Anomaly Detection, Forecasting
 • 🛰️ Satellite Telemetry, Predictive Maintenance, Aerospace Systems
