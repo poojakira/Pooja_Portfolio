@@ -5,7 +5,7 @@
  */
 
 // ─── Complete Knowledge Base ────────────────────────────────────────────────
-const KB = {
+export const KB = {
     name: "Pooja Kiran",
     email: "poojakiranbhardwaj@gmail.com",
     phone: "+1 (480) 776-7745",
@@ -376,7 +376,7 @@ function findBestTopic(input) {
 }
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
-function stripFormatting(text) {
+export function stripFormatting(text) {
     if (!text) return "";
     return text
         // Remove markdown bold/italics

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, User, Bot, Sparkles } from "lucide-react";
-import { getResponse } from "./brain";
+import { getResponse, KB, stripFormatting } from "./brain";
 
 const AIBot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -47,12 +47,33 @@ const AIBot = () => {
         setInput("");
         setIsTyping(true);
 
-        // Simulate AI Thinking
-        setTimeout(() => {
-            const aiResponse = { role: "assistant", content: getResponse(input, { plainMode }) };
-            setMessages(prev => [...prev, aiResponse]);
-            setIsTyping(false);
-        }, 1200);
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        if (apiKey) {
+            try {
+                const res = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            system_instruction: { parts: [{ text: `You are Pooja Kiran's portfolio assistant. Answer questions about her background, projects, and skills using this context: ${JSON.stringify(KB)}. Be concise and technical.` }] },
+                            contents: [{ parts: [{ text: input }] }]
+                        })
+                    }
+                );
+                const data = await res.json();
+                let text = data?.candidates?.[0]?.content?.parts?.[0]?.text || getResponse(input, { plainMode });
+                if (plainMode) text = stripFormatting(text);
+                setMessages(prev => [...prev, { role: "assistant", content: text }]);
+            } catch {
+                setMessages(prev => [...prev, { role: "assistant", content: getResponse(input, { plainMode }) }]);
+            }
+        } else {
+            setTimeout(() => {
+                setMessages(prev => [...prev, { role: "assistant", content: getResponse(input, { plainMode }) }]);
+            }, 1200);
+        }
+        setIsTyping(false);
     };
 
     return (
