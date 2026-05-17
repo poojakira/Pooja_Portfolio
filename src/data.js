@@ -15,7 +15,7 @@ export const PROJECTS = [
         tech: ["Python", "FastAPI", "PyTorch", "Docker", "Prometheus"],
         metric: "79 Tests | JWT + AES Encryption | CI/CD",
         desc: "Security-hardened ML platform for industrial predictive maintenance. Features JWT authentication, AES encryption at rest, tamper-evident audit logging, and full observability with Prometheus + Grafana.",
-        link: "https://github.com/poojakira/secure-ml-platform",
+        link: "https://github.com/poojakira/Secure-ML-platform",
         complexity: 98,
         dashboardImg: null,
         mainPoints: [
@@ -40,7 +40,7 @@ export const PROJECTS = [
         tech: ["Python", "PyTorch", "RK4 Integration", "ML Surrogates"],
         metric: "Physics-ML Hybrid Simulation",
         desc: "Physics-aware trajectory simulation using RK4 integration, atmospheric models, and ML surrogates for fast constrained inference.",
-        link: "https://github.com/poojakira/trajectory-optimization",
+        link: "https://github.com/poojakira/Aerospace-Trajectory-Simulator",
         complexity: 98,
         dashboardImg: null,
         mainPoints: [
@@ -63,7 +63,7 @@ export const PROJECTS = [
         tech: ["Firebase", "Python", "PyTorch", "Kafka", "Ensemble ML"],
         metric: "3-Model Ensemble | Real-time Telemetry",
         desc: "Satellite telemetry monitoring pipeline with Firebase-backed data flow, Kafka ingestion, and three-model ensemble anomaly detection for CubeSat health analytics.",
-        link: "https://github.com/poojakira/satellite-anomaly-detection",
+        link: "https://github.com/poojakira/CubeSat-Health-Monitor",
         complexity: 96,
         dashboardImg: null,
         mainPoints: [
@@ -88,7 +88,7 @@ export const PROJECTS = [
         tech: ["Python", "Streamlit", "EKF", "Anomaly Detection"],
         metric: "EKF State Estimation | Real-time Dashboard",
         desc: "Satellite telemetry streaming pipeline with Extended Kalman Filter state estimation, anomaly surfacing, and operator-facing Streamlit dashboard.",
-        link: "https://github.com/poojakira/telemetry-streaming-pipeline",
+        link: "https://github.com/poojakira/Mission-Control-Telemetry-Simulator",
         complexity: 93,
         dashboardImg: null,
         mainPoints: [
@@ -111,7 +111,7 @@ export const PROJECTS = [
         tech: ["FastAPI", "PostgreSQL", "Docker", "Merkle Audit"],
         metric: "Async Pipeline | Merkle Audit Trail",
         desc: "Carbon emissions tracking platform with async batch ingestion, Merkle-anchored audit trail, forecasting, and PostgreSQL persistence.",
-        link: "https://github.com/poojakira/carbon-analytics-platform",
+        link: "https://github.com/poojakira/ESG-Carbon-Telemetry",
         complexity: 91,
         dashboardImg: null,
         mainPoints: [
@@ -134,7 +134,7 @@ export const PROJECTS = [
         tech: ["Python", "MQTT", "Autoencoder", "Streamlit", "PostgreSQL"],
         metric: "Reconstruction Error Scoring | MQTT Ingestion",
         desc: "IoT telemetry monitoring system with MQTT ingestion, autoencoder-based anomaly detection, Kalman filtering, and containerized Streamlit dashboard.",
-        link: "https://github.com/poojakira/iot-telemetry-monitor",
+        link: "https://github.com/poojakira/Orbital-IoT-Monitor",
         complexity: 88,
         dashboardImg: null,
         mainPoints: [
@@ -159,7 +159,7 @@ export const PROJECTS = [
         tech: ["PyTorch", "Docker", "Transformer Predictor", "CUDA"],
         metric: "Proactive Defragmentation | Tiered Policy",
         desc: "GPU memory defragmentation system that prevents OOM crashes during transformer training through proactive fragmentation prediction and tiered compaction policies.",
-        link: "https://github.com/poojakira/gpu-memory-optimizer",
+        link: "https://github.com/poojakira/RTX-OOM-Guard",
         complexity: 94,
         dashboardImg: null,
         mainPoints: [
