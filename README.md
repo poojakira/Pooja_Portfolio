@@ -46,4 +46,4 @@ This project is optimized for world-class deployment platforms:
 This portfolio is mission-ready for your transitions into **MLOps Engineering** and **Applied AI** roles. It emphasizes results, technical precision, and professional aesthetics.
 
 ---
-**Pooja Kiran Bharadwaj** // [poojakiranbharadwaj@gmail.com](mailto:poojakiranbharadwaj@gmail.com)
+**Pooja Kiran Bharadwaj** // [poojakiranbhardwaj@gmail.com](mailto:poojakiranbhardwaj@gmail.com)
